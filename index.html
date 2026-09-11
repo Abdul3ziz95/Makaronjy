@@ -45,7 +45,7 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   letter-spacing:.5px;color:#f3d9c5;transition:.25s}
 .lang-seg.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark)}
 .hero{background:linear-gradient(135deg,var(--dark),#8e2a4a 55%,#a4385c);color:#fff;text-align:center;padding:.5rem 1rem 1rem;position:relative;overflow:hidden}
-.hero::before{content:'🍝  🍅';position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;
+.hero::before{content:'🍝  ';position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;
   font-size:5rem;opacity:.07;pointer-events:none}
 .status-pill{position:relative;display:inline-flex;align-items:center;gap:.55rem;background:#ffffff14;border:1px solid #ffffff2b;
   border-radius:50px;padding:.5rem 1.3rem;margin-bottom:1.1rem;backdrop-filter:blur(6px);
@@ -179,8 +179,8 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
 .gate-nearest:disabled{opacity:.75;cursor:default;transform:none}
 .gate-nearest .ping{position:absolute;inset:0;border-radius:16px;border:2px solid var(--gold2);opacity:0;animation:btnPing 2.2s ease-out infinite;pointer-events:none}
 @keyframes btnPing{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.12);opacity:0}}
-/* زر قائمة الفروع + القائمة المنسدلة */
-.gate-listbtn{display:flex;align-items:center;gap:.6rem;width:min(430px,92vw);margin:0 auto .8rem;
+/* زر قائمة الفروع */
+.gate-listbtn{display:flex;align-items:center;gap:.6rem;width:min(430px,92vw);margin:0 auto .9rem;
   background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:.85rem 1rem;
   font-family:inherit;font-weight:900;font-size:.95rem;color:var(--brown);cursor:pointer;transition:.25s;
   box-shadow:0 4px 14px rgba(90,24,48,.08);animation:fadeUp .5s .4s both}
@@ -189,9 +189,10 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
 .gate-listbtn.open{border-color:var(--gold)}
 .gate-listbtn.open .glb-chev{transform:rotate(180deg)}
 .glb-count{background:var(--gold);color:var(--dark);border-radius:50px;padding:.05rem .55rem;font-size:.72rem;font-weight:900}
-.gate-drop{width:min(430px,92vw);margin:0 auto;max-height:0;overflow:hidden;opacity:.4;
-  transition:max-height .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-.gate-drop.open{max-height:62vh;overflow-y:auto;opacity:1}
+/* القائمة تُعرض كاملة داخل الصفحة — بدون صندوق تمرير خاص */
+.gate-drop{width:min(430px,92vw);margin:0 auto;display:none}
+.gate-drop.open{display:block;animation:dropIn .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes dropIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
 .gate-list{display:flex;flex-direction:column;gap:.9rem;padding:.2rem 0 .4rem}
 .gate-card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:1rem 1rem .9rem;
   cursor:pointer;transition:.28s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 4px 14px rgba(90,24,48,.08);
@@ -222,19 +223,20 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   color:var(--brown2);border-radius:12px;padding:.65rem .9rem;font-size:.76rem;font-weight:800;text-decoration:none;transition:.2s}
 .gc-dir:active{transform:scale(.95)}
 .gc-dir:hover{border-color:var(--gold);color:#a06b1c}
-/* ===== بلاطة شركاء التوصيل (نمط الشعارات المربعة) ===== */
+/* ===== شركاء التوصيل: أزرار عائمة ===== */
 .gate-delivery{width:min(430px,92vw);margin:1.6rem auto 0;display:flex;flex-direction:column;gap:.9rem}
 .gd-head{text-align:center;line-height:1.7}
 .gd-head b{display:block;color:var(--ink);font-size:.95rem;font-weight:900}
 .gd-head small{display:block;color:var(--muted);font-size:.75rem;font-weight:700}
-.gd-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
-.gd-tile{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;background:#fff;
-  box-shadow:0 6px 16px rgba(90,24,48,.15);transition:.25s}
-.gd-tile:active{transform:scale(.94)}
-.gd-tile:hover{transform:translateY(-3px)}
-.gd-tile img{width:100%;height:100%;object-fit:cover;display:block}
-.gd-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;
-  color:#fff;font-weight:900;font-size:.85rem;padding:.4rem;line-height:1.5}
+.gd-tiles{display:flex;justify-content:center;align-items:center;gap:.7rem;flex-wrap:wrap}
+.gd-btn{display:inline-flex;align-items:center;gap:.55rem;background:#fff;border:none;border-radius:50px;
+  padding:.5rem 1rem;box-shadow:0 10px 24px rgba(90,24,48,.18),0 2px 6px rgba(90,24,48,.12);
+  font-family:inherit;font-weight:900;font-size:.82rem;color:var(--ink);text-decoration:none;transition:.25s}
+.gd-btn:active{transform:scale(.94)}
+.gd-btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(90,24,48,.22)}
+.gd-btn img{width:32px;height:32px;border-radius:10px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,.18);flex-shrink:0}
+.gd-fallback{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.85rem;font-weight:900;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .cats{position:sticky;top:66px;z-index:40;background:var(--cream);padding:.7rem 1rem;display:flex;gap:.5rem;
   overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none;transition:.3s;will-change:scroll-position}
 .cats::-webkit-scrollbar{display:none}
@@ -573,7 +575,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
   <button class="f-menu-btn" onclick="closeFeatured()" data-i18n="browseMenu">تصفح قائمة الطعام</button>
 </div>
 
-<!-- ===== شاشة الفروع: رأس ثابت + قائمة منسدلة + شركاء التوصيل ===== -->
+<!-- ===== شاشة الفروع: رأس ثابت + قائمة كاملة داخل الصفحة + شركاء التوصيل ===== -->
 <div class="gate" id="gate">
   <div class="gate-head">
     <button class="gate-close" id="gateClose" onclick="closeGate()" aria-label="إغلاق">✕</button>
@@ -933,7 +935,7 @@ const sheetBody = el('sheetBody');
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
 function runningAsApp(){
-  return window.matchMedia('(display-mode: standalone)').matches ||
+  return window.matchMedia('(display-mode: standalone').matches ||
          window.matchMedia('(display-mode: fullscreen)').matches ||
          window.navigator.standalone === true;
 }
@@ -978,7 +980,7 @@ function installApp(){
 }
 function closeSheet(){ installSheet.classList.remove('show'); }
 
-/* ===== السوشيال + شركاء التوصيل ===== */
+/* ===== السوشيال + شركاء التوصيل (أزرار عائمة) ===== */
 function renderSocial(){
   const s = S().social || {};
   const links = [];
@@ -993,16 +995,18 @@ function renderDelivery(){
   const box = el('gateDelivery');
   if(!d.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
   box.style.display = '';
+  const name = x=> currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr);
   box.innerHTML = `
     <div class="gd-head">
       <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
       <small>${tt('deliveryHeadEn','Order now via our delivery partners','اطلب الآن عبر شركائنا في التوصيل')}</small>
     </div>
     <div class="gd-tiles">
-      ${d.map(x=>`<a class="gd-tile" href="${x.url}" target="_blank" rel="noopener noreferrer" aria-label="${x.nameAr}">
-        <img src="${x.img || 'img/missing.png'}" alt="${x.nameAr}"
+      ${d.map(x=>`<a class="gd-btn" href="${x.url}" target="_blank" rel="noopener noreferrer" aria-label="${name(x)}">
+        <img src="${x.img || 'img/missing.png'}" alt="${name(x)}"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="gd-fallback" style="display:none;background:${x.color || '#8e2a4a'}">${x.nameAr}</span>
+        <span class="gd-fallback" style="display:none;background:${x.color || '#8e2a4a'}">${name(x).charAt(0)}</span>
+        <span>${name(x)}</span>
       </a>`).join('')}
     </div>`;
 }
@@ -1167,7 +1171,7 @@ function skipIntro(){
 }
 el('welcome').addEventListener('click', e=>{ if(e.target.id==='welcome') skipIntro(); });
 
-/* ===== شاشة الفروع: القائمة المنسدلة ===== */
+/* ===== شاشة الفروع: القائمة تُعرض كاملة داخل الصفحة ===== */
 let nearestId = null;
 let gateMode = null;
 let dropOpen = false;
@@ -1177,6 +1181,7 @@ function setDrop(open){
   el('gateDrop').classList.toggle('open', open);
   el('gateListBtn').classList.toggle('open', open);
   el('gateListBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(open) renderGateList();
 }
 el('gateListBtn').addEventListener('click', ()=> setDrop(!dropOpen));
 /* الضغط خارج القائمة يطويها */
@@ -1198,7 +1203,7 @@ function renderGateList(){
   const nearestTxt = tt('branchNearestBadge','🎯 الأقرب لك','🎯 Nearest to You');
   const dirTxt = T().getDir || (currentLang==='ar' ? 'التوجه للمطعم' : 'Directions');
   el('gateList').innerHTML = brs.map((b, idx)=>`
-    <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.1 + idx*0.08}s">
+    <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.08 + idx*0.08}s">
       <div class="gc-top">
         <span class="gc-ico">🍝</span>
         <div class="gc-names">
@@ -1261,7 +1266,7 @@ el('gateList').addEventListener('click', e=>{
   if(id) selectBranch(id);
 });
 
-/* ===== زر الأقرب: يفتح القائمة ويبرز الأقرب ===== */
+/* ===== زر الأقرب: يفتح القائمة كاملة ويمرّر للأقرب ===== */
 let geoBusy = false;
 function geoOnce(opts){
   return new Promise((res, rej)=>{
@@ -1297,7 +1302,6 @@ async function requestNearest(){
       if(d < bd){ bd = d; best = b.id; }
     });
     nearestId = best;
-    renderGateList();
     setDrop(true);
     setTimeout(()=>{
       const n = el('gateList').querySelector('.is-nearest');
@@ -1878,7 +1882,7 @@ document.querySelectorAll('#slotBtns .slot-btn').forEach(b => {
   b.addEventListener('click', () => saveFavToSlot(+b.dataset.slot));
 });
 
-/* ===== إتمام الطلب (استلام من الفرع — بدون نوع طلب) ===== */
+/* ===== إتمام الطلب (استلام من الفرع) ===== */
 function checkout(){
   const TT = T();
   const br = currentBranch();
