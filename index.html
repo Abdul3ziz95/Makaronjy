@@ -174,12 +174,25 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
 .gate-nearest{position:relative;display:flex;align-items:center;justify-content:center;gap:.5rem;width:min(430px,92vw);
   background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border:none;border-radius:16px;
   padding:.9rem 1rem;font-family:inherit;font-weight:900;font-size:.95rem;cursor:pointer;transition:.25s;
-  box-shadow:0 10px 26px rgba(224,145,47,.45);margin:0 auto 1.2rem;animation:fadeUp .5s .34s both;overflow:hidden}
+  box-shadow:0 10px 26px rgba(224,145,47,.45);margin:0 auto 1rem;animation:fadeUp .5s .34s both;overflow:hidden}
 .gate-nearest:active{transform:scale(.97)}
 .gate-nearest:disabled{opacity:.75;cursor:default;transform:none}
 .gate-nearest .ping{position:absolute;inset:0;border-radius:16px;border:2px solid var(--gold2);opacity:0;animation:btnPing 2.2s ease-out infinite;pointer-events:none}
 @keyframes btnPing{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.12);opacity:0}}
-.gate-list{display:flex;flex-direction:column;gap:.9rem;width:min(430px,92vw)}
+/* زر قائمة الفروع + القائمة المنسدلة */
+.gate-listbtn{display:flex;align-items:center;gap:.6rem;width:min(430px,92vw);margin:0 auto .8rem;
+  background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:.85rem 1rem;
+  font-family:inherit;font-weight:900;font-size:.95rem;color:var(--brown);cursor:pointer;transition:.25s;
+  box-shadow:0 4px 14px rgba(90,24,48,.08);animation:fadeUp .5s .4s both}
+.gate-listbtn:active{transform:scale(.98)}
+.gate-listbtn .glb-chev{margin-inline-start:auto;transition:.3s;font-weight:900;color:var(--muted)}
+.gate-listbtn.open{border-color:var(--gold)}
+.gate-listbtn.open .glb-chev{transform:rotate(180deg)}
+.glb-count{background:var(--gold);color:var(--dark);border-radius:50px;padding:.05rem .55rem;font-size:.72rem;font-weight:900}
+.gate-drop{width:min(430px,92vw);margin:0 auto;max-height:0;overflow:hidden;opacity:.4;
+  transition:max-height .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.gate-drop.open{max-height:62vh;overflow-y:auto;opacity:1}
+.gate-list{display:flex;flex-direction:column;gap:.9rem;padding:.2rem 0 .4rem}
 .gate-card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:1rem 1rem .9rem;
   cursor:pointer;transition:.28s cubic-bezier(.2,.9,.3,1.1);box-shadow:0 4px 14px rgba(90,24,48,.08);
   position:relative;animation:cardIn .5s both;overflow:hidden}
@@ -209,16 +222,19 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   color:var(--brown2);border-radius:12px;padding:.65rem .9rem;font-size:.76rem;font-weight:800;text-decoration:none;transition:.2s}
 .gc-dir:active{transform:scale(.95)}
 .gc-dir:hover{border-color:var(--gold);color:#a06b1c}
-/* ===== بلوك تطبيقات التوصيل ===== */
-.gate-delivery{width:min(430px,92vw);margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
-.gd-title{text-align:center;color:var(--muted);font-size:.8rem;font-weight:900;margin-bottom:.1rem}
-.gd-btn{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1.5px solid var(--line);border-radius:14px;
-  padding:.75rem .9rem;text-decoration:none;color:var(--ink);font-family:inherit;font-weight:900;font-size:.85rem;
-  transition:.2s;box-shadow:0 3px 10px rgba(90,24,48,.08)}
-.gd-btn:active{transform:scale(.97)}
-.gd-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
-.gd-dot{width:12px;height:12px;border-radius:50%;background:var(--gdc,#8e2a4a);flex-shrink:0}
-.gd-arrow{margin-inline-start:auto;color:var(--muted);font-weight:700}
+/* ===== بلاطة شركاء التوصيل (نمط الشعارات المربعة) ===== */
+.gate-delivery{width:min(430px,92vw);margin:1.6rem auto 0;display:flex;flex-direction:column;gap:.9rem}
+.gd-head{text-align:center;line-height:1.7}
+.gd-head b{display:block;color:var(--ink);font-size:.95rem;font-weight:900}
+.gd-head small{display:block;color:var(--muted);font-size:.75rem;font-weight:700}
+.gd-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.gd-tile{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;background:#fff;
+  box-shadow:0 6px 16px rgba(90,24,48,.15);transition:.25s}
+.gd-tile:active{transform:scale(.94)}
+.gd-tile:hover{transform:translateY(-3px)}
+.gd-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.gd-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;
+  color:#fff;font-weight:900;font-size:.85rem;padding:.4rem;line-height:1.5}
 .cats{position:sticky;top:66px;z-index:40;background:var(--cream);padding:.7rem 1rem;display:flex;gap:.5rem;
   overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none;transition:.3s;will-change:scroll-position}
 .cats::-webkit-scrollbar{display:none}
@@ -300,28 +316,8 @@ html[dir="ltr"] #drawer.show{transform:translateX(0)}
 .d-foot{border-top:1px solid var(--line);padding:1rem;background:#fff;display:flex;flex-direction:column;gap:.6rem}
 .d-foot textarea{font-family:inherit;border:1.5px solid var(--line);border-radius:10px;padding:.5rem .7rem;font-size:1rem;outline:none;resize:none;background:var(--cream)}
 .d-foot textarea:focus{border-color:var(--gold)}
-.otype-alert{display:none;align-items:center;gap:.5rem;background:#fee2e2;border:1.5px solid #ef4444;color:#b91c1c;
-  border-radius:12px;padding:.6rem .9rem;font-size:.78rem;font-weight:900;line-height:1.6;
-  box-shadow:0 4px 12px rgba(239,68,68,.25)}
-.otype-alert.show{display:flex;animation:alertIn .35s ease}
-@keyframes alertIn{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.otype-alert .alert-bell{flex-shrink:0;font-size:1rem;animation:bellRing 1s ease infinite}
-@keyframes bellRing{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(3deg)}}
-.otype-wrap{display:flex;gap:.55rem}
-.otype-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.7rem .5rem;
-  border-radius:14px;border:1.5px solid var(--line);background:var(--cream);font-family:inherit;font-weight:900;
-  font-size:.88rem;color:var(--brown2);cursor:pointer;transition:.25s;position:relative}
-.otype-btn .otype-ico{font-size:1.1rem;transition:.25s}
-.otype-btn:hover{border-color:var(--gold);transform:translateY(-1px)}
-.otype-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);border-color:var(--gold);
-  box-shadow:0 5px 14px rgba(224,145,47,.35)}
-.otype-btn.active .otype-ico{transform:scale(1.15)}
-.otype-btn.active::after{content:'✓';position:absolute;top:-8px;inset-inline-end:-8px;width:22px;height:22px;border-radius:50%;
-  background:var(--brown);color:#fff;font-size:.72rem;font-weight:900;display:grid;place-items:center;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);animation:checkPop .3s cubic-bezier(.2,.9,.3,1.4)}
-@keyframes checkPop{from{transform:scale(0)}to{transform:scale(1)}}
-.otype-wrap.error .otype-btn{border-color:#ef4444;background:#fef2f2;animation:shakeX .45s ease}
-@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.pickup-note{display:flex;align-items:center;gap:.5rem;background:#e8f5e9;border:1.5px solid #128c5e33;color:#2d6a4f;
+  border-radius:12px;padding:.6rem .9rem;font-size:.78rem;font-weight:900;line-height:1.6}
 .total-row{display:flex;justify-content:space-between;font-weight:900;font-size:1rem;color:var(--brown)}
 .total-row small{color:var(--muted);font-weight:700}
 .checkout{background:var(--wa);color:#fff;border:none;border-radius:12px;padding:.85rem;font-family:inherit;font-weight:900;font-size:1rem;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:.5rem}
@@ -577,7 +573,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
   <button class="f-menu-btn" onclick="closeFeatured()" data-i18n="browseMenu">تصفح قائمة الطعام</button>
 </div>
 
-<!-- ===== شاشة الفروع: رأس ثابت + جسم يمرّ ===== -->
+<!-- ===== شاشة الفروع: رأس ثابت + قائمة منسدلة + شركاء التوصيل ===== -->
 <div class="gate" id="gate">
   <div class="gate-head">
     <button class="gate-close" id="gateClose" onclick="closeGate()" aria-label="إغلاق">✕</button>
@@ -593,7 +589,15 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
   </div>
   <div class="gate-body">
     <button class="gate-nearest" id="gateNearest"><span class="ping"></span><span id="gateNearestLbl">🎯 حدّد الفرع الأقرب لموقعي</span></button>
-    <div class="gate-list" id="gateList"></div>
+    <button class="gate-listbtn" id="gateListBtn" aria-expanded="false">
+      <span>📋</span>
+      <span id="gateListLbl">قائمة الفروع</span>
+      <span class="glb-count" id="gateCount">0</span>
+      <span class="glb-chev">⌄</span>
+    </button>
+    <div class="gate-drop" id="gateDrop">
+      <div class="gate-list" id="gateList"></div>
+    </div>
     <div class="gate-delivery" id="gateDelivery"></div>
   </div>
 </div>
@@ -614,20 +618,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
   <div class="d-head">🛒 <span data-i18n="cartTitle">سلة الطلبات</span> <button onclick="closeCart()">✕</button></div>
   <div class="d-items" id="dItems"></div>
   <div class="d-foot">
-    <div class="otype-alert" id="otypeAlert">
-      <span class="alert-bell">🔔</span>
-      <span data-i18n="chooseType">⚠️ اختر نوع الطلب: محلي أو سفري</span>
-    </div>
-    <div class="otype-wrap" id="otypeWrap">
-      <button class="otype-btn" id="otypeLocal" onclick="setOrderType('local')">
-        <span class="otype-ico">🍽️</span>
-        <span data-i18n="orderLocal">محلي</span>
-      </button>
-      <button class="otype-btn" id="otypeTake" onclick="setOrderType('takeaway')">
-        <span class="otype-ico">🥡</span>
-        <span data-i18n="orderTakeaway">سفري</span>
-      </button>
-    </div>
+    <div class="pickup-note">🛍️ <span data-i18n="pickupNote">طلبك يكون جاهزاً عند وصولك للفرع</span></div>
     <textarea id="cnotes" rows="2" data-i18n-ph="notePh" placeholder="📝 توصية / ملاحظة"></textarea>
     <button class="save-fav-btn" id="saveFavBtn" data-i18n="favSaveBtn">💾 حفظ الوجبة كمفضلة</button>
     <div class="total-row">
@@ -708,7 +699,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
 <script src="menu.js"></script>
 <script src="settings.js"></script>
 <script>
-/* ===== تأمين العمل بدون إنترنت: استعادة المنيو/الإعدادات من لقطة localStorage ===== */
+/* ===== تأمين العمل بدون إنترنت ===== */
 (function(){
   if(window.MENU && window.APP_SETTINGS) return;
   try{
@@ -720,7 +711,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
 })();
 </script>
 <script>
-/* ===== إيقاف التكبير بالأصابع: طبقة الإيماءات ===== */
+/* ===== إيقاف التكبير بالأصابع ===== */
 document.addEventListener('touchstart', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 ['gesturestart','gesturechange','gestureend'].forEach(ev=> document.addEventListener(ev, e=> e.preventDefault()));
@@ -747,8 +738,6 @@ window.addEventListener('pageshow', pushGuard);
 
 /* ===== مساعدات ===== */
 function el(id){ return document.getElementById(id); }
-
-/* ===== التوست ===== */
 function toast(msg){
   const t = el('toastMsg');
   if(!t) return;
@@ -757,7 +746,6 @@ function toast(msg){
   clearTimeout(t._h);
   t._h = setTimeout(()=> t.classList.remove('show'), 2600);
 }
-
 function welcomeShown(){ return el('welcome').classList.contains('show'); }
 function sheetShown(){ return el('installSheet').classList.contains('show'); }
 function drawerShown(){ return el('drawer').classList.contains('show'); }
@@ -823,7 +811,7 @@ function hav(la1,lo1,la2,lo2){
   return 2*R*Math.asin(Math.sqrt(a));
 }
 
-/* ===== المنيو: بحث ورؤية ===== */
+/* ===== المنيو ===== */
 function findMenuItem(id){
   for(const s of MENU){ const it = s.items.find(x=>x.id===id); if(it) return it; }
   return null;
@@ -859,7 +847,7 @@ function itemViewState(sec, it, brId){
   return 'normal';
 }
 
-/* ===== جداول الساعات الأسبوعية بدقة الدقائق {h, m} ===== */
+/* ===== الساعات بدقة الدقائق ===== */
 function normHM(t){
   if(t && typeof t === 'object') return { h: (t.h|0), m: (t.m|0) };
   const n = Math.floor(+t) || 0;
@@ -990,7 +978,7 @@ function installApp(){
 }
 function closeSheet(){ installSheet.classList.remove('show'); }
 
-/* ===== السوشيال + تطبيقات التوصيل ===== */
+/* ===== السوشيال + شركاء التوصيل ===== */
 function renderSocial(){
   const s = S().social || {};
   const links = [];
@@ -1005,12 +993,18 @@ function renderDelivery(){
   const box = el('gateDelivery');
   if(!d.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
   box.style.display = '';
-  box.innerHTML = `<h4 class="gd-title">${tt('deliveryTitle','أو اطلب عبر تطبيقات التوصيل المعتمدة','Or order via our delivery partners')}</h4>` +
-    d.map(x=>`<a class="gd-btn" style="--gdc:${x.color || '#8e2a4a'}" href="${x.url}" target="_blank" rel="noopener noreferrer">
-      <span class="gd-dot"></span>
-      <span>${currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr)}</span>
-      <span class="gd-arrow">↗</span>
-    </a>`).join('');
+  box.innerHTML = `
+    <div class="gd-head">
+      <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
+      <small>${tt('deliveryHeadEn','Order now via our delivery partners','اطلب الآن عبر شركائنا في التوصيل')}</small>
+    </div>
+    <div class="gd-tiles">
+      ${d.map(x=>`<a class="gd-tile" href="${x.url}" target="_blank" rel="noopener noreferrer" aria-label="${x.nameAr}">
+        <img src="${x.img || 'img/missing.png'}" alt="${x.nameAr}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="gd-fallback" style="display:none;background:${x.color || '#8e2a4a'}">${x.nameAr}</span>
+      </a>`).join('')}
+    </div>`;
 }
 
 function applyLang(lang){
@@ -1041,6 +1035,7 @@ function applyLang(lang){
   el('gateTagline').textContent = brandize(tt('gateTagline','مكرونة بطعم لا يُقاوم','Irresistible pasta experience'));
   el('gateTitle').textContent = tt('branchGateTitle','اختر فرعك للطلب 📍','Choose Your Branch 📍');
   el('gateNearestLbl').textContent = tt('branchNearestBtn','🎯 حدّد الفرع الأقرب لموقعي','🎯 Find My Nearest Branch');
+  el('gateListLbl').textContent = tt('gateListBtn','قائمة الفروع','Branch List');
   el('changeBranchLbl').textContent = tt('changeBranch','تغيير الفرع','Change Branch');
   updateBranchFooter();
   renderSocial();
@@ -1091,26 +1086,6 @@ function updateStatus(){
 }
 updateStatus();
 setInterval(updateStatus, 30000);
-
-/* ===== نوع الطلب ===== */
-let orderType = null;
-function setOrderType(t){
-  orderType = t;
-  el('otypeLocal').classList.toggle('active', t==='local');
-  el('otypeTake').classList.toggle('active', t==='takeaway');
-  el('otypeAlert').classList.remove('show');
-  el('otypeWrap').classList.remove('error');
-}
-function showTypeAlert(){
-  const alertEl = el('otypeAlert');
-  const wrap = el('otypeWrap');
-  alertEl.classList.remove('show');
-  wrap.classList.remove('error');
-  void alertEl.offsetWidth;
-  alertEl.classList.add('show');
-  wrap.classList.add('error');
-  alertEl.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
 
 /* ===== الأصناف المميزة ===== */
 function featPlaceholder(name){
@@ -1192,22 +1167,38 @@ function skipIntro(){
 }
 el('welcome').addEventListener('click', e=>{ if(e.target.id==='welcome') skipIntro(); });
 
-/* ===== شاشة الفروع ===== */
+/* ===== شاشة الفروع: القائمة المنسدلة ===== */
 let nearestId = null;
 let gateMode = null;
+let dropOpen = false;
+
+function setDrop(open){
+  dropOpen = open;
+  el('gateDrop').classList.toggle('open', open);
+  el('gateListBtn').classList.toggle('open', open);
+  el('gateListBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+el('gateListBtn').addEventListener('click', ()=> setDrop(!dropOpen));
+/* الضغط خارج القائمة يطويها */
+el('gate').addEventListener('click', e=>{
+  if(!dropOpen) return;
+  if(e.target.closest('#gateDrop') || e.target.closest('#gateListBtn') || e.target.closest('#gateNearest')) return;
+  setDrop(false);
+});
 
 function renderGateList(){
   const brs = branches().slice();
   if(nearestId){
     brs.sort((a,b)=> (a.id===nearestId ? -1 : (b.id===nearestId ? 1 : 0)));
   }
+  el('gateCount').textContent = brs.length;
   const cur = savedBranchId();
   const chooseTxt = tt('chooseBtn','اختر ✓','Choose ✓');
   const currentTxt = tt('currentBranchFlag','✓ فرعك الحالي','✓ Your Branch');
   const nearestTxt = tt('branchNearestBadge','🎯 الأقرب لك','🎯 Nearest to You');
   const dirTxt = T().getDir || (currentLang==='ar' ? 'التوجه للمطعم' : 'Directions');
   el('gateList').innerHTML = brs.map((b, idx)=>`
-    <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.15 + idx*0.1}s">
+    <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.1 + idx*0.08}s">
       <div class="gc-top">
         <span class="gc-ico">🍝</span>
         <div class="gc-names">
@@ -1270,7 +1261,7 @@ el('gateList').addEventListener('click', e=>{
   if(id) selectBranch(id);
 });
 
-/* ===== زر الأقرب: مرحلتان + مؤقّت حارس + استعادة مضمونة ===== */
+/* ===== زر الأقرب: يفتح القائمة ويبرز الأقرب ===== */
 let geoBusy = false;
 function geoOnce(opts){
   return new Promise((res, rej)=>{
@@ -1307,6 +1298,11 @@ async function requestNearest(){
     });
     nearestId = best;
     renderGateList();
+    setDrop(true);
+    setTimeout(()=>{
+      const n = el('gateList').querySelector('.is-nearest');
+      if(n) n.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 300);
     toast(tt('branchGeoOn','🎯 تم إبراز أقرب فرع لك','🎯 Nearest branch highlighted'));
   }catch(err){
     if(err && err.code === 1){
@@ -1882,17 +1878,12 @@ document.querySelectorAll('#slotBtns .slot-btn').forEach(b => {
   b.addEventListener('click', () => saveFavToSlot(+b.dataset.slot));
 });
 
-/* ===== إتمام الطلب ===== */
+/* ===== إتمام الطلب (استلام من الفرع — بدون نوع طلب) ===== */
 function checkout(){
   const TT = T();
   const br = currentBranch();
   if(!br){ openGate('switch'); return; }
   if(!cart.size){ toast(TT.emptyMsg); return; }
-  if(!orderType){
-    showTypeAlert();
-    toast(TT.chooseType);
-    return;
-  }
 
   const invoiceID = generateInvoiceID(branchCode(br));
   const d = new Date();
@@ -1902,8 +1893,6 @@ function checkout(){
   const ampm = hh>=12 ? (currentLang==='ar' ? 'م' : 'PM') : (currentLang==='ar' ? 'ص' : 'AM');
   hh = hh%12 || 12;
   const timeStr = `${hh}:${p(d.getMinutes())} ${ampm}`;
-  const typeTxt = (orderType==='local') ? TT.orderLocal : TT.orderTakeaway;
-  const typeEmoji = (orderType==='local') ? '🍽️' : '🥡';
 
   let total = 0;
   const lines = [...cart.values()].map(i=>{
@@ -1921,7 +1910,8 @@ function checkout(){
 `${brandize(TT.waGreeting)}
 🧾 ${TT.waOrderTitle} | *${invoiceID}*
 📅 ${dateStr} • ⏰ ${timeStr}
-🏷️ ${TT.waOrderType}: ${typeEmoji} *${typeTxt}*
+🛍️ ${tt('waOrderType','نوع الطلب','Order type')}: *${tt('orderPickup','استلام من الفرع','Branch pickup')}*
+⏳ ${tt('pickupNote','طلبك يكون جاهزاً عند وصولك للفرع','Your order will be ready upon arrival')}
 🍝 ${tt('waBranch','الفرع','Branch')}: ${branchName(br)}
 ━━━━━━━━━━━━
 ${lines.join('\n')}
@@ -1936,13 +1926,6 @@ ${brandize(TT.waThanks)}`;
 
   cart.clear();
   el('cnotes').value = '';
-
-  orderType = null;
-  el('otypeLocal').classList.remove('active');
-  el('otypeTake').classList.remove('active');
-  el('otypeAlert').classList.remove('show');
-  el('otypeWrap').classList.remove('error');
-
   updateCart();
   closeCart();
   toast(TT.orderSent);
@@ -2052,7 +2035,6 @@ document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) liveChe
   if(!firstVisit && !currentBranch()){
     openGate('first');
   }
-  /* تحديث لقطة العمل بدون إنترنت عند توفر الشبكة */
   if(navigator.onLine){
     ['menu.js','settings.js'].forEach(function(f){
       fetch(f).then(function(r){ return r.ok ? r.text() : ''; }).then(function(t){
