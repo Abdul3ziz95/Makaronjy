@@ -1,8 +1,5 @@
 /* =====================================================
-   Service Worker — مكرونجي Makaronjy
-   - Precache عند التثبيت وعند التفعيل (يسد فجوة التثبيت أثناء أي تعطل)
-   - Network-First للملفات الحيوية (جديد دائماً عند الاتصال + كاش عند الانقطاع)
-   - Cache-First للصور (سرعة وعمل بدون إنترنت)
+   Service Worker — مكرونجي (mk-v2 بمسارات img الجديدة)
 ===================================================== */
 const CACHE = 'mk-v2';
 
@@ -13,23 +10,16 @@ const CORE = [
   'i18n.js',
   'menu.js',
   'settings.js',
-  'logo.png',
-  'welcome.png',
   'manifest.json',
-  'icon-192.png',
-  'icon-512.png'
-];
-
-const STATIC_IMAGES = [
-  'img/f1.png',
-  'img/f2.png',
-  'img/f3.png',
-  'img/f4.png'
+  'img/logo.png',
+  'img/welcome.png',
+  'img/icon-192.png',
+  'img/icon-512.png'
 ];
 
 async function precache(){
   const c = await caches.open(CACHE);
-  for(const u of [...CORE, ...STATIC_IMAGES]){
+  for(const u of CORE){
     try{
       const hit = await c.match(u);
       if(!hit){ await c.add(u); }
@@ -61,7 +51,7 @@ self.addEventListener('fetch', e=>{
   const path = url.pathname;
   const isCore = path === '/' || path.endsWith('/') || /\.(html|js)$/i.test(path);
 
-  /* الملفات الحيوية: الشبكة أولاً ثم الكاش (يدعم العمل بدون إنترنت) */
+  /* الملفات الحيوية: الشبكة أولاً ثم الكاش */
   if(isCore){
     const clean = new Request(url.origin + path);
     e.respondWith(
@@ -76,7 +66,7 @@ self.addEventListener('fetch', e=>{
     return;
   }
 
-  /* الصور والأصول: الكاش أولاً ثم الشبكة */
+  /* الصور والأصول (items/bg/أيقونات): الكاش أولاً ثم الشبكة */
   e.respondWith(
     caches.match(req).then(m=> m || fetch(req).then(res=>{
       if(res && res.ok){
