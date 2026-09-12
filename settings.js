@@ -19,10 +19,10 @@ window.APP_SETTINGS = {
     }
   },
   "bestSellers": [
+    "drink-pepsi",
     "pasta-bashamel",
-    "pasta-mosaqa",
-    "dessert-caramel",
-    "pasta-red-half"
+    "pasta-red-breasts",
+    "side-potato"
   ],
   "branches": [
     {
