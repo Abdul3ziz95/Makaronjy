@@ -430,5 +430,26 @@ window.APP_SETTINGS = {
     "textEn": "Follow us to catch the latest offers and openings.",
     "btnAr": "حسناً 🍝",
     "btnEn": "Got it 🍝"
+  },
+  "bgs": {
+    "default": "img/bg/bg2.png",
+    "list": [
+      {
+        "file": "bg1.png",
+        "label": "الافتراضي"
+      },
+      {
+        "file": "bg2.png",
+        "label": "رمضان"
+      },
+      {
+        "file": "bg3.png",
+        "label": "العيد"
+      },
+      {
+        "file": "bg4.png",
+        "label": "اليوم الوطني"
+      }
+    ]
   }
 };
