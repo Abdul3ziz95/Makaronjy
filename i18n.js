@@ -1,6 +1,5 @@
 /* =====================================================
    ملف اللغات — مكرونجي Makaronjy
-   (ترجمات الواجهة فقط — المنيو في menu.js والإعدادات في settings.js)
 ===================================================== */
 window.I18N = {
   ar: {
@@ -15,7 +14,8 @@ window.I18N = {
     open: 'مفتوح',
     closed: 'مغلق',
     welcomeTitle: 'أهلاً وسهلاً بكم',
-    welcomeMsg: 'نرحّب بكم في <b>مكرونجي</b> — مكرونة بطعم لا يُقاوم. <br>تصفّحوا أقسام المنيو، اختاروا أصنافكم المفضلة، <br>ويصلنا طلبكم مباشرة عبر واتساب. 🍝',
+    welcomeMsg: 'اطلبوا ألذ أطباق المكرونة <b>واستلموها جاهزة</b> من أقرب فرع لكم! 🍝',
+    welcomeBtn: 'اطلب الآن 🍝',
     loading: 'جارٍ تجهيز الأطباق... 🍽️',
     loadDone: 'اكتمل التحميل ✔',
     skip: 'تخطي والذهاب للمنيو ⏭',
@@ -29,9 +29,8 @@ window.I18N = {
     yourOrder: 'طلبك',
     cartTitle: 'سلة الطلبات',
     notePh: '📝 توصية / ملاحظة',
-    orderLocal: 'محلي',
-    orderTakeaway: 'سفري',
-    chooseType: '⚠️ اختر نوع الطلب: محلي أو سفري',
+    orderPickup: 'استلام من الفرع',
+    pickupNote: 'طلبك يكون جاهزاً عند وصولك للفرع',
     total: 'الإجمالي',
     taxInc: '(شامل الضريبة)',
     orderWa: 'إتمام الطلب عبر واتساب',
@@ -79,6 +78,7 @@ window.I18N = {
     branchGateTitle: 'اختر فرعك للطلب 📍',
     gateBrand: 'مطاعم مكرونجي',
     gateTagline: 'مكرونة بطعم لا يُقاوم',
+    gateListBtn: 'قائمة الفروع',
     branchNearestBtn: '🎯 حدّد الفرع الأقرب لموقعي',
     branchNearestBadge: '🎯 الأقرب لك',
     branchGeoOn: '🎯 تم إبراز أقرب فرع لك',
@@ -89,8 +89,9 @@ window.I18N = {
     changeBranch: 'تغيير الفرع',
     waBranch: 'الفرع',
 
-    /* ===== تطبيقات التوصيل المعتمدة ===== */
-    deliveryTitle: 'أو اطلب عبر تطبيقات التوصيل المعتمدة',
+    /* ===== شركاء التوصيل ===== */
+    deliveryHeadAr: 'اطلب الآن عبر شركائنا في التوصيل',
+    deliveryHeadEn: 'Order now via our delivery partners',
 
     /* ===== اختيار الفرع والموقع ===== */
     branchReconfirm: function(n){ return '✓ تم تأكيد فرعك: ' + n; },
@@ -99,7 +100,7 @@ window.I18N = {
     geoOff: 'لم نتمكن من تحديد موقعك — فعّل خدمة الموقع (GPS) من إعدادات الهاتف ثم أعد المحاولة',
     closedWeek: 'مغلق هذا الأسبوع',
 
-    /* ===== حالة العمل الديناميكية (تُبنى من جدول الفرع) ===== */
+    /* ===== حالة العمل ===== */
     days: ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
     closesAt: function(h){ return 'يغلق عند الساعة ' + h; },
     opensAt: function(h){ return 'يفتح عند الساعة ' + h; },
@@ -109,6 +110,7 @@ window.I18N = {
     soldOut: 'نفد ❌',
     notAvailableBranch: 'غير متوفر في هذا الفرع',
     reconciled: '⚠️ أصناف لم تعد متوفرة أُزيلت من طلبك',
+    bestBadge: 'الأكثر مبيعًا',
 
     /* ===== التحديث الحي ===== */
     liveUpdated: 'تم تحديث القائمة',
@@ -135,7 +137,8 @@ window.I18N = {
     open: 'Open',
     closed: 'Closed',
     welcomeTitle: 'Welcome',
-    welcomeMsg: 'Welcome to <b>Makaronjy</b> — irresistible pasta experience. <br>Browse our menu, pick your favorites, <br>and your order reaches us instantly via WhatsApp. 🍝',
+    welcomeMsg: 'Order the most delicious pasta dishes <b>and pick them up ready</b> from your nearest branch! 🍝',
+    welcomeBtn: 'Order Now 🍝',
     loading: 'Preparing your dishes... 🍽️',
     loadDone: 'Loading complete ✔',
     skip: 'Skip to menu ⏭',
@@ -149,9 +152,8 @@ window.I18N = {
     yourOrder: 'Your Order',
     cartTitle: 'Order Cart',
     notePh: '📝 Recommendation / Note',
-    orderLocal: 'Dine-in',
-    orderTakeaway: 'Takeaway',
-    chooseType: '⚠️ Please choose an order type: Dine-in or Takeaway',
+    orderPickup: 'Branch pickup',
+    pickupNote: 'Your order will be ready upon arrival',
     total: 'Total',
     taxInc: '(VAT included)',
     orderWa: 'Complete Order via WhatsApp',
@@ -199,6 +201,7 @@ window.I18N = {
     branchGateTitle: 'Choose Your Branch 📍',
     gateBrand: 'Makaronjy Restaurants',
     gateTagline: 'Irresistible pasta experience',
+    gateListBtn: 'Branch List',
     branchNearestBtn: '🎯 Find My Nearest Branch',
     branchNearestBadge: '🎯 Nearest to You',
     branchGeoOn: '🎯 Nearest branch highlighted',
@@ -209,8 +212,9 @@ window.I18N = {
     changeBranch: 'Change Branch',
     waBranch: 'Branch',
 
-    /* ===== Approved delivery apps ===== */
-    deliveryTitle: 'Or order via our delivery partners',
+    /* ===== Delivery partners ===== */
+    deliveryHeadAr: 'Order now via our delivery partners',
+    deliveryHeadEn: 'اطلب الآن عبر شركائنا في التوصيل',
 
     /* ===== Branch selection & location ===== */
     branchReconfirm: function(n){ return '✓ Your branch confirmed: ' + n; },
@@ -219,7 +223,7 @@ window.I18N = {
     geoOff: 'Could not locate you — enable location (GPS) in phone settings and retry',
     closedWeek: 'Closed this week',
 
-    /* ===== Dynamic open status (built from branch schedule) ===== */
+    /* ===== Dynamic open status ===== */
     days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     closesAt: function(h){ return 'Closes at ' + h; },
     opensAt: function(h){ return 'Opens at ' + h; },
@@ -229,6 +233,7 @@ window.I18N = {
     soldOut: 'Sold out ❌',
     notAvailableBranch: 'Not available at this branch',
     reconciled: '⚠️ Unavailable items were removed from your order',
+    bestBadge: 'Best Seller',
 
     /* ===== Live update ===== */
     liveUpdated: 'Menu updated',
@@ -238,7 +243,7 @@ window.I18N = {
       '<div class="sheet-step"><span class="num">2</span><p>Scroll up and choose <b>"Add to Home Screen"</b> (＋ icon).</p></div>' +
       '<div class="sheet-step"><span class="num">3</span><p>Tap <b>"Add"</b> — the Makaronjy icon will appear on your home screen 🎉</p></div>',
     otherSteps:
-      '<div class="sheet-step"><span class="num">1</span><p>Open the browser menu (⋮ or ) at the top.</p></div>' +
+      '<div class="sheet-step"><span class="num">1</span><p>Open the browser menu (⋮ or ⋯) at the top.</p></div>' +
       '<div class="sheet-step"><span class="num">2</span><p>Choose <b>"Install App"</b> or <b>"Add to Home Screen"</b>.</p></div>' +
       '<div class="sheet-step"><span class="num">3</span><p>Confirm — the Makaronjy icon will appear on your home screen 🎉</p></div>'
   }
