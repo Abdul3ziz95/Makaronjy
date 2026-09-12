@@ -96,6 +96,9 @@ main{max-width:900px;margin:auto;padding:1rem 1rem 4rem}
   border-radius:10px;padding:.55rem .7rem;font-family:inherit;font-size:.82rem;font-weight:700;background:#fff;outline:none}
 .form-grid input:focus,.full input:focus,.form-grid textarea:focus,.full textarea:focus{border-color:var(--gold)}
 .form-grid input[type="color"]{padding:.2rem;height:46px}
+.form-grid select,.full select{width:100%;margin-top:.25rem;border:1.5px solid var(--line);border-radius:10px;
+  padding:.55rem .7rem;font-family:inherit;font-size:.9rem;font-weight:700;background:#fff;outline:none}
+.form-grid select:focus,.full select:focus{border-color:var(--gold)}
 .ltr{direction:ltr;text-align:left}
 fieldset{border:1.5px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin-bottom:.8rem}
 legend{font-size:.76rem;font-weight:900;color:var(--brown2);padding:0 .4rem}
@@ -113,10 +116,12 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
   font-family:inherit;font-weight:800;text-align:center;margin:0 !important}
 .day-times select{border:1.5px solid var(--line);border-radius:8px;padding:.3rem .2rem;font-family:inherit;font-weight:800;font-size:.72rem;background:#fff}
 /* منع زوم التركيز التلقائي في آيفون */
-.card input,.form-grid input,.form-grid textarea,.full input,.full textarea,.day-times input,.day-times select{font-size:1rem}
+.card input,.form-grid input,.form-grid textarea,.full input,.full textarea,.day-times input,.day-times select,.full select{font-size:1rem}
 .wa-preview{display:none;font-size:.72rem;font-weight:800;margin-top:.35rem;line-height:1.8}
 .wa-preview.ok{display:block;color:#2d6a4f}
 .wa-preview.bad{display:block;color:#b91c1c}
+.best-preview{background:#e8f5e9;border:1.5px solid #128c5e33;border-radius:12px;padding:.7rem .9rem;
+  font-size:.78rem;font-weight:800;color:#2d6a4f;line-height:2}
 .modal{position:fixed;inset:0;background:rgba(40,10,22,.6);backdrop-filter:blur(5px);z-index:50;
   display:flex;align-items:center;justify-content:center;padding:1rem}
 .modal-card{background:var(--cream);border:2px solid var(--gold);border-radius:20px;width:min(560px,94vw);
@@ -210,6 +215,7 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
     <nav class="tabs">
       <button class="tab active" data-tab="menu" data-al="tabMenu">🍝 المنيو</button>
       <button class="tab" data-tab="branches" data-al="tabBranches">🍝 الفروع</button>
+      <button class="tab" data-tab="best" data-al="tabBest">⭐ الأكثر مبيعاً</button>
       <button class="tab" data-tab="delivery" data-al="tabDelivery">🛵 التوصيل والسوشيال</button>
       <button class="tab" data-tab="settings" data-al="tabSettings">⚙️ الإعدادات</button>
       <button class="tab" data-tab="ad" data-al="tabAd">📢 الإعلان</button>
@@ -226,6 +232,11 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
       <div id="branchWrap"></div>
       <button id="addBranch" class="primary" data-al="btnAddBranch">➕ إضافة فرع</button>
       <div class="save-bar"><button id="saveBranches" class="primary" data-al="btnSaveBranches">💾 حفظ ونشر الفروع</button></div>
+    </section>
+    <section id="tab-best" class="hidden">
+      <div class="note" data-al="bestNote">اختر أربعة أصناف تظهر في شاشة «الأكثر مبيعاً» بالتطبيق بنفس ترتيبها هنا. التغيير يصل للزبائن خلال ≤60 ثانية.</div>
+      <div id="bestForm"></div>
+      <div class="save-bar"><button id="saveBest" class="primary" data-al="btnSaveBest">💾 حفظ ونشر الأكثر مبيعاً</button></div>
     </section>
     <section id="tab-delivery" class="hidden">
       <div class="note" data-al="deliveryNote">روابط تطبيقات التوصيل تظهر في شاشة اختيار الفروع بالتطبيق. الروابط الرسمية تفتح التطبيق إن كان مثبتاً وإلا الموقع الرسمي.</div>
@@ -278,7 +289,7 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
 <div id="toasts"></div>
 
 <script>
-/* ===== إيقاف التكبير بالأصابع: طبقة الإيماءات ===== */
+/* ===== إيقاف التكبير بالأصابع ===== */
 document.addEventListener('touchstart', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 ['gesturestart','gesturechange','gestureend'].forEach(ev=> document.addEventListener(ev, e=> e.preventDefault()));
@@ -286,7 +297,7 @@ document.addEventListener('dblclick', e=> e.preventDefault());
 
 /* =====================================================
    لوحة تحكم مكرونجي — ثنائية اللغة + حفظ عبر GitHub API
-   + أرقام الفروع + ساعات بالدقائق + توصيل وسوشيال
+   + أرقام الفروع + ساعات بالدقائق + توصيل وسوشيال + الأكثر مبيعاً
 ===================================================== */
 let CFG = null;
 let STATE = null;
@@ -306,7 +317,7 @@ const ASTR = {
     renewTitle:'⚠️ انتهت صلاحية التوكن', renewHint:'انتهت صلاحية التوكن أو لا يملك الصلاحية. جدّده من GitHub ثم أدخله هنا للمتابعة — بياناتك لم تُفقد.',
     lblNewToken:'توكن جديد', btnRenew:'حفظ والمتابعة', errRenewEmpty:'أدخل التوكن الجديد.', errRenewBad:'التوكن ما زال مرفوضاً.',
     headerTitle:'لوحة تحكم مكرونجي', btnExport:'⬇️ تصدير احتياطي', btnLogout:'خروج',
-    tabMenu:'🍝 المنيو', tabBranches:'🍝 الفروع', tabDelivery:'🛵 التوصيل والسوشيال', tabSettings:'⚙️ الإعدادات', tabAd:'📢 الإعلان',
+    tabMenu:'🍝 المنيو', tabBranches:'🍝 الفروع', tabBest:'⭐ الأكثر مبيعاً', tabDelivery:'🛵 التوصيل والسوشيال', tabSettings:'⚙️ الإعدادات', tabAd:'📢 الإعلان',
     menuNote:'التعديلات تصل للزبائن تلقائياً خلال ≤60 ثانية بدون تحديث الصفحة. الإخفاء = كل الفروع، والنفد ❌ = يومي لكل فرع، و«التوفر في الفروع» = تقييد دائم لكل فرع (بطاقة رمادية أو إخفاء).',
     btnSaveMenu:'💾 حفظ ونشر المنيو', publishing:'جارٍ النشر...', publishedMenu:'تم نشر المنيو',
     subLive:'يصل للزبائن خلال ≤60 ثانية بدون تحديث', publishFail:'فشل النشر: ',
@@ -344,9 +355,13 @@ const ASTR = {
     brWa:'واتساب: ', brCoords:'الإحداثيات: ', brNum:'الرقم: ',
     legendHours:'ساعات العمل لكل يوم (بدقة الدقائق)', dayClosed:'مغلق', openLbl:'فتح:', closeLbl:'إغلاق:', am:'ص', pm:'م',
     days:['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
+    bestNote:'اختر أربعة أصناف تظهر في شاشة «الأكثر مبيعاً» بالتطبيق بنفس ترتيبها هنا. التغيير يصل للزبائن خلال ≤60 ثانية.',
+    bestSlot:'الصنف ', btnSaveBest:'💾 حفظ ونشر الأكثر مبيعاً', savedBest:'تم نشر الأكثر مبيعاً',
+    warnBestDup:'لا يمكن تكرار نفس الصنف في خانتين — اختر أصنافاً مختلفة',
+    warnBestEmpty:'اختر صنفاً لكل خانة من الخانات الأربع',
     deliveryNote:'روابط تطبيقات التوصيل تظهر في شاشة اختيار الفروع بالتطبيق. الروابط الرسمية تفتح التطبيق إن كان مثبتاً وإلا الموقع الرسمي.',
     btnAddDelivery:'➕ إضافة تطبيق توصيل', editDeliveryTitle:'تعديل تطبيق توصيل', addDeliveryTitle:'إضافة تطبيق توصيل',
-    lblDelNameAr:'الاسم بالعربي', lblDelNameEn:'الاسم بالإنجليزي', lblDelUrl:'الرابط (https://...)', lblDelColor:'لون النقطة',
+    lblDelNameAr:'الاسم بالعربي', lblDelNameEn:'الاسم بالإنجليزي', lblDelUrl:'الرابط (https://...)', lblDelColor:'لون النقطة', lblDelImg:'مسار صورة الشعار (اختياري)',
     warnDelName:'اسم التطبيق مطلوب', warnDelUrl:'رابط صحيح مطلوب (يبدأ بـ https://)',
     savedDelivery:'تم حفظ بيانات التوصيل والسوشيال',
     delDeliveryMsg:function(n){ return 'سيُحذف «'+n+'» من شاشة اختيار الفروع. متابعة؟'; },
@@ -376,7 +391,7 @@ const ASTR = {
     renewTitle:'⚠️ Token expired', renewHint:'The token expired or lacks permission. Renew it on GitHub then enter it here — your data is safe.',
     lblNewToken:'New token', btnRenew:'Save & continue', errRenewEmpty:'Enter the new token.', errRenewBad:'Token still rejected.',
     headerTitle:'Makaronjy Admin', btnExport:'⬇️ Export backup', btnLogout:'Logout',
-    tabMenu:'🍝 Menu', tabBranches:'🍝 Branches', tabDelivery:'🛵 Delivery & Social', tabSettings:'⚙️ Settings', tabAd:'📢 Ad',
+    tabMenu:'🍝 Menu', tabBranches:'🍝 Branches', tabBest:'⭐ Best Sellers', tabDelivery:'🛵 Delivery & Social', tabSettings:'⚙️ Settings', tabAd:'📢 Ad',
     menuNote:'Changes reach customers automatically within ≤60s without a refresh. Hide = all branches; Sold ❌ = daily per branch; "Availability per branch" = permanent per-branch restriction (gray card or hidden).',
     btnSaveMenu:'💾 Save & publish menu', publishing:'Publishing...', publishedMenu:'Menu published',
     subLive:'Reaches customers within ≤60s without refresh', publishFail:'Publish failed: ',
@@ -414,9 +429,13 @@ const ASTR = {
     brWa:'WhatsApp: ', brCoords:'Coordinates: ', brNum:'Number: ',
     legendHours:'Working hours per day (minute precision)', dayClosed:'Closed', openLbl:'Open:', closeLbl:'Close:', am:'AM', pm:'PM',
     days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    bestNote:'Pick four items to appear in the app "Best Sellers" screen in this exact order. Changes reach customers within ≤60s.',
+    bestSlot:'Item ', btnSaveBest:'💾 Save & publish best sellers', savedBest:'Best sellers published',
+    warnBestDup:'The same item cannot repeat in two slots — pick different items',
+    warnBestEmpty:'Choose an item for each of the four slots',
     deliveryNote:'Delivery app links appear in the branch selection screen. Official links open the installed app, otherwise the website.',
     btnAddDelivery:'➕ Add delivery app', editDeliveryTitle:'Edit delivery app', addDeliveryTitle:'Add delivery app',
-    lblDelNameAr:'Name (Arabic)', lblDelNameEn:'Name (English)', lblDelUrl:'URL (https://...)', lblDelColor:'Dot color',
+    lblDelNameAr:'Name (Arabic)', lblDelNameEn:'Name (English)', lblDelUrl:'URL (https://...)', lblDelColor:'Dot color', lblDelImg:'Logo image path (optional)',
     warnDelName:'App name is required', warnDelUrl:'A valid URL is required (https://)',
     savedDelivery:'Delivery & social data saved',
     delDeliveryMsg:function(n){ return '"'+n+'" will be removed from the branch selection screen. Continue?'; },
@@ -570,7 +589,7 @@ function parseJs(text){
   return w;
 }
 
-/* ===== أرقام الفروع + ساعات بالدقائق ===== */
+/* ===== أرقام الفروع + ساعات بالدقائق + الأكثر مبيعاً ===== */
 function migrateBranchNums(){
   const brs = STATE.SETTINGS.branches || [];
   brs.forEach((b,i)=>{
@@ -611,6 +630,26 @@ function clamp12(v){ v = Math.floor(+v); if(!isFinite(v) || v < 1) v = 12; if(v 
 function to24h(h, ap){ h = clamp12(h); return (ap === 'pm') ? (h%12)+12 : (h%12); }
 const MIN_OPTS = [0,15,30,45];
 function pad2(n){ return String(n).padStart(2,'0'); }
+function findItemAdmin(id){
+  for(const s of STATE.MENU){ const it = s.items.find(x=>x.id===id); if(it) return it; }
+  return null;
+}
+function migrateBestSellers(){
+  const bs = STATE.SETTINGS.bestSellers;
+  const valid = Array.isArray(bs) ? bs.filter(id=> findItemAdmin(id)) : [];
+  if(valid.length === 4){ STATE.SETTINGS.bestSellers = valid; return; }
+  const fallback = ['pasta-red-half','pasta-bashamel','pasta-red-breasts','side-potato'];
+  const ids = [];
+  fallback.forEach(id=>{ if(findItemAdmin(id) && !ids.includes(id)) ids.push(id); });
+  for(const s of STATE.MENU){
+    for(const it of s.items){
+      if(ids.length >= 4) break;
+      if(!ids.includes(it.id)) ids.push(it.id);
+    }
+    if(ids.length >= 4) break;
+  }
+  STATE.SETTINGS.bestSellers = ids.slice(0,4);
+}
 
 /* ===== الدخول والتحميل ===== */
 function showRenew(){
@@ -622,7 +661,7 @@ async function loadAll(){
   const [m, s] = await Promise.all([ getFile('menu.js'), getFile('settings.js') ]);
   const mw = parseJs(m.text), sw = parseJs(s.text);
   STATE = {
-    MENU: mw.MENU, FEATURED: mw.FEATURED || [],
+    MENU: mw.MENU,
     SETTINGS: sw.APP_SETTINGS,
     shas: { menu: m.sha, settings: s.sha }
   };
@@ -632,6 +671,7 @@ async function loadAll(){
   if(!STATE.SETTINGS.social) STATE.SETTINGS.social = {};
   migrateBranchNums();
   migrateHours();
+  migrateBestSellers();
   el('renewScreen').classList.add('hidden');
   el('loginScreen').classList.add('hidden');
   el('app').classList.remove('hidden');
@@ -678,7 +718,7 @@ el('btnLogout').addEventListener('click', ()=>{ sessionStorage.removeItem('mk_ad
 document.querySelectorAll('.tab').forEach(tb=>{
   tb.addEventListener('click', ()=>{
     document.querySelectorAll('.tab').forEach(x=> x.classList.toggle('active', x===tb));
-    ['menu','branches','delivery','settings','ad'].forEach(k=>{
+    ['menu','branches','best','delivery','settings','ad'].forEach(k=>{
       el('tab-'+k).classList.toggle('hidden', k !== tb.dataset.tab);
     });
     if(tb.dataset.tab === 'ad') renderAdPreview();
@@ -762,7 +802,7 @@ function applyAvail(target, av, brs){
   else { target.only = av.only; target.miss = av.miss; }
 }
 
-/* ===== تبويب المنيو (مع الوصف والترتيب) ===== */
+/* ===== تبويب المنيو ===== */
 function renderMenu(){
   el('menuWrap').innerHTML = STATE.MENU.map((sec,si)=>{
     const secNm = (ALANG==='ar') ? sec.t : sec.tEn;
@@ -917,8 +957,6 @@ el('saveMenu').addEventListener('click', async ()=>{
    ملف المنيو — مكرونجي (يُولَّد من لوحة التحكم)
 ===================================================== */
 window.MENU = ${JSON.stringify(STATE.MENU, null, 2)};
-
-window.FEATURED = ${JSON.stringify(STATE.FEATURED, null, 2)};
 `;
   try{
     STATE.shas.menu = await putFileSafe('menu.js', text, STATE.shas.menu, 'تحديث المنيو من لوحة التحكم 🍝');
@@ -929,7 +967,7 @@ window.FEATURED = ${JSON.stringify(STATE.FEATURED, null, 2)};
   btn.textContent = L('btnSaveMenu');
 });
 
-/* ===== تبويب الفروع (ساعات بالدقائق) ===== */
+/* ===== تبويب الفروع ===== */
 function renderBranches(){
   el('branchWrap').innerHTML = branches().map((b,i)=>`
     <div class="br-card">
@@ -1062,6 +1100,45 @@ el('saveBranches').addEventListener('click', async ()=>{
   btn.textContent = L('btnSaveBranches');
 });
 
+/* ===== تبويب الأكثر مبيعاً ===== */
+function allItemsOptions(selectedId){
+  return STATE.MENU.map(sec=>{
+    const opts = sec.items.map(it=>`<option value="${it.id}" ${it.id===selectedId?'selected':''}>${esc((ALANG==='ar')?it.ar:it.en)} — ${it.prices[0]} ${L('riyal')}</option>`).join('');
+    return `<optgroup label="${sec.i} ${esc((ALANG==='ar')?sec.t:sec.tEn)}">${opts}</optgroup>`;
+  }).join('');
+}
+function renderBest(){
+  const bs = STATE.SETTINGS.bestSellers || [];
+  el('bestForm').innerHTML = [0,1,2,3].map(i=>`
+    <div class="full"><label>${L('bestSlot')}<b>${i+1}</b>
+      <select id="best_${i}">${allItemsOptions(bs[i])}</select></label></div>`).join('') +
+    `<div class="best-preview" id="bestPreview"></div>`;
+  [0,1,2,3].forEach(i=> el('best_'+i).addEventListener('change', updateBestPreview));
+  updateBestPreview();
+}
+function updateBestPreview(){
+  const ids = [0,1,2,3].map(i=> el('best_'+i).value);
+  const lines = ids.map((id,i)=>{
+    const it = findItemAdmin(id);
+    return it ? `<b>${i+1}.</b> ${esc((ALANG==='ar')?it.ar:it.en)} — ${it.prices[0]} ${L('riyal')}` : '';
+  }).filter(Boolean).join('<br>');
+  el('bestPreview').innerHTML = lines;
+}
+el('saveBest').addEventListener('click', async ()=>{
+  const ids = [0,1,2,3].map(i=> el('best_'+i).value);
+  if(ids.some(x=>!x)){ toast(L('warnBestEmpty'),'warn'); return; }
+  if(new Set(ids).size !== 4){ toast(L('warnBestDup'),'warn'); return; }
+  STATE.SETTINGS.bestSellers = ids;
+  const btn = el('saveBest'); btn.textContent = L('publishing');
+  try{
+    STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, 'تحديث الأكثر مبيعاً من لوحة التحكم ⭐');
+    toast(L('savedBest'),'success',L('subLive'));
+  }catch(e){
+    if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
+  }
+  btn.textContent = L('btnSaveBest');
+});
+
 /* ===== تبويب التوصيل والسوشيال ===== */
 function renderDeliveryAdmin(){
   const d = STATE.SETTINGS.delivery || [];
@@ -1074,7 +1151,7 @@ function renderDeliveryAdmin(){
           <button class="del" data-dact="del" data-i="${i}">🗑</button>
         </span>
       </div>
-      <div class="br-info ltr">${esc(x.url)}</div>
+      <div class="br-info ltr">${esc(x.url)}${x.img ? '<br>img: '+esc(x.img) : ''}</div>
     </div>`).join('') : `<div class="note">${L('noDelivery')}</div>`;
   renderSocialForm();
 }
@@ -1097,7 +1174,10 @@ function openDeliveryModal(i){
       <label>${L('lblDelNameEn')}<input id="f_den" class="ltr" value="${esc(x?x.nameEn:'')}"></label>
     </div>
     <div class="full"><label>${L('lblDelUrl')}<input id="f_durl" class="ltr" placeholder="https://..." value="${esc(x?x.url:'')}"></label></div>
-    <div class="full"><label>${L('lblDelColor')}<input id="f_dcolor" type="color" value="${esc(x && x.color ? x.color : '#8e2a4a')}"></label></div>`, ()=>{
+    <div class="form-grid">
+      <label>${L('lblDelColor')}<input id="f_dcolor" type="color" value="${esc(x && x.color ? x.color : '#8e2a4a')}"></label>
+      <label>${L('lblDelImg')}<input id="f_dimg" class="ltr" placeholder="img/d-jahez.png" value="${esc(x && x.img ? x.img : '')}"></label>
+    </div>`, ()=>{
     const nameAr = el('f_dar').value.trim();
     const url = el('f_durl').value.trim();
     if(!nameAr){ toast(L('warnDelName'),'warn'); return false; }
@@ -1105,7 +1185,7 @@ function openDeliveryModal(i){
     const data = {
       id: x ? x.id : ('d'+Date.now()),
       nameAr, nameEn: el('f_den').value.trim(),
-      url, color: el('f_dcolor').value
+      url, color: el('f_dcolor').value, img: el('f_dimg').value.trim()
     };
     if(x){ Object.assign(x, data); }
     else{ STATE.SETTINGS.delivery.push(data); }
@@ -1223,7 +1303,7 @@ window.APP_SETTINGS = ${JSON.stringify(STATE.SETTINGS, null, 2)};
 
 /* ===== التصدير الاحتياطي ===== */
 el('btnExport').addEventListener('click', ()=>{
-  const data = { exportedAt: new Date().toISOString(), MENU: STATE.MENU, FEATURED: STATE.FEATURED, SETTINGS: STATE.SETTINGS };
+  const data = { exportedAt: new Date().toISOString(), MENU: STATE.MENU, SETTINGS: STATE.SETTINGS };
   const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -1236,6 +1316,7 @@ el('btnExport').addEventListener('click', ()=>{
 function renderAll(){
   renderMenu();
   renderBranches();
+  renderBest();
   renderDeliveryAdmin();
   renderSettings();
   renderAd();
