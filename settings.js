@@ -1,425 +1,123 @@
 /* =====================================================
-   ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
+   ملف الإعدادات — مكرونجي Makaronjy (يُولَّد من لوحة التحكم)
 ===================================================== */
 window.APP_SETTINGS = {
-  "brand": {
-    "nameAr": "مكرونجي",
-    "nameEn": "Makaronjy",
-    "tagAr": "مكرونة بطعم لا يُقاوم",
-    "tagEn": "Irresistible pasta experience"
+  brand: {
+    nameAr: 'مكرونجي',
+    nameEn: 'Makaronjy',
+    tagAr: 'مكرونة بطعم لا يُقاوم',
+    tagEn: 'Irresistible pasta experience'
   },
-  "hours": {
-    "open": {
-      "h": 13,
-      "m": 0
-    },
-    "close": {
-      "h": 2,
-      "m": 0
-    }
-  },
-  "branches": [
+  hours: { open: { h: 13, m: 0 }, close: { h: 2, m: 0 } },
+
+  /* الأصناف الأربعة الأكثر مبيعاً — تُدار من تبويب ⭐ في اللوحة */
+  bestSellers: [
+    'pasta-red-half',
+    'pasta-bashamel',
+    'pasta-red-breasts',
+    'side-potato'
+  ],
+
+  branches: [
     {
-      "id": "b-badiah",
-      "num": 1,
-      "nameAr": "فرع البديعة",
-      "nameEn": "Al Badi'ah Branch",
-      "addrAr": "الشيخ عبدالعزيز بن محمد، ظهرة البديعة، الرياض 11461",
-      "addrEn": "Al Cheikh Abd Al Aziz, Dhahrat Al Badi'ah, Riyadh 11461",
-      "wa": "966561296463",
-      "lat": 24.591041,
-      "lng": 46.647201,
-      "map": "https://maps.app.goo.gl/sb9yK3bfk7aLApMaA",
-      "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
-      ]
+      id: 'b-badiah',
+      num: 1,
+      nameAr: 'فرع البديعة',
+      nameEn: 'Al Badi\'ah Branch',
+      addrAr: 'الشيخ عبدالعزيز بن محمد، ظهرة البديعة، الرياض 11461',
+      addrEn: 'Al Cheikh Abd Al Aziz, Dhahrat Al Badi\'ah, Riyadh 11461',
+      wa: '966561296463',
+      lat: 24.630, lng: 46.640,
+      map: 'https://maps.app.goo.gl/sb9yK3bfk7aLApMaA',
+      hours: [0, 1, 2, 3, 4, 5, 6].map(() => ({ o: { h: 13, m: 0 }, c: { h: 2, m: 0 } }))
     },
     {
-      "id": "b-malqa",
-      "num": 2,
-      "nameAr": "فرع الملقا",
-      "nameEn": "Al Malqa Branch",
-      "addrAr": "الأماسي، الملقا، الرياض 13525",
-      "addrEn": "Al Amasi, Al Malqa, Riyadh 13525",
-      "wa": "966568183145",
-      "lat": 24.801468,
-      "lng": 46.597473,
-      "map": "https://maps.app.goo.gl/7pmyuR4prVnyGke77",
-      "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
-      ]
+      id: 'b-malqa',
+      num: 2,
+      nameAr: 'فرع الملقا',
+      nameEn: 'Al Malqa Branch',
+      addrAr: 'الأماسي، الملقا، الرياض 13525',
+      addrEn: 'Al Amasi, Al Malqa, Riyadh 13525',
+      wa: '966568183145',
+      lat: 24.820, lng: 46.630,
+      map: 'https://maps.app.goo.gl/7pmyuR4prVnyGke77',
+      hours: [0, 1, 2, 3, 4, 5, 6].map(() => ({ o: { h: 13, m: 0 }, c: { h: 2, m: 0 } }))
     },
     {
-      "id": "b-yasmeen",
-      "num": 3,
-      "nameAr": "فرع الياسمين",
-      "nameEn": "Al Yasmeen Branch",
-      "addrAr": "القادسية، الياسمين، الرياض 13322",
-      "addrEn": "Al Qadisiyah, Al Yasmeen, Riyadh 13322",
-      "wa": "966561203593",
-      "lat": 24.817363,
-      "lng": 46.656311,
-      "map": "https://maps.app.goo.gl/WxasXA9oWLbSTCjq8",
-      "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
-      ]
+      id: 'b-yasmeen',
+      num: 3,
+      nameAr: 'فرع الياسمين',
+      nameEn: 'Al Yasmeen Branch',
+      addrAr: 'القادسية، الياسمين، الرياض 13322',
+      addrEn: 'Al Qadisiyah, Al Yasmeen, Riyadh 13322',
+      wa: '966561203593',
+      lat: 24.860, lng: 46.640,
+      map: 'https://maps.app.goo.gl/WxasXA9oWLbSTCjq8',
+      hours: [0, 1, 2, 3, 4, 5, 6].map(() => ({ o: { h: 13, m: 0 }, c: { h: 2, m: 0 } }))
     },
     {
-      "id": "b-suwaidi",
-      "num": 4,
-      "nameAr": "فرع السويدي الغربي",
-      "nameEn": "Al Suwaidi Al Gharabi Branch",
-      "addrAr": "الفجر، السويدي الغربي، الرياض 12992",
-      "addrEn": "Al Fajar St, As Suwaidi Al Gharabi, Riyadh 12992",
-      "wa": "966544030086",
-      "lat": 24.572369,
-      "lng": 46.621687,
-      "map": "https://maps.app.goo.gl/r7APZu7AgQz8Wk1d9",
-      "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 12,
-            "m": 30
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        }
+      id: 'b-suwaidi',
+      num: 4,
+      nameAr: 'فرع السويدي الغربي',
+      nameEn: 'Al Suwaidi Al Gharabi Branch',
+      addrAr: 'الفجر، السويدي الغربي، الرياض 12992',
+      addrEn: 'Al Fajar St, As Suwaidi Al Gharabi, Riyadh 12992',
+      wa: '966544030086',
+      lat: 24.620, lng: 46.650,
+      map: 'https://maps.app.goo.gl/r7APZu7AgQz8Wk1d9',
+      hours: [
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } },
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } },
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } },
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } },
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } },
+        { o: { h: 12, m: 30 }, c: { h: 2, m: 30 } },
+        { o: { h: 13, m: 0 }, c: { h: 2, m: 30 } }
       ]
     }
   ],
-  "delivery": [
+
+  delivery: [
     {
-      "id": "d-jahez",
-      "nameAr": "جاهز",
-      "nameEn": "Jahez",
-      "url": "https://jahez.go.link/2fy17",
-      "color": "#e30613"
+      id: 'd-jahez',
+      nameAr: 'جاهز',
+      nameEn: 'Jahez',
+      url: 'https://www.jahez.sa',
+      color: '#e30613',
+      img: 'img/d-jahez.png'
     },
     {
-      "id": "d-keeta",
-      "nameAr": "كيتا",
-      "nameEn": "Keeta",
-      "url": "https://url.mykeeta.com/lApPWsqz",
-      "color": "#000000"
+      id: 'd-hungerstation',
+      nameAr: 'هنقرستيشن',
+      nameEn: 'HungerStation',
+      url: 'https://hungerstation.com/sa-ar/restaurants/regions/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%AC/%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A-172159',
+      color: '#ffb700',
+      img: 'img/d-hungerstation.png'
     },
     {
-      "id": "d-hungerstation",
-      "nameAr": "هنقرستيشن",
-      "nameEn": "HungerStation",
-      "url": "https://hungerstation.go.link/?c=SA&s=c&v=96730&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A&adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/f72851cd66e6b14e1bceee9156ddf6b2.jpg",
-      "color": "#ffb700"
+      id: 'd-keeta',
+      nameAr: 'كيتا',
+      nameEn: 'Keeta',
+      url: 'https://www.keeta.com/sa/ar',
+      color: '#ffd400',
+      img: 'img/d-keeta.png'
     }
   ],
-  "social": {
-    "instagram": "https://www.instagram.com/makaronjy",
-    "tiktok": "https://www.tiktok.com/@makaronjy"
+
+  social: {
+    instagram: 'https://www.instagram.com/makaronjy',
+    tiktok: 'https://www.tiktok.com/@makaronjy'
   },
-  "ad": {
-    "enabled": false,
-    "oncePerDay": true,
-    "icon": "🍝",
-    "titleAr": "افتتاح قريب",
-    "titleEn": "Coming Soon",
-    "textAr": "تابعونا على حساباتنا لمعرفة آخر العروض والافتتاحات الجديدة.",
-    "textEn": "Follow us to catch the latest offers and openings.",
-    "btnAr": "حسناً 🍝",
-    "btnEn": "Got it 🍝"
+
+  ad: {
+    enabled: false,
+    oncePerDay: true,
+    icon: '🍝',
+    titleAr: 'افتتاح قريب',
+    titleEn: 'Coming Soon',
+    textAr: 'تابعونا على حساباتنا لمعرفة آخر العروض والافتتاحات الجديدة.',
+    textEn: 'Follow us to catch the latest offers and openings.',
+    btnAr: 'حسناً 🍝',
+    btnEn: 'Got it 🍝'
   }
 };
