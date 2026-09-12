@@ -432,7 +432,7 @@ window.APP_SETTINGS = {
     "btnEn": "Got it 🍝"
   },
   "bgs": {
-    "default": "img/bg/bg1.png",
+    "default": "img/bg/bg2.png",
     "list": [
       {
         "file": "bg1.png",
