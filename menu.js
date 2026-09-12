@@ -1,259 +1,321 @@
 /* =====================================================
-   ملف المنيو — مكرونجي Makaronjy (يُولَّد من لوحة التحكم)
+   ملف المنيو — مكرونجي (يُولَّد من لوحة التحكم)
 ===================================================== */
 window.MENU = [
   {
-    id: 'sec-pasta',
-    t: 'باستا',
-    tEn: 'Pasta',
-    i: '🍝',
-    items: [
+    "id": "sec-pasta",
+    "t": "باستا",
+    "tEn": "Pasta",
+    "i": "🍝",
+    "items": [
       {
-        id: 'pasta-bashamel',
-        ar: 'الباشميل',
-        en: 'Bashamel',
-        prices: [24],
-        cal: 1100,
-        desc: 'مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة',
-        descEn: 'Penne pasta with creamy bashamel sauce and melted cheese'
+        "id": "pasta-bashamel",
+        "ar": "مكرونة باشميل",
+        "en": "Pasta Béchamel",
+        "prices": [
+          24
+        ],
+        "cal": 1100,
+        "desc": "مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة",
+        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese"
       },
       {
-        id: 'pasta-mosaqa',
-        ar: 'مصقعة باذنجان',
-        en: 'Moussaka',
-        prices: [24],
-        cal: 950,
-        desc: 'مكرونة بصلصة الطماطم مع الباذنجان المشوي',
-        descEn: 'Pasta with tomato sauce and roasted eggplant'
+        "id": "pasta-mosaqa",
+        "ar": "مصقعة باذنجان",
+        "en": "Moussaka",
+        "prices": [
+          24
+        ],
+        "cal": 950,
+        "desc": "مكرونة بصلصة الطماطم مع الباذنجان المشوي",
+        "descEn": "Pasta with tomato sauce and roasted eggplant"
       },
       {
-        id: 'pasta-lasagna',
-        ar: 'لازانيا',
-        en: 'Lasagna',
-        prices: [24],
-        cal: 880,
-        desc: 'طبقات من المكرونة مع اللحم والجبنة والبشاميل',
-        descEn: 'Layers of pasta with meat, cheese, and bashamel'
+        "id": "pasta-lasagna",
+        "ar": "لازانيا",
+        "en": "Lasagna",
+        "prices": [
+          24
+        ],
+        "cal": 880,
+        "desc": "طبقات من المكرونة مع اللحم والجبنة والبشاميل",
+        "descEn": "Layers of pasta with meat, cheese, and bashamel"
       },
       {
-        id: 'pasta-red-chest',
-        ar: 'مكرونة حمراء صدر دجاج',
-        en: 'Red Pasta Chicken Breast',
-        prices: [28],
-        cal: 1250,
-        desc: 'مكرونة أقلام بصلصة الطماطم مع صدر دجاج مشوي',
-        descEn: 'Penne pasta in tomato sauce with grilled chicken breast'
+        "id": "pasta-red-chest",
+        "ar": "مكرونة حمراء صدر دجاج",
+        "en": "Red Pasta Chicken Breast",
+        "prices": [
+          28
+        ],
+        "cal": 1250,
+        "desc": "مكرونة أقلام بصلصة الطماطم مع صدر دجاج مشوي",
+        "descEn": "Penne pasta in tomato sauce with grilled chicken breast"
       },
       {
-        id: 'pasta-red-breasts',
-        ar: 'مكرونة حمراء صدور دجاج - نفر',
-        en: 'Red Pasta Chicken Breasts - Single',
-        prices: [24],
-        cal: 910,
-        desc: 'مكرونة حمراء بصدور دجاج - حصة فردية',
-        descEn: 'Red pasta with chicken breasts - single serving'
+        "id": "pasta-red-breasts",
+        "ar": "مكرونة حمراء صدور دجاج - نفر",
+        "en": "Red Pasta Chicken Breasts - Single",
+        "prices": [
+          24
+        ],
+        "cal": 910,
+        "desc": "مكرونة حمراء بصدور دجاج - حصة فردية",
+        "descEn": "Red pasta with chicken breasts - single serving"
       },
       {
-        id: 'pasta-red-half',
-        ar: 'مكرونة حمراء سعودية نص حبة',
-        en: 'Red Pasta Saudi Half Chicken',
-        prices: [32],
-        cal: 1900,
-        desc: 'مكرونة أقلام حمراء مع نص حبة دجاج مشوي',
-        descEn: 'Red penne pasta with half grilled chicken'
+        "id": "pasta-red-half",
+        "ar": "مكرونة حمراء سعودية نص حبة",
+        "en": "Red Pasta Saudi Half Chicken",
+        "prices": [
+          32
+        ],
+        "cal": 1900,
+        "desc": "مكرونة أقلام حمراء مع نص حبة دجاج مشوي",
+        "descEn": "Red penne pasta with half grilled chicken"
       }
     ]
   },
   {
-    id: 'sec-sides',
-    t: 'مقبلات',
-    tEn: 'Sides',
-    i: '🍟',
-    items: [
+    "id": "sec-sides",
+    "t": "مقبلات",
+    "tEn": "Sides",
+    "i": "🍟",
+    "items": [
       {
-        id: 'side-potato',
-        ar: 'كرات بطاطس',
-        en: 'Potato Balls',
-        prices: [24],
-        cal: 473,
-        desc: 'كرات البطاطس المقلية ذهبية ومقرمشة',
-        descEn: 'Golden crispy fried potato balls'
+        "id": "side-potato",
+        "ar": "كرات بطاطس",
+        "en": "Potato Balls",
+        "prices": [
+          24
+        ],
+        "cal": 473,
+        "desc": "كرات البطاطس المقلية ذهبية ومقرمشة",
+        "descEn": "Golden crispy fried potato balls"
       },
       {
-        id: 'side-sambosa',
-        ar: 'سمبوسة دجاج',
-        en: 'Chicken Sambosa',
-        prices: [11],
-        cal: 420,
-        desc: 'سمبوسة مقلية بحشوة دجاج خاصة',
-        descEn: 'Fried sambosa with special chicken filling'
+        "id": "side-sambosa",
+        "ar": "سمبوسة دجاج",
+        "en": "Chicken Sambosa",
+        "prices": [
+          11
+        ],
+        "cal": 420,
+        "desc": "سمبوسة مقلية بحشوة دجاج خاصة",
+        "descEn": "Fried sambosa with special chicken filling"
       },
       {
-        id: 'side-caesar',
-        ar: 'سيزر سلط',
-        en: 'Caesar Salad',
-        prices: [14],
-        cal: 480,
-        desc: 'خس طازج بصلصة السيزر والخبز المحمص',
-        descEn: 'Fresh lettuce with caesar sauce and croutons'
+        "id": "side-caesar",
+        "ar": "سيزر سلط",
+        "en": "Caesar Salad",
+        "prices": [
+          14
+        ],
+        "cal": 480,
+        "desc": "خس طازج بصلصة السيزر والخبز المحمص",
+        "descEn": "Fresh lettuce with caesar sauce and croutons"
       }
     ]
   },
   {
-    id: 'sec-desserts',
-    t: 'حلويات',
-    tEn: 'Desserts',
-    i: '🍰',
-    items: [
+    "id": "sec-desserts",
+    "t": "حلويات",
+    "tEn": "Desserts",
+    "i": "🍰",
+    "items": [
       {
-        id: 'dessert-ummali',
-        ar: 'أم علي',
-        en: 'Umm Ali',
-        prices: [12],
-        cal: 520,
-        desc: 'الخبز المحمص مع الحليب والكريمة والفستق',
-        descEn: 'Toasted bread with milk, cream, and pistachio'
+        "id": "dessert-ummali",
+        "ar": "أم علي",
+        "en": "Umm Ali",
+        "prices": [
+          12
+        ],
+        "cal": 520,
+        "desc": "الخبز المحمص مع الحليب والكريمة والفستق",
+        "descEn": "Toasted bread with milk, cream, and pistachio"
       },
       {
-        id: 'dessert-caramel',
-        ar: 'كريم كراميل',
-        en: 'Cream Caramel',
-        prices: [12],
-        cal: 260,
-        desc: 'كريم كراميل كريمي بصوص الكراميل',
-        descEn: 'Creamy custard with caramel sauce'
+        "id": "dessert-caramel",
+        "ar": "كريم كراميل",
+        "en": "Cream Caramel",
+        "prices": [
+          12
+        ],
+        "cal": 260,
+        "desc": "كريم كراميل كريمي بصوص الكراميل",
+        "descEn": "Creamy custard with caramel sauce"
       }
     ]
   },
   {
-    id: 'sec-sauces',
-    t: 'صوصات وإضافات',
-    tEn: 'Sauces & Extras',
-    i: '🥫',
-    items: [
+    "id": "sec-sauces",
+    "t": "صوصات وإضافات",
+    "tEn": "Sauces & Extras",
+    "i": "🥫",
+    "items": [
       {
-        id: 'sauce-daqqus',
-        ar: 'دقوس',
-        en: 'Daqqus',
-        prices: [3],
-        cal: 55,
-        desc: 'صلصة الطماطم الحارة التقليدية',
-        descEn: 'Traditional spicy tomato sauce'
+        "id": "sauce-daqqus",
+        "ar": "دقوس",
+        "en": "Daqqus",
+        "prices": [
+          3
+        ],
+        "cal": 55,
+        "desc": "صلصة الطماطم الحارة التقليدية",
+        "descEn": "Traditional spicy tomato sauce"
       },
       {
-        id: 'sauce-pepper',
-        ar: 'فلفل مجروش',
-        en: 'Crushed Pepper',
-        prices: [3],
-        cal: 18,
-        desc: 'فلفل أحمر مجروش طازج',
-        descEn: 'Fresh crushed red pepper'
+        "id": "sauce-pepper",
+        "ar": "فلفل مجروش",
+        "en": "Crushed Pepper",
+        "prices": [
+          3
+        ],
+        "cal": 18,
+        "desc": "فلفل أحمر مجروش طازج",
+        "descEn": "Fresh crushed red pepper"
       },
       {
-        id: 'sauce-shatta',
-        ar: 'شطة رنا',
-        en: 'Rana Hot Sauce',
-        prices: [2],
-        cal: 50,
-        desc: 'شطة حارة مميزة',
-        descEn: 'Signature hot chili sauce'
+        "id": "sauce-shatta",
+        "ar": "شطة رنا",
+        "en": "Rana Hot Sauce",
+        "prices": [
+          2
+        ],
+        "cal": 50,
+        "desc": "شطة حارة مميزة",
+        "descEn": "Signature hot chili sauce"
       },
       {
-        id: 'sauce-lemon',
-        ar: 'ليمون أصفر',
-        en: 'Yellow Lemon',
-        prices: [2],
-        cal: 6,
-        desc: 'ليمون طازج',
-        descEn: 'Fresh lemon'
+        "id": "sauce-lemon",
+        "ar": "ليمون أصفر",
+        "en": "Yellow Lemon",
+        "prices": [
+          2
+        ],
+        "cal": 6,
+        "desc": "ليمون طازج",
+        "descEn": "Fresh lemon"
       },
       {
-        id: 'sauce-bozuhaira',
-        ar: 'ليمون بو زهيره',
-        en: 'Bo Zuhaira Lemon',
-        prices: [2],
-        cal: 6,
-        desc: 'ليمون حامض طازج',
-        descEn: 'Fresh sour lemon'
+        "id": "sauce-bozuhaira",
+        "ar": "ليمون بو زهيره",
+        "en": "Bo Zuhaira Lemon",
+        "prices": [
+          2
+        ],
+        "cal": 6,
+        "desc": "ليمون حامض طازج",
+        "descEn": "Fresh sour lemon"
       }
     ]
   },
   {
-    id: 'sec-drinks',
-    t: 'مشروبات',
-    tEn: 'Drinks',
-    i: '🥤',
-    items: [
+    "id": "sec-drinks",
+    "t": "مشروبات",
+    "tEn": "Drinks",
+    "i": "🥤",
+    "items": [
       {
-        id: 'drink-pepsi',
-        ar: 'بيبسي',
-        en: 'Pepsi',
-        prices: [3],
-        cal: 105,
-        desc: 'مشروب غازي بارد',
-        descEn: 'Chilled soft drink'
+        "id": "drink-pepsi",
+        "ar": "بيبسي",
+        "en": "Pepsi",
+        "prices": [
+          3
+        ],
+        "cal": 105,
+        "desc": "مشروب غازي بارد",
+        "descEn": "Chilled soft drink"
       },
       {
-        id: 'drink-pepsi-diet',
-        ar: 'بيبسي دايت',
-        en: 'Pepsi Diet',
-        prices: [3],
-        cal: 0,
-        desc: 'مشروب غازي خالي من السكر',
-        descEn: 'Sugar-free soft drink'
+        "id": "drink-pepsi-diet",
+        "ar": "بيبسي دايت",
+        "en": "Pepsi Diet",
+        "prices": [
+          3
+        ],
+        "cal": 0,
+        "desc": "مشروب غازي خالي من السكر",
+        "descEn": "Sugar-free soft drink"
       },
       {
-        id: 'drink-7up',
-        ar: 'سفن أب',
-        en: '7UP',
-        prices: [3],
-        cal: 105,
-        desc: 'مشروب غازي بطعم الليمون',
-        descEn: 'Lemon-lime soft drink'
+        "id": "drink-7up",
+        "ar": "سفن أب",
+        "en": "7UP",
+        "prices": [
+          3
+        ],
+        "cal": 105,
+        "desc": "مشروب غازي بطعم الليمون",
+        "descEn": "Lemon-lime soft drink"
       },
       {
-        id: 'drink-7up-diet',
-        ar: 'سفن أب دايت',
-        en: '7UP Diet',
-        prices: [3],
-        cal: 0,
-        desc: 'مشروب غازي خالي من السكر',
-        descEn: 'Sugar-free lemon-lime drink'
+        "id": "drink-7up-diet",
+        "ar": "سفن أب دايت",
+        "en": "7UP Diet",
+        "prices": [
+          3
+        ],
+        "cal": 0,
+        "desc": "مشروب غازي خالي من السكر",
+        "descEn": "Sugar-free lemon-lime drink"
       },
       {
-        id: 'drink-mirinda',
-        ar: 'ميرندا برتقال',
-        en: 'Mirinda Orange',
-        prices: [3],
-        cal: 105,
-        desc: 'مشروب غازي بطعم البرتقال',
-        descEn: 'Orange flavored soft drink'
+        "id": "drink-mirinda",
+        "ar": "ميرندا برتقال",
+        "en": "Mirinda Orange",
+        "prices": [
+          3
+        ],
+        "cal": 105,
+        "desc": "مشروب غازي بطعم البرتقال",
+        "descEn": "Orange flavored soft drink"
       },
       {
-        id: 'drink-mirinda-citrus',
-        ar: 'ميرندا سيتروس',
-        en: 'Mirinda Citrus',
-        prices: [3],
-        cal: 105,
-        desc: 'مشروب غازي بطعم الحمضيات',
-        descEn: 'Citrus flavored soft drink'
+        "id": "drink-mirinda-citrus",
+        "ar": "ميرندا سيتروس",
+        "en": "Mirinda Citrus",
+        "prices": [
+          3
+        ],
+        "cal": 105,
+        "desc": "مشروب غازي بطعم الحمضيات",
+        "descEn": "Citrus flavored soft drink"
       },
       {
-        id: 'drink-water',
-        ar: 'ماء',
-        en: 'Water',
-        prices: [1],
-        cal: 0,
-        desc: 'مياه نقية',
-        descEn: 'Pure water'
+        "id": "drink-water",
+        "ar": "ماء",
+        "en": "Water",
+        "prices": [
+          1
+        ],
+        "cal": 0,
+        "desc": "مياه نقية",
+        "descEn": "Pure water"
       }
     ]
   }
 ];
 
 window.FEATURED = [
-  { n: 'مكرونة حمراء نص حبة', nEn: 'Red Pasta Half Chicken', img: 'img/f1.png' },
-  { n: 'الباشميل', nEn: 'Bashamel', img: 'img/f2.png' },
-  { n: 'مكرونة صدور دجاج', nEn: 'Chicken Breasts Pasta', img: 'img/f3.png' },
-  { n: 'كرات بطاطس', nEn: 'Potato Balls', img: 'img/f4.png' }
+  {
+    "n": "مكرونة حمراء نص حبة",
+    "nEn": "Red Pasta Half Chicken",
+    "img": "img/f1.png"
+  },
+  {
+    "n": "الباشميل",
+    "nEn": "Bashamel",
+    "img": "img/f2.png"
+  },
+  {
+    "n": "مكرونة صدور دجاج",
+    "nEn": "Chicken Breasts Pasta",
+    "img": "img/f3.png"
+  },
+  {
+    "n": "كرات بطاطس",
+    "nEn": "Potato Balls",
+    "img": "img/f4.png"
+  }
 ];
