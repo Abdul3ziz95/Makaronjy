@@ -1,3 +1,4 @@
+<!-- ===== ADMIN COMPLETE BUILD v4 ===== -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -32,6 +33,7 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   color:var(--dark);font-family:inherit;font-weight:900;font-size:.95rem;cursor:pointer;transition:.2s;
   box-shadow:0 6px 16px rgba(224,145,47,.4)}
 .primary:active{transform:scale(.97)}
+.primary:disabled{opacity:.6;cursor:default}
 .help{text-align:start;margin-top:.9rem;font-size:.75rem;color:var(--muted)}
 .help summary{cursor:pointer;font-weight:900;color:var(--brown2)}
 .help ol{padding-inline-start:1.2rem;margin-top:.4rem;line-height:1.9}
@@ -120,7 +122,7 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
 .wa-preview{display:none;font-size:.72rem;font-weight:800;margin-top:.35rem;line-height:1.8}
 .wa-preview.ok{display:block;color:#2d6a4f}
 .wa-preview.bad{display:block;color:#b91c1c}
-/* ===== شبكة الخلفيات ===== */
+/* ===== شبكة خلفية الاصناف ===== */
 .bg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem}
 .bg-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;overflow:hidden;position:relative}
 .bg-card.is-def{border-color:var(--gold);box-shadow:0 0 0 3px #e0912f33}
@@ -130,6 +132,7 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
   font-family:inherit;font-size:.8rem;font-weight:700;background:#fff;outline:none}
 .bg-ops{display:flex;gap:.4rem}
 .bg-ops button{flex:1;border:none;border-radius:10px;padding:.5rem .3rem;font-family:inherit;font-weight:900;font-size:.72rem;cursor:pointer}
+.bg-ops button:disabled{opacity:.55;cursor:default}
 .bg-def{background:#e8f5e9;color:#2d6a4f}
 .bg-del{background:#fee2e2;color:#b91c1c}
 .bg-tag{position:absolute;top:.5rem;inset-inline-start:.5rem;background:var(--gold);color:var(--dark);
@@ -230,7 +233,7 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
       <button class="tab active" data-tab="menu" data-al="tabMenu">🍝 المنيو</button>
       <button class="tab" data-tab="branches" data-al="tabBranches">🍝 الفروع</button>
       <button class="tab" data-tab="best" data-al="tabBest">⭐ الأكثر مبيعاً</button>
-      <button class="tab" data-tab="bgs" data-al="tabBgs">🖼️ الخلفيات</button>
+      <button class="tab" data-tab="bgs" data-al="tabBgs">🖼️ خلفية الاصناف</button>
       <button class="tab" data-tab="delivery" data-al="tabDelivery">🛵 التوصيل والسوشيال</button>
       <button class="tab" data-tab="settings" data-al="tabSettings">⚙️ الإعدادات</button>
       <button class="tab" data-tab="ad" data-al="tabAd">📢 الإعلان</button>
@@ -254,11 +257,11 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
       <div class="save-bar"><button id="saveBest" class="primary" data-al="btnSaveBest">💾 حفظ ونشر الأكثر مبيعاً</button></div>
     </section>
     <section id="tab-bgs" class="hidden">
-      <div class="note" data-al="bgsNote">خلفيات الأصناف بروح العلامة: تُرفع مرة واحدة وتُطبق تلقائياً تحت صور المنتجات الشفافة. الترقيم تلقائي (bg5، bg6...) والتسميات حرّة.</div>
+      <div class="note" data-al="bgsNote">خلفية الاصناف بروح العلامة: تُرفع مرة واحدة وتُطبق تلقائياً تحت صور المنتجات الشفافة. الترقيم تلقائي (bg5، bg6...)، والتعيين والرفع والحذف تُنشر فوراً، والتسميات تُحفظ بزر الحفظ.</div>
       <div style="margin-bottom:1rem"><button id="bgUploadBtn" class="primary" data-al="bgsUpload">📤 رفع خلفية جديدة</button></div>
       <input type="file" id="bgFile" accept="image/png,image/jpeg,image/webp" hidden>
       <div id="bgWrap"></div>
-      <div class="save-bar"><button id="saveBgs" class="primary" data-al="btnSaveBgs">💾 حفظ ونشر الخلفيات</button></div>
+      <div class="save-bar"><button id="saveBgs" class="primary" data-al="btnSaveBgs">💾 حفظ التسميات والنشر</button></div>
     </section>
     <section id="tab-delivery" class="hidden">
       <div class="note" data-al="deliveryNote">روابط تطبيقات التوصيل تظهر في شاشة اختيار الفروع بالتطبيق. الروابط الرسمية تفتح التطبيق إن كان مثبتاً وإلا الموقع الرسمي.</div>
@@ -311,6 +314,14 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
 <div id="toasts"></div>
 
 <script>
+/* ===== كاشف أخطاء ظاهر: إن توقف شيء يظهر شريط أحمر برسمة الخطأ ===== */
+window.addEventListener('error', function(e){
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;left:0;right:0;bottom:0;background:#b91c1c;color:#fff;padding:.6rem .8rem;font-size:.72rem;font-weight:800;z-index:99999;text-align:center;line-height:1.6';
+  d.textContent = '⛠ خطأ في اللوحة: ' + (e.message || 'غير معروف') + ' — سطر ' + (e.lineno || '؟');
+  document.documentElement.appendChild(d);
+});
+
 /* ===== إيقاف التكبير بالأصابع ===== */
 document.addEventListener('touchstart', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
@@ -318,8 +329,8 @@ document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDe
 document.addEventListener('dblclick', e=> e.preventDefault());
 
 /* =====================================================
-   لوحة تحكم مكرونجي — ٧ تبويبات
-   منيو • فروع • أكثر مبيعاً • خلفيات • توصيل وسوشيال • إعدادات • إعلان
+   لوحة تحكم مكرونجي — ٧ تبويبات (BUILD v4)
+   منيو • فروع • أكثر مبيعاً • خلفية الاصناف • توصيل • إعدادات • إعلان
 ===================================================== */
 let CFG = null;
 let STATE = null;
@@ -339,7 +350,7 @@ const ASTR = {
     renewTitle:'⚠️ انتهت صلاحية التوكن', renewHint:'انتهت صلاحية التوكن أو لا يملك الصلاحية. جدّده من GitHub ثم أدخله هنا للمتابعة — بياناتك لم تُفقد.',
     lblNewToken:'توكن جديد', btnRenew:'حفظ والمتابعة', errRenewEmpty:'أدخل التوكن الجديد.', errRenewBad:'التوكن ما زال مرفوضاً.',
     headerTitle:'لوحة تحكم مكرونجي', btnExport:'⬇️ تصدير احتياطي', btnLogout:'خروج',
-    tabMenu:'🍝 المنيو', tabBranches:'🍝 الفروع', tabBest:'⭐ الأكثر مبيعاً', tabBgs:'🖼️ الخلفيات',
+    tabMenu:'🍝 المنيو', tabBranches:'🍝 الفروع', tabBest:'⭐ الأكثر مبيعاً', tabBgs:'🖼️ خلفية الاصناف',
     tabDelivery:'🛵 التوصيل والسوشيال', tabSettings:'⚙️ الإعدادات', tabAd:'📢 الإعلان',
     menuNote:'التعديلات تصل للزبائن تلقائياً خلال ≤60 ثانية بدون تحديث الصفحة. الإخفاء = كل الفروع، والنفد ❌ = يومي لكل فرع، و«التوفر في الفروع» = تقييد دائم لكل فرع (بطاقة رمادية أو إخفاء).',
     btnSaveMenu:'💾 حفظ ونشر المنيو', publishing:'جارٍ النشر...', publishedMenu:'تم نشر المنيو',
@@ -384,16 +395,18 @@ const ASTR = {
     bestSlot:'الصنف ', btnSaveBest:'💾 حفظ ونشر الأكثر مبيعاً', savedBest:'تم نشر الأكثر مبيعاً',
     warnBestDup:'لا يمكن تكرار نفس الصنف في خانتين — اختر أصنافاً مختلفة',
     warnBestEmpty:'اختر صنفاً لكل خانة من الخانات الأربع',
-    bgsNote:'خلفيات الأصناف بروح العلامة: تُرفع مرة واحدة وتُطبق تلقائياً تحت صور المنتجات الشفافة. الترقيم تلقائي (bg5، bg6...) والتسميات حرّة.',
-    bgsUpload:'📤 رفع خلفية جديدة', bgsUploading:'جارٍ الرفع...', bgsUploaded:'تم رفع الخلفية',
+    bgsNote:'خلفية الاصناف بروح العلامة: تُرفع مرة واحدة وتُطبق تلقائياً تحت صور المنتجات الشفافة. الترقيم تلقائي (bg5، bg6...)، والتعيين والرفع والحذف تُنشر فوراً، والتسميات تُحفظ بزر الحفظ.',
+    bgsUpload:'📤 رفع خلفية جديدة', bgsUploading:'جارٍ الرفع...',
+    bgsUploaded:'تم رفع الخلفية ونشرها ✔',
     bgsBadType:'صيغة غير مدعومة — استخدم PNG أو JPG أو WEBP', bgsTooBig:'حجم الصورة كبير جداً (الحد 4MB)',
     bgsDefTag:'الافتراضية ✔', bgsMakeDefault:'جعلها الافتراضية', bgsDelete:'حذف',
-    bgsDefSet:'تم تعيين الافتراضية — احفظ للنشر',
+    bgsDefPublished:'تم نشر الخلفية الافتراضية الجديدة ✔',
+    bgsDeletedPub:'تم حذف الخلفية ونشر السجل ✔',
     bgsCantDeleteDefault:'لا يمكن حذف الخلفية الافتراضية',
     bgsCantDeleteUsed:'هذه الخلفية مستخدمة لصنف قائم — أزلها من الصنف أولاً',
     delBgMsg:function(f){ return 'سيُحذف الملف img/bg/'+f+' نهائياً من المستودع. متابعة؟'; },
-    bgsDeleted:'تم حذف الخلفية', bgsNewLabel:'خلفية',
-    btnSaveBgs:'💾 حفظ ونشر الخلفيات', savedBgs:'تم نشر الخلفيات',
+    bgsNewLabel:'خلفية',
+    btnSaveBgs:'💾 حفظ التسميات والنشر', savedBgs:'تم نشر التسميات ✔',
     deliveryNote:'روابط تطبيقات التوصيل تظهر في شاشة اختيار الفروع بالتطبيق. الروابط الرسمية تفتح التطبيق إن كان مثبتاً وإلا الموقع الرسمي.',
     btnAddDelivery:'➕ إضافة تطبيق توصيل', editDeliveryTitle:'تعديل تطبيق توصيل', addDeliveryTitle:'إضافة تطبيق توصيل',
     lblDelNameAr:'الاسم بالعربي', lblDelNameEn:'الاسم بالإنجليزي', lblDelUrl:'الرابط (https://...)', lblDelColor:'لون النقطة', lblDelImg:'مسار صورة الشعار (اختياري)',
@@ -426,7 +439,7 @@ const ASTR = {
     renewTitle:'⚠️ Token expired', renewHint:'The token expired or lacks permission. Renew it on GitHub then enter it here — your data is safe.',
     lblNewToken:'New token', btnRenew:'Save & continue', errRenewEmpty:'Enter the new token.', errRenewBad:'Token still rejected.',
     headerTitle:'Makaronjy Admin', btnExport:'⬇️ Export backup', btnLogout:'Logout',
-    tabMenu:'🍝 Menu', tabBranches:'🍝 Branches', tabBest:'⭐ Best Sellers', tabBgs:'🖼️ Backgrounds',
+    tabMenu:'🍝 Menu', tabBranches:'🍝 Branches', tabBest:'⭐ Best Sellers', tabBgs:'🖼️ Item Backgrounds',
     tabDelivery:'🛵 Delivery & Social', tabSettings:'⚙️ Settings', tabAd:'📢 Ad',
     menuNote:'Changes reach customers automatically within ≤60s without a refresh. Hide = all branches; Sold ❌ = daily per branch; "Availability per branch" = permanent per-branch restriction (gray card or hidden).',
     btnSaveMenu:'💾 Save & publish menu', publishing:'Publishing...', publishedMenu:'Menu published',
@@ -471,16 +484,18 @@ const ASTR = {
     bestSlot:'Item ', btnSaveBest:'💾 Save & publish best sellers', savedBest:'Best sellers published',
     warnBestDup:'The same item cannot repeat in two slots — pick different items',
     warnBestEmpty:'Choose an item for each of the four slots',
-    bgsNote:'Item backgrounds carry the brand: upload once and they apply automatically under transparent product cutouts. Numbering is automatic (bg5, bg6...) and labels are free.',
-    bgsUpload:'📤 Upload new background', bgsUploading:'Uploading...', bgsUploaded:'Background uploaded',
+    bgsNote:'Item backgrounds carry the brand: upload once and they apply automatically under transparent product cutouts. Numbering is automatic (bg5, bg6...); set/upload/delete publish instantly, labels save via the save button.',
+    bgsUpload:'📤 Upload new background', bgsUploading:'Uploading...',
+    bgsUploaded:'Background uploaded and published ✔',
     bgsBadType:'Unsupported format — use PNG, JPG or WEBP', bgsTooBig:'Image too large (max 4MB)',
     bgsDefTag:'Default ✔', bgsMakeDefault:'Make default', bgsDelete:'Delete',
-    bgsDefSet:'Default set — save to publish',
+    bgsDefPublished:'New default background published ✔',
+    bgsDeletedPub:'Background deleted and registry published ✔',
     bgsCantDeleteDefault:'Cannot delete the default background',
     bgsCantDeleteUsed:'This background is used by an item — remove it from the item first',
     delBgMsg:function(f){ return 'The file img/bg/'+f+' will be permanently deleted from the repository. Continue?'; },
-    bgsDeleted:'Background deleted', bgsNewLabel:'Background',
-    btnSaveBgs:'💾 Save & publish backgrounds', savedBgs:'Backgrounds published',
+    bgsNewLabel:'Background',
+    btnSaveBgs:'💾 Save labels & publish', savedBgs:'Labels published ✔',
     deliveryNote:'Delivery app links appear in the branch selection screen. Official links open the installed app, otherwise the website.',
     btnAddDelivery:'➕ Add delivery app', editDeliveryTitle:'Edit delivery app', addDeliveryTitle:'Add delivery app',
     lblDelNameAr:'Name (Arabic)', lblDelNameEn:'Name (English)', lblDelUrl:'URL (https://...)', lblDelColor:'Dot color', lblDelImg:'Logo image path (optional)',
@@ -619,7 +634,6 @@ async function putFile(path, text, sha, message){
   });
   return r.content.sha;
 }
-/* رفع ملف ثنائي (صور) بصيغة base64 مباشرة */
 async function putBinary(path, b64, sha, message){
   const body = { message, content: b64, branch: CFG.branch };
   if(sha) body.sha = sha;
@@ -629,7 +643,6 @@ async function putBinary(path, b64, sha, message){
 async function deleteFile(path, sha, message){
   return await api(`/contents/${path}`, { method: 'DELETE', body: { message, sha, branch: CFG.branch } });
 }
-/* محاولة ثانية تلقائية عند تعارض الحفظ (409) */
 async function putFileSafe(path, text, sha, message){
   try{
     return await putFile(path, text, sha, message);
@@ -721,12 +734,20 @@ function migrateBgs(){
       ]
     };
   }
+  if(!STATE.SETTINGS.bgs.default) STATE.SETTINGS.bgs.default = 'img/bg/bg1.png';
 }
 function bgs(){ return STATE.SETTINGS.bgs; }
 function bgNextNum(){
   let max = 0;
   bgs().list.forEach(x=>{ const m = /bg(\d+)\.png/i.exec(x.file); if(m) max = Math.max(max, +m[1]); });
   return max + 1;
+}
+function harvestBgLabels(){
+  const B = bgs();
+  B.list.forEach((x,i)=>{ const v = el('bgl_'+i); if(v && v.value.trim()) x.label = v.value.trim(); });
+}
+async function publishSettings(message){
+  STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, message);
 }
 
 /* ===== الدخول والتحميل ===== */
@@ -1189,7 +1210,7 @@ function openBranchModal(i){
 el('saveBranches').addEventListener('click', async ()=>{
   const btn = el('saveBranches'); btn.textContent = L('publishing');
   try{
-    STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, 'تحديث الفروع من لوحة التحكم 🍝');
+    await publishSettings('تحديث الفروع من لوحة التحكم 🍝');
     toast(L('published'),'success',L('subLive'));
   }catch(e){
     if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
@@ -1228,7 +1249,7 @@ el('saveBest').addEventListener('click', async ()=>{
   STATE.SETTINGS.bestSellers = ids;
   const btn = el('saveBest'); btn.textContent = L('publishing');
   try{
-    STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, 'تحديث الأكثر مبيعاً من لوحة التحكم ⭐');
+    await publishSettings('تحديث الأكثر مبيعاً من لوحة التحكم ⭐');
     toast(L('savedBest'),'success',L('subLive'));
   }catch(e){
     if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
@@ -1236,7 +1257,7 @@ el('saveBest').addEventListener('click', async ()=>{
   btn.textContent = L('btnSaveBest');
 });
 
-/* ===== تبويب الخلفيات 🖼️ ===== */
+/* ===== تبويب خلفية الاصناف 🖼️ ===== */
 function renderBgs(){
   const B = bgs();
   el('bgWrap').innerHTML = '<div class="bg-grid">' + B.list.map((x,i)=>`
@@ -1256,9 +1277,17 @@ el('bgWrap').addEventListener('click', async e=>{
   const b = e.target.closest('button[data-bgact]'); if(!b) return;
   const i = +b.dataset.i, B = bgs(), x = B.list[i];
   if(b.dataset.bgact === 'def'){
+    harvestBgLabels();
     B.default = 'img/bg/' + x.file;
     renderBgs();
-    toast(L('bgsDefSet'),'info',L('dontForget'));
+    b.disabled = true;
+    try{
+      await publishSettings('تغيير الخلفية الافتراضية من لوحة التحكم 🖼️');
+      toast(L('bgsDefPublished'),'success',L('subLive'));
+    }catch(err){
+      if(err.http===401||err.http===403) showRenew(); else toast(L('publishFail') + err.message,'error');
+    }
+    b.disabled = false;
   }
   if(b.dataset.bgact === 'del'){
     if(B.default === 'img/bg/' + x.file){ toast(L('bgsCantDeleteDefault'),'warn'); return; }
@@ -1266,16 +1295,20 @@ el('bgWrap').addEventListener('click', async e=>{
     if(used){ toast(L('bgsCantDeleteUsed'),'warn'); return; }
     const ok = await askConfirm(L('delBgMsg', x.file), L('confirmDefault'), '🗑', L('btnDelFinal'));
     if(!ok) return;
+    b.disabled = true;
     try{
-      const f = await getFile('img/bg/' + x.file);
-      await deleteFile('img/bg/' + x.file, f.sha, 'حذف خلفية من لوحة التحكم 🖼️');
+      try{
+        const f = await getFile('img/bg/' + x.file);
+        await deleteFile('img/bg/' + x.file, f.sha, 'حذف خلفية من لوحة التحكم 🖼️');
+      }catch(err){ if(err.http !== 404) throw err; }
       B.list.splice(i,1);
       renderBgs();
-      toast(L('bgsDeleted'),'warn',L('dontForget'));
+      await publishSettings('حذف خلفية من لوحة التحكم 🖼️');
+      toast(L('bgsDeletedPub'),'success',L('subLive'));
     }catch(err){
-      if(err.http === 404){ B.list.splice(i,1); renderBgs(); toast(L('bgsDeleted'),'warn'); }
-      else toast(L('publishFail') + err.message,'error');
+      if(err.http===401||err.http===403) showRenew(); else toast(L('publishFail') + err.message,'error');
     }
+    b.disabled = false;
   }
 });
 el('bgUploadBtn').addEventListener('click', ()=> el('bgFile').click());
@@ -1284,7 +1317,7 @@ el('bgFile').addEventListener('change', async e=>{
   if(!file) return;
   if(!/image\/(png|jpeg|webp)/.test(file.type)){ toast(L('bgsBadType'),'warn'); e.target.value=''; return; }
   if(file.size > 4 * 1024 * 1024){ toast(L('bgsTooBig'),'warn'); e.target.value=''; return; }
-  const btn = el('bgUploadBtn'); btn.textContent = L('bgsUploading');
+  const btn = el('bgUploadBtn'); btn.textContent = L('bgsUploading'); btn.disabled = true;
   const reader = new FileReader();
   reader.onload = async ()=>{
     const b64 = String(reader.result).split(',')[1];
@@ -1292,23 +1325,25 @@ el('bgFile').addEventListener('change', async e=>{
     const fname = 'bg' + n + '.png';
     try{
       await putBinary('img/bg/' + fname, b64, null, 'رفع خلفية جديدة من لوحة التحكم 🖼️');
+      harvestBgLabels();
       bgs().list.push({ file: fname, label: L('bgsNewLabel') + ' ' + n });
       renderBgs();
-      toast(L('bgsUploaded'),'success', fname + ' — ' + L('dontForget'));
+      await publishSettings('إضافة خلفية جديدة من لوحة التحكم 🖼️');
+      toast(L('bgsUploaded'),'success', fname + ' — ' + L('subLive'));
     }catch(err){
-      toast(L('publishFail') + err.message,'error');
+      if(err.http===401||err.http===403) showRenew(); else toast(L('publishFail') + err.message,'error');
     }
-    btn.textContent = L('bgsUpload');
+    btn.textContent = L('bgsUpload'); btn.disabled = false;
     e.target.value = '';
   };
   reader.readAsDataURL(file);
 });
 el('saveBgs').addEventListener('click', async ()=>{
-  const B = bgs();
-  B.list.forEach((x,i)=>{ const v = el('bgl_'+i); if(v) x.label = v.value.trim() || x.file; });
+  harvestBgLabels();
   const btn = el('saveBgs'); btn.textContent = L('publishing');
   try{
-    STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, 'تحديث الخلفيات من لوحة التحكم 🖼️');
+    await publishSettings('تحديث تسميات الخلفيات من لوحة التحكم 🖼️');
+    renderBgs();
     toast(L('savedBgs'),'success',L('subLive'));
   }catch(err){
     if(err.http===401||err.http===403) showRenew(); else toast(L('publishFail') + err.message,'error');
@@ -1384,7 +1419,7 @@ el('saveDelivery').addEventListener('click', async ()=>{
     tiktok: el('s_tk').value.trim()
   };
   try{
-    STATE.shas.settings = await putFileSafe('settings.js', settingsText(), STATE.shas.settings, 'تحديث التوصيل والسوشيال من لوحة التحكم 🛵');
+    await publishSettings('تحديث التوصيل والسوشيال من لوحة التحكم 🛵');
     toast(L('savedDelivery'),'success',L('subLive'));
   }catch(e){
     if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
@@ -1395,3 +1430,114 @@ el('saveDelivery').addEventListener('click', async ()=>{
 /* ===== تبويب الإعدادات ===== */
 function renderSettings(){
   const s = STATE.SETTINGS;
+  el('settingsForm').innerHTML = `
+    <div class="form-grid">
+      <label>${L('lblBrandAr')}<input id="s_nameAr" value="${esc(s.brand.nameAr)}"></label>
+      <label>${L('lblBrandEn')}<input id="s_nameEn" class="ltr" value="${esc(s.brand.nameEn)}"></label>
+      <label>${L('lblTagAr')}<input id="s_tagAr" value="${esc(s.brand.tagAr)}"></label>
+      <label>${L('lblTagEn')}<input id="s_tagEn" class="ltr" value="${esc(s.brand.tagEn)}"></label>
+    </div>
+    <div class="note">${L('settingsNote')}</div>`;
+}
+el('saveSettings').addEventListener('click', async ()=>{
+  const s = STATE.SETTINGS;
+  s.brand.nameAr = el('s_nameAr').value.trim() || s.brand.nameAr;
+  s.brand.nameEn = el('s_nameEn').value.trim() || s.brand.nameEn;
+  s.brand.tagAr = el('s_tagAr').value.trim();
+  s.brand.tagEn = el('s_tagEn').value.trim();
+  const btn = el('saveSettings'); btn.textContent = L('publishing');
+  try{
+    await publishSettings('تحديث الإعدادات من لوحة التحكم ⚙️');
+    toast(L('published'),'success',L('subLive'));
+  }catch(e){
+    if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
+  }
+  btn.textContent = L('btnSaveSettings');
+});
+
+/* ===== تبويب الإعلان ===== */
+function renderAdPreview(){
+  const a = STATE.SETTINGS.ad;
+  const ti = (ALANG==='ar') ? (a.titleAr || a.titleEn) : (a.titleEn || a.titleAr);
+  const tx = (ALANG==='ar') ? (a.textAr || a.textEn) : (a.textEn || a.textAr);
+  el('adPreview').innerHTML = `
+    <div class="medal">${esc(a.icon || '🍝')}</div>
+    <b>${esc(ti || L('adPrevTitle'))}</b>
+    <p>${esc(tx || L('adPrevText'))}</p>`;
+}
+function renderAd(){
+  const a = STATE.SETTINGS.ad;
+  el('adForm').innerHTML = `
+    <fieldset>
+      <label><input type="checkbox" id="a_enabled" ${a.enabled?'checked':''}> ${L('lblAdEnabled')}</label>
+      <label><input type="checkbox" id="a_once" ${a.oncePerDay!==false?'checked':''}> ${L('lblAdOnce')}</label>
+    </fieldset>
+    <div class="form-grid">
+      <label>${L('lblAdIcon')}<input id="a_icon" value="${esc(a.icon || '🍝')}"></label>
+      <label>${L('lblAdBtnAr')}<input id="a_btnAr" value="${esc(a.btnAr || 'حسناً 🍝')}"></label>
+      <label>${L('lblAdTitleAr')}<input id="a_titleAr" value="${esc(a.titleAr)}"></label>
+      <label>${L('lblAdBtnEn')}<input id="a_btnEn" class="ltr" value="${esc(a.btnEn || 'Got it 🍝')}"></label>
+      <label>${L('lblAdTitleEn')}<input id="a_titleEn" class="ltr" value="${esc(a.titleEn)}"></label>
+    </div>
+    <div class="full"><label>${L('lblAdTextAr')}<textarea id="a_textAr" rows="2">${esc(a.textAr)}</textarea></label></div>
+    <div class="full"><label>${L('lblAdTextEn')}<textarea id="a_textEn" rows="2">${esc(a.textEn)}</textarea></label></div>`;
+  renderAdPreview();
+}
+el('saveAd').addEventListener('click', async ()=>{
+  const a = STATE.SETTINGS.ad;
+  a.enabled = el('a_enabled').checked;
+  a.oncePerDay = el('a_once').checked;
+  a.icon = el('a_icon').value.trim() || '🍝';
+  a.titleAr = el('a_titleAr').value.trim();
+  a.titleEn = el('a_titleEn').value.trim();
+  a.textAr = el('a_textAr').value.trim();
+  a.textEn = el('a_textEn').value.trim();
+  a.btnAr = el('a_btnAr').value.trim() || 'حسناً 🍝';
+  a.btnEn = el('a_btnEn').value.trim() || 'Got it 🍝';
+  const btn = el('saveAd'); btn.textContent = L('publishing');
+  try{
+    await publishSettings('تحديث الإعلان من لوحة التحكم 📢');
+    toast(L('published'),'success',L('subLive'));
+  }catch(e){
+    if(e.http===401||e.http===403) showRenew(); else toast(L('publishFail') + e.message,'error');
+  }
+  btn.textContent = L('btnSaveAd');
+});
+
+/* ===== نص settings.js المولّد ===== */
+function settingsText(){
+  return `/* =====================================================
+   ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
+===================================================== */
+window.APP_SETTINGS = ${JSON.stringify(STATE.SETTINGS, null, 2)};
+`;
+}
+
+/* ===== التصدير الاحتياطي ===== */
+el('btnExport').addEventListener('click', ()=>{
+  const data = { exportedAt: new Date().toISOString(), MENU: STATE.MENU, SETTINGS: STATE.SETTINGS };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'makaronjy-backup-' + Date.now() + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast(L('exported'),'info');
+});
+
+function renderAll(){
+  renderMenu();
+  renderBranches();
+  renderBest();
+  renderBgs();
+  renderDeliveryAdmin();
+  renderSettings();
+  renderAd();
+}
+
+/* ===== تطبيق اللغة عند الإقلاع ===== */
+applyAdminLang();
+</script>
+</body>
+</html>
+<!-- ===== END OF FILE v4 ===== -->
