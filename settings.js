@@ -389,21 +389,21 @@ window.APP_SETTINGS = {
       "id": "d-jahez",
       "nameAr": "جاهز",
       "nameEn": "Jahez",
-      "url": "https://www.jahez.sa",
+      "url": "https://jahez.go.link/2fy17",
       "color": "#e30613"
     },
     {
       "id": "d-keeta",
       "nameAr": "كيتا",
       "nameEn": "Keeta",
-      "url": "https://www.keeta.com/sa/ar",
+      "url": "https://url.mykeeta.com/lApPWsqz",
       "color": "#000000"
     },
     {
       "id": "d-hungerstation",
       "nameAr": "هنقرستيشن",
       "nameEn": "HungerStation",
-      "url": "https://hungerstation.com/sa-ar/restaurants/regions/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%AC/%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A-172159",
+      "url": "https://hungerstation.go.link/?c=SA&s=c&v=96730&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A&adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/f72851cd66e6b14e1bceee9156ddf6b2.jpg",
       "color": "#ffb700"
     }
   ],
