@@ -52,7 +52,7 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   box-shadow:0 6px 18px rgba(0,0,0,.28);transition:.3s}
 .status-pill:hover{transform:translateY(-2px);background:#ffffff1c}
 .status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;position:relative}
-.status-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid currentColor;opacity:.4;
+.status-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;;border:2px solid currentColor;opacity:.4;
   animation:statusPing 1.6s ease-out infinite}
 @keyframes statusPing{0%{transform:scale(.5);opacity:.7}100%{transform:scale(1.5);opacity:0}}
 .status-pill.open .status-dot{background:#22c55e;color:#22c55e;box-shadow:0 0 10px #22c55e88}
@@ -114,9 +114,12 @@ body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);
   box-shadow:0 8px 24px rgba(142,42,74,.25);background:#e8a04c}
 .f-title{font-family:'Aref Ruqaa',serif;color:var(--brown);font-size:clamp(1.5rem,6vw,2.2rem);font-weight:700;margin-top:.7rem;line-height:1.6}
 .f-stage{position:relative;width:100%;max-width:600px;flex:1;min-height:300px;display:flex;align-items:center;justify-content:center;padding:1rem 0}
-.f-img-box{width:88%;display:flex;align-items:center;justify-content:center}
+.f-img-box{width:88%;display:flex;align-items:center;justify-content:center;position:relative}
 .f-img-box img{max-width:100%;max-height:52vh;object-fit:contain;user-select:none;-webkit-user-drag:none;
-  filter:drop-shadow(0 20px 35px rgba(142,42,74,.28));border-radius:8px}
+  filter:drop-shadow(0 20px 35px rgba(142,42,74,.28));border-radius:16px}
+.f-caption{position:absolute;bottom:.4rem;inset-inline:0;text-align:center}
+.f-caption b{display:inline-block;background:var(--brown);color:#fff;border-radius:50px;padding:.35rem 1.1rem;
+  font-size:.85rem;font-weight:900;box-shadow:0 6px 16px rgba(90,24,48,.35)}
 .f-arrow{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;
   border:1.5px solid #b98d5f66;background:#fffdf866;color:#8a6f63;font-size:1.15rem;cursor:pointer;transition:.25s;
   display:grid;place-items:center;backdrop-filter:blur(2px);z-index:3;line-height:1}
@@ -586,6 +589,7 @@ html[dir="ltr"] .fav-badge { left: auto; right: -4px; }
     <button class="f-arrow f-right" onclick="manualNav(-1)" aria-label="السابق">❯</button>
     <div class="f-img-box" id="featAnim">
       <img id="featImg" src="" alt="" decoding="async">
+      <div class="f-caption"><b id="featCaption"></b></div>
     </div>
     <button class="f-arrow f-left" onclick="manualNav(1)" aria-label="التالي">❮</button>
   </div>
@@ -808,6 +812,11 @@ function brandize(str){
   return str.replace(/مكرونجي/g, S().brand.nameAr).replace(/Makaronjy/g, S().brand.nameEn);
 }
 
+/* ===== الأكثر مبيعاً: يُدار من اللوحة عبر bestSellers ===== */
+function bestSellers(){ return Array.isArray(S().bestSellers) ? S().bestSellers : []; }
+function bestItems(){ return bestSellers().map(id=> findMenuItem(id)).filter(Boolean); }
+function isBestSeller(it){ return bestSellers().includes(it.id); }
+
 /* ===== أرقام الفروع ورموز المعرفات ===== */
 function branchNum(b){
   if(b && typeof b.num === 'number' && isFinite(b.num) && b.num >= 1) return b.num;
@@ -851,15 +860,12 @@ function itemDesc(it){
   const d = (currentLang==='ar') ? it.desc : (it.descEn || it.desc);
   return d || '';
 }
-/* صورة الصنف: مسار جاهز img/items/<id>.png أو حقل img مخصص */
 function itemImg(it){ return it.img || ('img/items/' + it.id + '.png'); }
 function itemPlaceholder(name){
   const safe = String(name).replace(/[&<>"]/g, '');
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="#e8a04c"/><rect y="300" width="800" height="90" fill="#8e2a4a"/><text x="400" y="270" font-size="110" text-anchor="middle">🍝</text><text x="400" y="480" font-size="40" text-anchor="middle" fill="#fff" font-family="Cairo,sans-serif" font-weight="bold">${safe}</text><text x="400" y="540" font-size="24" text-anchor="middle" fill="#f2b95f" font-family="Cairo,sans-serif">مكرونجي ⭐</text></svg>`;
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
-function featPlaceholder(name){ return itemPlaceholder(name); }
-function isBestSeller(it){ return FEATURED.some(f=> f.n === it.ar); }
 
 /* ===== التوفر لكل فرع ===== */
 function secAvailAt(sec, brId){ return !Array.isArray(sec.only) || !sec.only.length || sec.only.includes(brId); }
@@ -953,7 +959,6 @@ function goHome(){
 let currentLang = localStorage.getItem('mk_lang') || 'ar';
 function T(){ return window.I18N[currentLang]; }
 function itemName(it){ return (currentLang==='ar') ? it.ar : it.en; }
-function featName(f){ return (currentLang==='ar') ? f.n : f.nEn; }
 
 /* ===== كشف تثبيت التطبيق ===== */
 let deferredPrompt = null;
@@ -1142,7 +1147,7 @@ if(firstVisit){
   const loaderTxt = el('loaderTxt');
   const CIRC = 326.7;
   let imgLoaded = 0, winLoaded = false;
-  const assets = ['logo.png','welcome.png', ...FEATURED.map(f=>f.img)];
+  const assets = ['logo.png','welcome.png', ...bestItems().map(it=>itemImg(it))];
   const totalAssets = assets.length;
   const setProgress = p=>{
     loadPct.textContent = p;
@@ -1165,11 +1170,13 @@ if(firstVisit){
   setTimeout(()=>{ imgLoaded=totalAssets; winLoaded=true; tick(); }, 25000);
 } else {
   let loaded = 0, opened = false;
+  const imgs = bestItems().map(it=>itemImg(it));
   const open = ()=>{ if(!opened){ opened=true; afterWelcome(); } };
-  FEATURED.forEach(f=>{
+  if(!imgs.length){ setTimeout(open, 400); }
+  imgs.forEach(src=>{
     const im = new Image();
-    im.onload = im.onerror = ()=>{ loaded++; if(loaded>=FEATURED.length) open(); };
-    im.src = f.img;
+    im.onload = im.onerror = ()=>{ loaded++; if(loaded>=imgs.length) open(); };
+    im.src = src;
   });
   setTimeout(open, 3000);
 }
@@ -1347,42 +1354,45 @@ function updateBranchFooter(){
   el('branchCurrent').textContent = b ? ('🍝 ' + branchName(b)) : '🍝 —';
 }
 
-/* ===== منطق المميزة ===== */
+/* ===== شاشة الأكثر مبيعاً (من bestSellers في اللوحة) ===== */
 let featIndex = 0, featAuto = true, featToken = 0, autoTimeout = null;
 const featImg = el('featImg');
 const featAnim = el('featAnim');
+const featCaption = el('featCaption');
 
 const featReady = {};
-FEATURED.forEach(f=>{
+function withFeatSrc(it, cb){
+  const src = itemImg(it);
+  if(featReady[src]){ cb(featReady[src]); return; }
   const im = new Image();
-  im.onload = ()=>{ featReady[f.img] = f.img; };
-  im.onerror = ()=>{ featReady[f.img] = featPlaceholder(featName(f)); };
-  im.src = f.img;
-});
-function withFeatSrc(item, cb){
-  if(featReady[item.img]){ cb(featReady[item.img]); return; }
-  const im = new Image();
-  im.onload = ()=>{ featReady[item.img] = item.img; cb(item.img); };
-  im.onerror = ()=>{ const ph = featPlaceholder(featName(item)); featReady[item.img] = ph; cb(ph); };
-  im.src = item.img;
+  im.onload = ()=>{ featReady[src] = src; cb(src); };
+  im.onerror = ()=>{ const ph = itemPlaceholder(it.ar); featReady[src] = ph; cb(ph); };
+  im.src = src;
 }
 
-const featDots = el('featDots');
-FEATURED.forEach((_,i)=>{
-  const d = document.createElement('button');
-  d.className='f-dot'; d.setAttribute('aria-label','صنف '+(i+1));
-  d.onclick = ()=>{ featAuto=false; stopFeatAuto(); showFeat(i, i>featIndex?'next':'prev', false); };
-  featDots.appendChild(d);
-});
+function renderFeatDots(){
+  const items = bestItems();
+  const box = el('featDots');
+  box.innerHTML = '';
+  items.forEach((_,i)=>{
+    const d = document.createElement('button');
+    d.className='f-dot'; d.setAttribute('aria-label','صنف '+(i+1));
+    d.onclick = ()=>{ featAuto=false; stopFeatAuto(); showFeat(i, i>featIndex?'next':'prev', false); };
+    box.appendChild(d);
+  });
+}
 
 function showFeat(i, dir, fromAuto){
-  featIndex = (i + FEATURED.length) % FEATURED.length;
-  const item = FEATURED[featIndex];
+  const items = bestItems();
+  if(!items.length) return;
+  featIndex = (i + items.length) % items.length;
+  const item = items[featIndex];
   const myToken = ++featToken;
   withFeatSrc(item, src=>{
     if(myToken !== featToken) return;
     featImg.src = src;
-    featImg.alt = featName(item);
+    featImg.alt = itemName(item);
+    featCaption.textContent = itemName(item);
     document.querySelectorAll('.f-dot').forEach((d,di)=> d.classList.toggle('active', di===featIndex));
     featAnim.classList.remove('anim-next','anim-prev');
     void featAnim.offsetWidth;
@@ -1396,10 +1406,12 @@ function startFeatAuto(){ stopFeatAuto(); scheduleAuto(); }
 function manualNav(d){ featAuto=false; stopFeatAuto(); showFeat(featIndex+d, d<0?'prev':'next', false); }
 function openFeatured(){
   pushGuard();
+  renderFeatDots();
   el('featured').classList.add('show');
   document.body.style.overflow='hidden';
   featAuto = true;
-  showFeat(featIndex,'next',false);
+  featIndex = 0;
+  showFeat(0,'next',false);
   startFeatAuto();
 }
 function closeFeatured(){
@@ -2017,7 +2029,6 @@ async function liveCheck(){
         new Function('window', t)(w);
         if(f === 'menu.js'){
           if(w.MENU) window.MENU = w.MENU;
-          if(w.FEATURED) window.FEATURED = w.FEATURED;
         } else {
           if(w.APP_SETTINGS) window.APP_SETTINGS = w.APP_SETTINGS;
         }
@@ -2032,6 +2043,7 @@ function applyLive(){
   applyLang(currentLang);
   updateBranchFooter();
   if(gateShown()) renderGateList();
+  if(featuredShown()){ renderFeatDots(); showFeat(Math.min(featIndex, Math.max(bestItems().length-1,0)),'next',false); }
   if(el('favSheet').classList.contains('show')) renderFavSheet();
   toast(tt('liveUpdated','تم تحديث القائمة','Menu updated'));
 }
