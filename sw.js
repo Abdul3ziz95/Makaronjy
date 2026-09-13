@@ -1,7 +1,10 @@
 /* =====================================================
-   Service Worker — مكرونجي (mk-v3 بمسارات img الجديدة)
+   Service Worker — مكرونجي (mk-v3)
+   - بدون إنترنت: كل شيء يعمل من الكاش + لقطة localStorage
+   - img/bg.png: شبكة أولاً (يتحدّث فور استبداله) مع كاش احتياطي
+   - صور الأصناف (?v=): كاش أولاً + تنظيف النسخ القديمة تلقائياً
 ===================================================== */
-const CACHE = 'mk-v2';
+const CACHE = 'mk-v3';
 
 const CORE = [
   './',
@@ -14,7 +17,8 @@ const CORE = [
   'img/logo.png',
   'img/welcome.png',
   'img/icon-192.png',
-  'img/icon-512.png'
+  'img/icon-512.png',
+  'img/bg.png'
 ];
 
 async function precache(){
@@ -50,9 +54,10 @@ self.addEventListener('fetch', e=>{
 
   const path = url.pathname;
   const isCore = path === '/' || path.endsWith('/') || /\.(html|js)$/i.test(path);
+  const isBg = path.endsWith('/img/bg.png');
 
-  /* الملفات الحيوية: الشبكة أولاً ثم الكاش */
-  if(isCore){
+  /* الملفات الحيوية + الخلفية: الشبكة أولاً ثم الكاش */
+  if(isCore || isBg){
     const clean = new Request(url.origin + path);
     e.respondWith(
       fetch(req).then(res=>{
@@ -66,12 +71,20 @@ self.addEventListener('fetch', e=>{
     return;
   }
 
-  /* الصور والأصول (items/bg/أيقونات): الكاش أولاً ثم الشبكة */
+  /* الصور والأصول: الكاش أولاً ثم الشبكة + تنظيف النسخ القديمة */
   e.respondWith(
     caches.match(req).then(m=> m || fetch(req).then(res=>{
       if(res && res.ok){
         const copy = res.clone();
-        caches.open(CACHE).then(c=> c.put(req, copy));
+        caches.open(CACHE).then(c=>{
+          c.put(req, copy);
+          c.keys().then(keys=>{
+            keys.forEach(k=>{
+              const ku = new URL(k.url);
+              if(ku.pathname === url.pathname && k.url !== req.url) c.delete(k);
+            });
+          });
+        });
       }
       return res;
     }))
