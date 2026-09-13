@@ -453,6 +453,10 @@ window.APP_SETTINGS = {
       {
         "file": "bg5.png",
         "label": "خلفية 5"
+      },
+      {
+        "file": "bg6.png",
+        "label": "خلفية 6"
       }
     ]
   }
