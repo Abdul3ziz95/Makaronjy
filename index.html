@@ -295,12 +295,14 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
   background:#fff;border:none;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.25);padding:.3rem;transition:.2s}
 .c-img .step.on{box-shadow:0 6px 16px rgba(0,0,0,.25),0 0 0 2px #e0912f66}
 .c-img .step:not(.on) .dec,.c-img .step:not(.on) .qnum{display:none}
-/* ===== زر الإضافة قبل أول ضغطة: أبيض بالكامل وعلامة + سوداء ===== */
+/* ===== زر الإضافة قبل أول ضغطة: أبيض بالكامل وعلامة + سوداء رفيعة ===== */
 .c-img .step:not(.on){padding:0}
 .c-img .step:not(.on) .inc{width:44px;height:44px;border-radius:14px;background:#fff;color:#000}
 .c-img .step:not(.on) .inc:hover{background:#fff;color:#000}
 .c-img .step.disabled{opacity:.55;pointer-events:none}
-.step .st{width:34px;height:34px;border:none;border-radius:10px;font-size:1.15rem;font-weight:900;cursor:pointer;transition:.15s;font-family:inherit;line-height:1}
+.step .st{width:34px;height:34px;border:none;border-radius:10px;font-size:1.15rem;font-weight:900;cursor:pointer;transition:.15s;font-family:inherit;line-height:1;
+  display:flex;align-items:center;justify-content:center}
+.step .st svg{width:22px;height:22px;display:block}
 .step .inc{background:var(--brown);color:#fff}
 .step .inc:hover{background:var(--gold);color:var(--dark)}
 .step .inc:active{transform:scale(.9)}
@@ -420,7 +422,7 @@ footer .credit a:hover{color:var(--gold);border-bottom-style:solid;transform:tra
 footer .credit a::before{content:"✨";font-size:.85rem}
 footer .credit a::after{content:"↗";font-size:.7rem;opacity:.7}
 #toast{position:fixed;bottom:5.5rem;inset-inline:0;display:flex;justify-content:center;z-index:4000;pointer-events:none}
-#toast span{background:var(--dark);color:#fff;border-radius:50px;padding:.5rem 1.4rem;font-weight:900;font-size:.85rem;
+#toast span{background:var(--dark);color:#fff;border-radius:50px;padding:.5rem 1.4rem;font-weight:800;font-size:.85rem;
   opacity:0;transform:translateY(15px);transition:.3s;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 #toast span.show{opacity:1;transform:translateY(0)}
 /* ===== المفضلة ===== */
@@ -1528,9 +1530,9 @@ function buildMenu(){
                onerror="this.onerror=null;this.src='${ph}'">
           ${badge}
           <div class="step ${(sold||gray)?'disabled':''}" data-si="${si}" data-ii="${ii}">
-            <button class="st inc" aria-label="+">+</button>
+            <button class="st inc" aria-label="إضافة"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
             <span class="qnum">0</span>
-            <button class="st dec" aria-label="−">−</button>
+            <button class="st dec" aria-label="إنقاص"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
           </div>
         </div>
         <div class="c-body">
