@@ -13,7 +13,6 @@
 <link rel="apple-touch-icon" href="img/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/icon-192.png">
 <meta name="application-name" content="مكرونجي">
-<!-- ===== توافق المتصفحات ===== -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="format-detection" content="telephone=no">
 <meta name="msapplication-tap-highlight" content="no">
@@ -26,7 +25,7 @@
   --brown:#8e2a4a; --brown2:#a4385c; --dark:#5a1830;
   --gold:#e0912f; --gold2:#f2b95f; --cream:#faf3ea; --card:#fffdf9;
   --ink:#2b1a15; --muted:#8a6f63; --line:#eadfd2; --wa:#128c5e;
-  --price:#1e5b4f; --price2:#256b5c; --phbg:#f6ecdd;
+  --price:#1e5b4f; --price2:#256b5c; --phbg:#e8a04c;
 }
 *,*::before,*::after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;scroll-behavior:smooth}
@@ -121,7 +120,7 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .f-title{font-family:'Aref Ruqaa',serif;color:var(--brown);font-size:clamp(1.5rem,6vw,2.2rem);font-weight:700;margin-top:.7rem;line-height:1.6}
 .f-stage{position:relative;width:100%;max-width:600px;flex:1;min-height:300px;display:flex;align-items:center;justify-content:center;padding:1rem 0}
 .f-img-box{width:88%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
-  border-radius:16px;background-color:var(--phbg);background-size:cover;background-position:center;
+  border-radius:16px;background-color:var(--phbg);background-image:url('img/bg.png');background-size:cover;background-position:center;
   box-shadow:0 10px 26px rgba(90,24,48,.15)}
 .f-img-box img{max-width:100%;max-height:52vh;object-fit:contain;padding:4%;user-select:none;-webkit-user-drag:none;
   filter:drop-shadow(0 14px 24px rgba(90,24,48,.25))}
@@ -272,7 +271,7 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
 .ribbon::before,.ribbon::after{content:"";position:absolute;top:9px;bottom:9px;width:24px;background:var(--dark);z-index:-1}
 .ribbon::before{left:-13px;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,45% 50%)}
 .ribbon::after{right:-13px;clip-path:polygon(0 0,100% 0,55% 50%,100% 100%,0 100%)}
-/* ===== بطاقات الأصناف: خلفية القالب + صورة المنتج ===== */
+/* ===== بطاقات الأصناف: الخلفية الثابتة img/bg.png ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s;
   box-shadow:0 2px 8px rgba(90,24,48,.06);display:flex;flex-direction:column}
@@ -282,7 +281,7 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
 .card-gray{opacity:.6;filter:grayscale(.85);border-style:dashed}
 .card-gray:hover{transform:none;box-shadow:0 2px 8px rgba(90,24,48,.06)}
 .c-img{position:relative;aspect-ratio:4/3;overflow:hidden;
-  background-color:var(--phbg);background-size:cover;background-position:center}
+  background-color:var(--phbg);background-image:url('img/bg.png');background-size:cover;background-position:center}
 .c-img img{width:100%;height:100%;object-fit:contain;padding:7% 9%;display:block;transition:.35s}
 .c-img img.full{object-fit:cover;padding:0}
 .card:hover .c-img img{transform:scale(1.05)}
@@ -811,18 +810,20 @@ function brandize(str){
   return str.replace(/مكرونجي/g, S().brand.nameAr).replace(/Makaronjy/g, S().brand.nameEn);
 }
 
-/* ===== خلفيات الأصناف ===== */
-function bgs(){ return S().bgs || { default:'img/bg/bg1.png', list:[] }; }
-function bgFor(it){
-  const B = bgs();
-  if(it && it.bg) return 'img/bg/' + it.bg;
-  return B.default || 'img/bg/bg1.png';
-}
-
 /* ===== الأكثر مبيعاً من اللوحة ===== */
 function bestSellers(){ return Array.isArray(S().bestSellers) ? S().bestSellers : []; }
 function bestItems(){ return bestSellers().map(id=> findMenuItem(id)).filter(Boolean); }
 function isBestSeller(it){ return bestSellers().includes(it.id); }
+
+/* ===== صور الأصناف: img/items/<id>.png?v=بصمة ===== */
+function itemImgUrl(it){
+  return it.imgv ? ('img/items/' + it.id + '.png?v=' + it.imgv) : null;
+}
+function itemPlaceholder(name){
+  const safe = String(name).replace(/[&<>"]/g, '');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="#e8a04c"/><rect y="330" width="800" height="80" fill="#8e2a4a"/><text x="400" y="290" font-size="90" text-anchor="middle">🍝</text><text x="400" y="500" font-size="40" text-anchor="middle" fill="#8e2a4a" font-family="Cairo,sans-serif" font-weight="bold">${safe}</text><text x="400" y="555" font-size="24" text-anchor="middle" fill="#f2b95f" font-family="Cairo,sans-serif">مكرونجي ⭐</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
 
 /* ===== أرقام الفروع ===== */
 function branchNum(b){
@@ -866,12 +867,6 @@ function itemPrice(it, sizeIdx){ return it.prices[sizeIdx>=0 ? sizeIdx : 0]; }
 function itemDesc(it){
   const d = (currentLang==='ar') ? it.desc : (it.descEn || it.desc);
   return d || '';
-}
-function itemImg(it){ return it.img || ('img/items/' + it.id + '.png'); }
-function itemPlaceholder(name){
-  const safe = String(name).replace(/[&<>"]/g, '');
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect width="800" height="600" fill="#f6ecdd"/><rect y="330" width="800" height="80" fill="#8e2a4a"/><text x="400" y="290" font-size="90" text-anchor="middle">🍝</text><text x="400" y="500" font-size="40" text-anchor="middle" fill="#8e2a4a" font-family="Cairo,sans-serif" font-weight="bold">${safe}</text><text x="400" y="555" font-size="24" text-anchor="middle" fill="#e0912f" font-family="Cairo,sans-serif">مكرونجي ⭐</text></svg>`;
-  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 
 /* ===== التوفر لكل فرع ===== */
@@ -1149,7 +1144,8 @@ if(firstVisit){
     document.body.style.overflow='hidden';
     pushGuard();
   }, 250);
-  const assets = ['img/logo.png','img/welcome.png', ...bestItems().map(it=>itemImg(it))];
+  const assets = ['img/logo.png','img/welcome.png','img/bg.png',
+    ...bestItems().map(it=> itemImgUrl(it)).filter(Boolean)];
   let imgLoaded = 0, done = false;
   const tick = ()=>{
     imgLoaded++;
@@ -1159,7 +1155,7 @@ if(firstVisit){
   setTimeout(()=>{ if(!done){ done = true; finishIntro(); } }, 25000);
 } else {
   let loaded = 0, opened = false;
-  const imgs = bestItems().map(it=>itemImg(it));
+  const imgs = bestItems().map(it=> itemImgUrl(it)).filter(Boolean);
   const open = ()=>{ if(!opened){ opened=true; afterWelcome(); } };
   if(!imgs.length){ setTimeout(open, 400); }
   imgs.forEach(src=>{
@@ -1343,7 +1339,7 @@ function updateBranchFooter(){
   el('branchCurrent').textContent = b ? ('🍝 ' + branchName(b)) : '🍝 —';
 }
 
-/* ===== شاشة الأكثر مبيعاً (بخلفية القالب) ===== */
+/* ===== شاشة الأكثر مبيعاً (خلفية img/bg.png) ===== */
 let featIndex = 0, featAuto = true, featToken = 0, autoTimeout = null;
 const featImg = el('featImg');
 const featAnim = el('featAnim');
@@ -1351,12 +1347,13 @@ const featCaption = el('featCaption');
 
 const featReady = {};
 function withFeatSrc(it, cb){
-  const src = itemImg(it);
-  if(featReady[src]){ cb(featReady[src]); return; }
+  const url = itemImgUrl(it);
+  if(!url){ cb(itemPlaceholder(it.ar)); return; }
+  if(featReady[url]){ cb(featReady[url]); return; }
   const im = new Image();
-  im.onload = ()=>{ featReady[src] = src; cb(src); };
-  im.onerror = ()=>{ const ph = itemPlaceholder(it.ar); featReady[src] = ph; cb(ph); };
-  im.src = src;
+  im.onload = ()=>{ featReady[url] = url; cb(url); };
+  im.onerror = ()=>{ const ph = itemPlaceholder(it.ar); featReady[url] = ph; cb(ph); };
+  im.src = url;
 }
 
 function renderFeatDots(){
@@ -1377,7 +1374,6 @@ function showFeat(i, dir, fromAuto){
   featIndex = (i + items.length) % items.length;
   const item = items[featIndex];
   const myToken = ++featToken;
-  featAnim.style.backgroundImage = 'url(' + bgFor(item) + ')';
   withFeatSrc(item, src=>{
     if(myToken !== featToken) return;
     featImg.src = src;
@@ -1512,7 +1508,8 @@ function buildMenu(){
       const sold = !gray && itemSoldOut(it, brId);
       const prices = it.prices, cal = it.cal, multi = prices.length>1;
       const desc = itemDesc(it);
-      const bg = bgFor(it);
+      const imgURL = itemImgUrl(it);
+      const ph = itemPlaceholder(it.ar);
       const mode = (it.imgMode === 'full') ? 'full' : '';
       const card = document.createElement('div');
       card.className='card' + (gray?' card-gray':''); card.dataset.name = it.ar;
@@ -1522,10 +1519,9 @@ function buildMenu(){
         : (sold ? `<span class="c-badge sold">${soldTxt}</span>`
         : (isBestSeller(it) ? `<span class="c-badge">🏆 ${bestTxt}</span>` : ''));
       card.innerHTML = `
-        <div class="c-img" style="background-image:url('${bg}')">
-          <img class="${mode}" src="${itemImg(it)}" alt="${itemName(it)}" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <span class="c-ph" style="display:none">${itemName(it)}</span>
+        <div class="c-img">
+          <img class="${mode}" src="${imgURL || ph}" alt="${itemName(it)}" loading="lazy"
+               onerror="this.onerror=null;this.src='${ph}'">
           ${badge}
           <div class="step ${(sold||gray)?'disabled':''}" data-si="${si}" data-ii="${ii}">
             <button class="st inc" aria-label="+">+</button>
