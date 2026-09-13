@@ -449,6 +449,10 @@ window.APP_SETTINGS = {
       {
         "file": "bg4.png",
         "label": "اليوم الوطني"
+      },
+      {
+        "file": "bg5.png",
+        "label": "خلفية 5"
       }
     ]
   }
