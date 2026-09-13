@@ -1,5 +1,6 @@
 /* =====================================================
    ملف اللغات — مكرونجي Makaronjy
+   (ترجمات الواجهة فقط — المنيو في menu.js والإعدادات في settings.js)
 ===================================================== */
 window.I18N = {
   ar: {
@@ -89,7 +90,7 @@ window.I18N = {
     changeBranch: 'تغيير الفرع',
     waBranch: 'الفرع',
 
-    /* ===== شركاء التوصيل ===== */
+    /* ===== شركاء التوصيل (عنوان ثنائي اللغة دائم) ===== */
     deliveryHeadAr: 'اطلب الآن عبر شركائنا في التوصيل',
     deliveryHeadEn: 'Order now via our delivery partners',
 
@@ -100,7 +101,7 @@ window.I18N = {
     geoOff: 'لم نتمكن من تحديد موقعك — فعّل خدمة الموقع (GPS) من إعدادات الهاتف ثم أعد المحاولة',
     closedWeek: 'مغلق هذا الأسبوع',
 
-    /* ===== حالة العمل ===== */
+    /* ===== حالة العمل الديناميكية ===== */
     days: ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
     closesAt: function(h){ return 'يغلق عند الساعة ' + h; },
     opensAt: function(h){ return 'يفتح عند الساعة ' + h; },
@@ -212,7 +213,7 @@ window.I18N = {
     changeBranch: 'Change Branch',
     waBranch: 'Branch',
 
-    /* ===== Delivery partners ===== */
+    /* ===== Delivery partners (bilingual heading always) ===== */
     deliveryHeadAr: 'Order now via our delivery partners',
     deliveryHeadEn: 'اطلب الآن عبر شركائنا في التوصيل',
 
