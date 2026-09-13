@@ -17,8 +17,7 @@ window.MENU = [
         ],
         "cal": 1100,
         "desc": "مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة",
-        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese",
-        "imgv": 1789285115395
+        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese"
       },
       {
         "id": "pasta-mosaqa",
