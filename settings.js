@@ -19,8 +19,8 @@ window.APP_SETTINGS = {
     }
   },
   "bestSellers": [
-    "drink-pepsi",
-    "pasta-bashamel",
+    "pasta-red-half",
+    "pasta-red-chest",
     "pasta-red-breasts",
     "side-potato"
   ],
