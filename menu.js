@@ -236,7 +236,8 @@ window.MENU = [
         ],
         "cal": 105,
         "desc": "مشروب غازي بارد",
-        "descEn": "Chilled soft drink"
+        "descEn": "Chilled soft drink",
+        "imgv": 1789345302300
       },
       {
         "id": "drink-pepsi-diet",
