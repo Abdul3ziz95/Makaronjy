@@ -112,14 +112,15 @@ window.MENU = [
       },
       {
         "id": "side-caesar",
-        "ar": "سيزر سلط",
+        "ar": "سلطة سيزر",
         "en": "Caesar Salad",
         "prices": [
           14
         ],
         "cal": 480,
         "desc": "خس طازج بصلصة السيزر والخبز المحمص",
-        "descEn": "Fresh lettuce with caesar sauce and croutons"
+        "descEn": "Fresh lettuce with caesar sauce and croutons",
+        "imgv": 1789345024321
       }
     ]
   },
