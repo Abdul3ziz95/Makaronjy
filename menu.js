@@ -148,7 +148,8 @@ window.MENU = [
         ],
         "cal": 260,
         "desc": "كريم كراميل كريمي بصوص الكراميل",
-        "descEn": "Creamy custard with caramel sauce"
+        "descEn": "Creamy custard with caramel sauce",
+        "imgv": 1789344676147
       }
     ]
   },
