@@ -137,7 +137,8 @@ window.MENU = [
         ],
         "cal": 520,
         "desc": "الخبز المحمص مع الحليب والكريمة والفستق",
-        "descEn": "Toasted bread with milk, cream, and pistachio"
+        "descEn": "Toasted bread with milk, cream, and pistachio",
+        "imgv": 1789344759867
       },
       {
         "id": "dessert-caramel",
