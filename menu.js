@@ -228,6 +228,17 @@ window.MENU = [
     "i": "🥤",
     "items": [
       {
+        "id": "drink-water",
+        "ar": "ماء",
+        "en": "Water",
+        "prices": [
+          1
+        ],
+        "cal": 0,
+        "desc": "مياه نقية",
+        "descEn": "Pure water"
+      },
+      {
         "id": "drink-pepsi",
         "ar": "بيبسي",
         "en": "Pepsi",
@@ -300,17 +311,6 @@ window.MENU = [
         "imgv": 1789346826814
       },
       {
-        "id": "drink-water",
-        "ar": "ماء",
-        "en": "Water",
-        "prices": [
-          1
-        ],
-        "cal": 0,
-        "desc": "مياه نقية",
-        "descEn": "Pure water"
-      },
-      {
         "id": "sec-drinks-1789347283601",
         "ar": "ديو",
         "en": "Dew",
@@ -321,6 +321,18 @@ window.MENU = [
         "desc": "مشروب غازي بنكهة فريدة ومنعشة",
         "descEn": "A uniquely flavored and refreshing soft drink",
         "imgv": 1789347288680
+      },
+      {
+        "id": "sec-drinks-1789348056900",
+        "ar": "لبن القرية",
+        "en": "Alqarya Yogurt",
+        "prices": [
+          3
+        ],
+        "cal": 110,
+        "desc": "لبن شركة القرية",
+        "descEn": "Alqarya Company Yogurt",
+        "imgv": 1789348060953
       }
     ]
   }
