@@ -41,7 +41,8 @@ window.MENU = [
         ],
         "cal": 880,
         "desc": "طبقات من المكرونة مع اللحم والجبنة والبشاميل",
-        "descEn": "Layers of pasta with meat, cheese, and bashamel"
+        "descEn": "Layers of pasta with meat, cheese, and bashamel",
+        "imgv": 1789360328053
       },
       {
         "id": "pasta-red-chest",
