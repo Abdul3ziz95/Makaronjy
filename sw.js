@@ -1,10 +1,10 @@
 /* =====================================================
-   Service Worker — مكرونجي (mk-v3)
+   Service Worker — مكرونجي (mk-v5)
    - بدون إنترنت: كل شيء يعمل من الكاش + لقطة localStorage
    - img/bg.png: شبكة أولاً (يتحدّث فور استبداله) مع كاش احتياطي
    - صور الأصناف (?v=): كاش أولاً + تنظيف النسخ القديمة تلقائياً
 ===================================================== */
-const CACHE = 'mk-v3';
+const CACHE = 'mk-v5';
 
 const CORE = [
   './',
@@ -16,6 +16,7 @@ const CORE = [
   'manifest.json',
   'img/logo.png',
   'img/welcome.png',
+  'img/closed.png',
   'img/icon-192.png',
   'img/icon-512.png',
   'img/bg.png'
@@ -55,9 +56,10 @@ self.addEventListener('fetch', e=>{
   const path = url.pathname;
   const isCore = path === '/' || path.endsWith('/') || /\.(html|js)$/i.test(path);
   const isBg = path.endsWith('/img/bg.png');
+  const isClosedImg = path.endsWith('/img/closed.png');
 
-  /* الملفات الحيوية + الخلفية: الشبكة أولاً ثم الكاش */
-  if(isCore || isBg){
+  /* الملفات الحيوية + الخلفية + صورة المغلق: الشبكة أولاً ثم الكاش */
+  if(isCore || isBg || isClosedImg){
     const clean = new Request(url.origin + path);
     e.respondWith(
       fetch(req).then(res=>{
