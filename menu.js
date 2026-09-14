@@ -9,40 +9,16 @@ window.MENU = [
     "i": "🍝",
     "items": [
       {
-        "id": "pasta-bashamel",
-        "ar": "مكرونة باشميل",
-        "en": "Bashamel",
+        "id": "pasta-red-half",
+        "ar": "مكرونة حمراء سعودية نص حبة",
+        "en": "Red Pasta Saudi Half Chicken",
         "prices": [
-          24
+          32
         ],
-        "cal": 1100,
-        "desc": "مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة",
-        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese",
-        "imgv": 1789344594797
-      },
-      {
-        "id": "pasta-mosaqa",
-        "ar": "مصقعة باذنجان",
-        "en": "Moussaka",
-        "prices": [
-          24
-        ],
-        "cal": 950,
-        "desc": "مكرونة بصلصة الطماطم مع الباذنجان المشوي",
-        "descEn": "Pasta with tomato sauce and roasted eggplant",
-        "imgv": 1789344458500
-      },
-      {
-        "id": "pasta-lasagna",
-        "ar": "لازانيا",
-        "en": "Lasagna",
-        "prices": [
-          24
-        ],
-        "cal": 880,
-        "desc": "طبقات من المكرونة مع اللحم والجبنة والبشاميل",
-        "descEn": "Layers of pasta with meat, cheese, and bashamel",
-        "imgv": 1789360328053
+        "cal": 1900,
+        "desc": "مكرونة أقلام حمراء مع نص حبة دجاج مشوي",
+        "descEn": "Red penne pasta with half grilled chicken",
+        "imgv": 1789344170794
       },
       {
         "id": "pasta-red-chest",
@@ -69,16 +45,40 @@ window.MENU = [
         "imgv": 1789360241176
       },
       {
-        "id": "pasta-red-half",
-        "ar": "مكرونة حمراء سعودية نص حبة",
-        "en": "Red Pasta Saudi Half Chicken",
+        "id": "pasta-bashamel",
+        "ar": "مكرونة باشميل",
+        "en": "Bashamel",
         "prices": [
-          32
+          24
         ],
-        "cal": 1900,
-        "desc": "مكرونة أقلام حمراء مع نص حبة دجاج مشوي",
-        "descEn": "Red penne pasta with half grilled chicken",
-        "imgv": 1789344170794
+        "cal": 1100,
+        "desc": "مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة",
+        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese",
+        "imgv": 1789344594797
+      },
+      {
+        "id": "pasta-lasagna",
+        "ar": "لازانيا",
+        "en": "Lasagna",
+        "prices": [
+          24
+        ],
+        "cal": 880,
+        "desc": "طبقات من المكرونة مع اللحم والجبنة والبشاميل",
+        "descEn": "Layers of pasta with meat, cheese, and bashamel",
+        "imgv": 1789360328053
+      },
+      {
+        "id": "pasta-mosaqa",
+        "ar": "مصقعة باذنجان",
+        "en": "Moussaka",
+        "prices": [
+          24
+        ],
+        "cal": 950,
+        "desc": "مكرونة بصلصة الطماطم مع الباذنجان المشوي",
+        "descEn": "Pasta with tomato sauce and roasted eggplant",
+        "imgv": 1789344458500
       }
     ]
   },
