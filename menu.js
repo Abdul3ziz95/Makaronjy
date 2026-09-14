@@ -10,14 +10,15 @@ window.MENU = [
     "items": [
       {
         "id": "pasta-bashamel",
-        "ar": "الباشميل",
+        "ar": "مكرونة باشميل",
         "en": "Bashamel",
         "prices": [
           24
         ],
         "cal": 1100,
         "desc": "مكرونة أقلام بصلصة البشاميل الكريمية والجبنة الذائبة",
-        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese"
+        "descEn": "Penne pasta with creamy bashamel sauce and melted cheese",
+        "imgv": 1789344594797
       },
       {
         "id": "pasta-mosaqa",
