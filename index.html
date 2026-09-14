@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#5a1830">
-<!-- ===== PWA ===== -->
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -85,7 +84,6 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .search-stats span{background:#ffffff22;padding:.25rem .8rem;border-radius:50px;border:1px solid #ffffff33}
 .search-stats .clear-btn{background:var(--gold);color:var(--dark);padding:.25rem .8rem;border-radius:50px;cursor:pointer;border:none;font-family:inherit;font-weight:900;font-size:.78rem;transition:.2s}
 .search-stats .clear-btn:hover{background:var(--gold2);transform:translateY(-1px)}
-/* ===== شاشة الترحيب ===== */
 #welcome{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:1rem;gap:0;background:rgba(40,10,22,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   opacity:0;pointer-events:none;transition:.45s;overflow-y:auto}
@@ -106,7 +104,6 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .w-close{position:absolute;top:.7rem;left:.7rem;width:34px;height:34px;border-radius:50%;border:none;
   background:#00000012;color:var(--brown);font-weight:900;cursor:pointer;font-size:1rem;transition:.2s}
 .w-close:hover{background:#00000022;transform:rotate(90deg)}
-/* ===== الأكثر مبيعاً ===== */
 #featured{position:fixed;inset:0;z-index:95;background:var(--cream);
   background-image:radial-gradient(#efe3d3 1px,transparent 1px);background-size:22px 22px;
   display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:.45s;overflow-y:auto;padding:1.2rem 0 2.2rem}
@@ -155,7 +152,6 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
   .f-dots{gap:.8rem}
   .f-dot{width:12px;height:12px}
 }
-/* ===== شاشة الفروع ===== */
 .gate{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:.45s}
 .gate.show{opacity:1;pointer-events:auto}
 .gate-head{flex-shrink:0;background:linear-gradient(180deg,var(--dark) 0%,#8e2a4a 100%);text-align:center;
@@ -170,14 +166,14 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 @keyframes logoIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 .gate-brand{font-family:'Cairo',sans-serif;color:var(--gold2);font-size:clamp(1.7rem,7vw,2.5rem);font-weight:900;
   margin:.6rem 0 .2rem;text-shadow:0 4px 18px rgba(0,0,0,.4);animation:fadeUp .5s .1s both;line-height:1.5;letter-spacing:.5px}
-.gate-tagline{color:#f7e3cf;font-size:1.05rem;font-weight:800;opacity:.95;margin:0 0 .5rem;
+.gate-tagline{display:none !important;color:#f7e3cf;font-size:1.05rem;font-weight:800;opacity:.95;margin:0 0 .5rem;
   animation:fadeUp .5s .18s both,softPulse 2.6s ease-in-out 1s infinite}
 .gate-pickup{display:inline-block;color:#fff;font-size:1rem;font-weight:800;background:#ffffff14;border:1px solid #ffffff2b;
   border-radius:50px;padding:.45rem 1.2rem;margin:0 auto .7rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   animation:fadeUp .5s .24s both,softPulse 2.6s ease-in-out 1.4s infinite}
 @keyframes softPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.04);opacity:.88}}
 .gate-title{color:#fff;font-size:1rem;font-weight:900;margin:0;animation:fadeUp .5s .26s both}
-.gate-social{display:flex;justify-content:center;gap:.6rem;margin-top:.8rem;animation:fadeUp .5s .32s both}
+.gate-social{display:none !important;justify-content:center;gap:.6rem;margin-top:.8rem;animation:fadeUp .5s .32s both}
 .gate-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
   display:grid;place-items:center;color:#f7e3cf;transition:.2s}
 .gate-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
@@ -236,11 +232,10 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
   color:var(--brown2);border-radius:12px;padding:.65rem .9rem;font-size:.76rem;font-weight:800;text-decoration:none;transition:.2s}
 .gc-dir:active{transform:scale(.95)}
 .gc-dir:hover{border-color:var(--gold);color:#a06b1c}
-/* ===== شركاء التوصيل ===== */
 .gate-delivery{width:min(430px,92vw);margin:1.6rem auto 0;display:flex;flex-direction:column;gap:.9rem}
 .gd-head{text-align:center;line-height:1.7}
 .gd-head b{display:block;color:var(--ink);font-size:.95rem;font-weight:900}
-.gd-head small{display:block;color:var(--muted);font-size:.75rem;font-weight:700}
+.gd-head small{display:none !important;color:var(--muted);font-size:.75rem;font-weight:700}
 .gd-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
 .gd-btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;width:100%;background:#fff;border:none;border-radius:50px;
   padding:.6rem .3rem;box-shadow:0 10px 24px rgba(90,24,48,.18),0 2px 6px rgba(90,24,48,.12);
@@ -271,7 +266,6 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
 .ribbon::before,.ribbon::after{content:"";position:absolute;top:9px;bottom:9px;width:24px;background:var(--dark);z-index:-1}
 .ribbon::before{left:-13px;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,45% 50%)}
 .ribbon::after{right:-13px;clip-path:polygon(0 0,100% 0,55% 50%,100% 100%,0 100%)}
-/* ===== بطاقات الأصناف: الخلفية الثابتة img/bg.png ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s;
   box-shadow:0 2px 8px rgba(90,24,48,.06);display:flex;flex-direction:column}
@@ -295,7 +289,6 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
   background:#fff;border:none;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.25);padding:.3rem;transition:.2s}
 .c-img .step.on{box-shadow:0 6px 16px rgba(0,0,0,.25),0 0 0 2px #e0912f66}
 .c-img .step:not(.on) .dec,.c-img .step:not(.on) .qnum{display:none}
-/* ===== زر الإضافة قبل أول ضغطة: أبيض بالكامل وعلامة + سوداء رفيعة ===== */
 .c-img .step:not(.on){padding:0}
 .c-img .step:not(.on) .inc{width:44px;height:44px;border-radius:14px;background:#fff;color:#000}
 .c-img .step:not(.on) .inc:hover{background:#fff;color:#000}
@@ -415,6 +408,12 @@ footer{background:var(--dark);color:#f3d9c5;padding:2.2rem 1rem 5.5rem;text-alig
 .branches-toggle .toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
   background:var(--gold);color:var(--dark);border-radius:50%;font-weight:900;font-size:1.1rem;transition:.4s cubic-bezier(.4,.0,.2,1);flex-shrink:0}
 .branches-toggle:hover .toggle-icon{transform:rotate(180deg)}
+/* ===== أيقونات السوشيال في صفحة المنيو (جديد) ===== */
+.menu-social{display:flex;justify-content:center;gap:.6rem;margin:.7rem auto 0;max-width:520px}
+.menu-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
+  display:grid;place-items:center;color:#f3d9c5;transition:.2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.menu-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
+.menu-social svg{width:18px;height:18px;fill:currentColor}
 footer .credit{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid #ffffff1f;font-size:.85rem;font-weight:800;color:#c9a08c;display:flex;align-items:center;justify-content:center;gap:.4rem;flex-wrap:wrap}
 footer .credit .design-text{color:#d9b8a6}
 footer .credit a{color:var(--gold2);text-decoration:none;font-weight:900;font-size:.95rem;border-bottom:1.5px dashed var(--gold);padding-bottom:1px;transition:.25s;display:inline-flex;align-items:center;gap:.3rem}
@@ -425,7 +424,6 @@ footer .credit a::after{content:"↗";font-size:.7rem;opacity:.7}
 #toast span{background:var(--dark);color:#fff;border-radius:50px;padding:.5rem 1.4rem;font-weight:800;font-size:.85rem;
   opacity:0;transform:translateY(15px);transition:.3s;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 #toast span.show{opacity:1;transform:translateY(0)}
-/* ===== المفضلة ===== */
 .fav-fab{width:44px;height:44px;border-radius:50%;border:none;
   background:linear-gradient(145deg, var(--gold), var(--gold2));
   font-size:20px;display:flex;align-items:center;justify-content:center;
@@ -476,7 +474,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 .save-fav-btn{width:100%;margin:8px 0;border:2px dashed #e63946;background:#fff5f5;color:#c1121f;border-radius:12px;padding:12px;
   font-weight:900;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.2s}
 .save-fav-btn:active{transform:scale(.98);background:#ffe5e5}
-/* ===== نافذة التأكيد ===== */
 .confirm-modal{position:fixed;inset:0;background:rgba(40,10,22,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   display:flex;align-items:center;justify-content:center;z-index:2200;opacity:0;pointer-events:none;transition:.3s;padding:1rem}
 .confirm-modal.show{opacity:1;pointer-events:auto}
@@ -496,7 +493,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 .confirm-no{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:.75rem;background:#fff;color:var(--muted);font-family:inherit;font-weight:900;
   font-size:.88rem;cursor:pointer;transition:.2s}
 .confirm-no:active{transform:scale(.97)}
-/* ===== الإعلان ===== */
 .ad-modal{position:fixed;inset:0;background:rgba(40,10,22,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:2300;
   display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:.35s}
 .ad-modal.show{opacity:1;pointer-events:auto}
@@ -521,7 +517,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 </head>
 <body>
 
-<!-- ===== شاشة الترحيب ===== -->
 <div id="welcome">
   <div class="w-card" id="wCard">
     <button class="w-close" onclick="skipIntro()" aria-label="إغلاق">✕</button>
@@ -576,6 +571,14 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
       <span>📍 <span id="changeBranchLbl">تغيير الفرع</span></span>
       <span class="toggle-icon">🔄</span>
     </button>
+    <div class="menu-social" id="menuSocial">
+      <a id="menuSocialTk" href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.83 5.7 3.24 0 5.81-2.35 5.81-5.7l.03-6.14c1.15.82 2.53 1.27 3.97 1.27V7.34c-1.28 0-2.46-.55-3.2-1.52z"/></svg>
+      </a>
+      <a id="menuSocialIg" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4m.9 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg>
+      </a>
+    </div>
   </div>
   <div class="credit">
     <span class="design-text" data-i18n="designBy">تصميم</span>
@@ -601,7 +604,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
   <button class="f-menu-btn" onclick="closeFeatured()" data-i18n="browseMenu">تصفح قائمة الطعام</button>
 </div>
 
-<!-- ===== شاشة الفروع ===== -->
 <div class="gate" id="gate">
   <div class="gate-head">
     <button class="gate-close" id="gateClose" onclick="closeGate()" aria-label="إغلاق">✕</button>
@@ -709,7 +711,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
   </div>
 </div>
 
-<!-- ===== الإعلان ===== -->
 <div class="ad-modal" id="adModal" onclick="if(event.target===this) closeAd()">
   <div class="ad-card">
     <button class="ad-close" onclick="closeAd()">✕</button>
@@ -723,12 +724,10 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 </div>
 
 <div id="toast"><span id="toastMsg"></span></div>
-
 <script src="i18n.js"></script>
 <script src="menu.js"></script>
 <script src="settings.js"></script>
 <script>
-/* ===== تأمين العمل بدون إنترنت ===== */
 (function(){
   if(window.MENU && window.APP_SETTINGS) return;
   try{
@@ -740,7 +739,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 })();
 </script>
 <script>
-/* ===== إيقاف التكبير بالأصابع ===== */
 document.addEventListener('touchstart', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
 ['gesturestart','gesturechange','gestureend'].forEach(ev=> document.addEventListener(ev, e=> e.preventDefault()));
@@ -755,7 +753,6 @@ if('serviceWorker' in navigator){
   });
 }
 
-/* ===== حارس زر الرجوع ===== */
 function pushGuard(){
   if(guardOn) return;
   try{ history.pushState({rb:1}, ''); guardOn = true; }catch(e){}
@@ -765,7 +762,6 @@ document.addEventListener('DOMContentLoaded', pushGuard);
 window.addEventListener('load', pushGuard);
 window.addEventListener('pageshow', pushGuard);
 
-/* ===== مساعدات ===== */
 function el(id){ return document.getElementById(id); }
 function toast(msg){
   const t = el('toastMsg');
@@ -783,7 +779,6 @@ function confirmShown(){ return el('confirmModal').classList.contains('show'); }
 function gateShown(){ return el('gate').classList.contains('show'); }
 function adShown(){ return el('adModal').classList.contains('show'); }
 
-/* ===== ترجمة محصّنة ===== */
 function tt(key, ar, en){
   const v = (window.I18N && T()[key] !== undefined) ? T()[key] : undefined;
   return (v !== undefined && typeof v !== 'function') ? v : (currentLang==='ar' ? ar : en);
@@ -803,7 +798,6 @@ function favSlotsArr(){
   return Array.isArray(v) ? v : (currentLang==='ar' ? ['فطور 🌅','غداء ☀️','عشاء 🌙'] : ['Breakfast 🌅','Lunch ☀️','Dinner 🌙']);
 }
 
-/* ===== الإعدادات والفروع ===== */
 function S(){ return window.APP_SETTINGS; }
 function branches(){ return S().branches; }
 function savedBranchId(){ return localStorage.getItem('mk_branch'); }
@@ -816,12 +810,10 @@ function brandize(str){
   return str.replace(/مكرونجي/g, S().brand.nameAr).replace(/Makaronjy/g, S().brand.nameEn);
 }
 
-/* ===== الأكثر مبيعاً من اللوحة ===== */
 function bestSellers(){ return Array.isArray(S().bestSellers) ? S().bestSellers : []; }
 function bestItems(){ return bestSellers().map(id=> findMenuItem(id)).filter(Boolean); }
 function isBestSeller(it){ return bestSellers().includes(it.id); }
 
-/* ===== صور الأصناف: img/items/<id>.png?v=بصمة ===== */
 function itemImgUrl(it){
   return it.imgv ? ('img/items/' + it.id + '.png?v=' + it.imgv) : null;
 }
@@ -831,7 +823,6 @@ function itemPlaceholder(name){
   return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 
-/* ===== أرقام الفروع ===== */
 function branchNum(b){
   if(b && typeof b.num === 'number' && isFinite(b.num) && b.num >= 1) return b.num;
   const i = branches().indexOf(b);
@@ -847,7 +838,6 @@ function generateInvoiceID(code){
   return `${code}-${hours}${minutes}${milliseconds}-${randomChar}`;
 }
 
-/* ===== مسافة Haversine ===== */
 function hav(la1,lo1,la2,lo2){
   const R=6371, r=d=>d*Math.PI/180;
   const dLa=r(la2-la1), dLo=r(lo2-lo1);
@@ -855,7 +845,6 @@ function hav(la1,lo1,la2,lo2){
   return 2*R*Math.asin(Math.sqrt(a));
 }
 
-/* ===== المنيو ===== */
 function findMenuItem(id){
   for(const s of MENU){ const it = s.items.find(x=>x.id===id); if(it) return it; }
   return null;
@@ -875,7 +864,6 @@ function itemDesc(it){
   return d || '';
 }
 
-/* ===== التوفر لكل فرع ===== */
 function secAvailAt(sec, brId){ return !Array.isArray(sec.only) || !sec.only.length || sec.only.includes(brId); }
 function itAvailAt(it, brId){ return !Array.isArray(it.only) || !it.only.length || it.only.includes(brId); }
 function sectionViewState(sec, brId){
@@ -891,7 +879,6 @@ function itemViewState(sec, it, brId){
   return 'normal';
 }
 
-/* ===== الساعات بدقة الدقائق ===== */
 function normHM(t){
   if(t && typeof t === 'object') return { h: (t.h|0), m: (t.m|0) };
   const n = Math.floor(+t) || 0;
@@ -963,12 +950,10 @@ function goHome(){
   if(confirmShown()) resolveConfirm(false);
 }
 
-/* ===== اللغة ===== */
 let currentLang = localStorage.getItem('mk_lang') || 'ar';
 function T(){ return window.I18N[currentLang]; }
 function itemName(it){ return (currentLang==='ar') ? it.ar : it.en; }
 
-/* ===== كشف تثبيت التطبيق ===== */
 let deferredPrompt = null;
 const installBtn = el('installBtn');
 const installSheet = el('installSheet');
@@ -1024,12 +1009,14 @@ function closeSheet(){ installSheet.classList.remove('show'); }
 /* ===== السوشيال + شركاء التوصيل ===== */
 function renderSocial(){
   const s = S().social || {};
-  const links = [];
-  if(s.instagram) links.push(`<a href="${s.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4m.9 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg></a>`);
-  if(s.tiktok) links.push(`<a href="${s.tiktok}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.83 5.7 3.24 0 5.81-2.35 5.81-5.7l.03-6.14c1.15.82 2.53 1.27 3.97 1.27V7.34c-1.28 0-2.46-.55-3.2-1.52z"/></svg></a>`);
+  /* سحب الروابط وتحديث أيقونات السوشيال في صفحة المنيو */
+  const tk = el('menuSocialTk');
+  const ig = el('menuSocialIg');
+  if(tk){ tk.href = s.tiktok || '#'; tk.style.display = s.tiktok ? '' : 'none'; }
+  if(ig){ ig.href = s.instagram || '#'; ig.style.display = s.instagram ? '' : 'none'; }
+  /* إخفاء العنصر الأصلي من صفحة الفروع (مع الإبقاء على renderSocial للتوافق) */
   const box = el('gateSocial');
-  box.innerHTML = links.join('');
-  box.style.display = links.length ? '' : 'none';
+  if(box){ box.innerHTML = ''; box.style.display = 'none'; }
 }
 function renderDelivery(){
   const d = S().delivery || [];
@@ -1037,10 +1024,11 @@ function renderDelivery(){
   if(!d.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
   box.style.display = '';
   const name = x=> currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr);
+  /* سطر واحد فقط يتبع اللغة (تم إخفاء <small> عبر CSS) */
   box.innerHTML = `
     <div class="gd-head">
       <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
-      <small>${tt('deliveryHeadEn','Order now via our delivery partners','اطلب الآن عبر شركائنا في التوصيل')}</small>
+      <small></small>
     </div>
     <div class="gd-tiles">
       ${d.map(x=>`<a class="gd-btn" href="${x.url}" target="_blank" rel="noopener noreferrer" aria-label="${name(x)}">
@@ -1103,7 +1091,6 @@ function applyLang(lang){
 }
 function toggleLang(){ applyLang(currentLang==='ar' ? 'en' : 'ar'); }
 
-/* ===== حالة العمل ===== */
 function updateStatus(){
   const pill = el('statusPill');
   const txt = el('statusText');
@@ -1133,7 +1120,6 @@ function updateStatus(){
 updateStatus();
 setInterval(updateStatus, 30000);
 
-/* ===== شاشة الترحيب: بدون عداد ===== */
 let introFinished = false;
 const MIN_INTRO_MS = 7000;
 const firstVisit = !localStorage.getItem('mk_welcome_seen');
@@ -1191,7 +1177,6 @@ function skipIntro(){
 }
 el('welcome').addEventListener('click', e=>{ if(e.target.id==='welcome') skipIntro(); });
 
-/* ===== شاشة الفروع ===== */
 let nearestId = null;
 let gateMode = null;
 let dropOpen = false;
@@ -1243,11 +1228,13 @@ function openGate(mode){
   pushGuard();
   el('gateClose').classList.toggle('can', mode === 'switch');
   renderGateList();
+  setDrop(false);
   el('gate').classList.add('show');
 }
 function closeGate(){
   el('gate').classList.remove('show');
   gateMode = null;
+  setDrop(false);
 }
 
 function selectBranch(id){
@@ -1264,6 +1251,7 @@ function selectBranch(id){
     updateCart();
     updateStatus();
   }
+  setDrop(false);
   gateMode = null;
   closeGate();
   openFeatured();
@@ -1285,7 +1273,6 @@ el('gateList').addEventListener('click', e=>{
   if(id) selectBranch(id);
 });
 
-/* ===== زر الأقرب ===== */
 let geoBusy = false;
 function geoOnce(opts){
   return new Promise((res, rej)=>{
@@ -1345,7 +1332,6 @@ function updateBranchFooter(){
   el('branchCurrent').textContent = b ? ('🍝 ' + branchName(b)) : '🍝 —';
 }
 
-/* ===== شاشة الأكثر مبيعاً (خلفية img/bg.png) ===== */
 let featIndex = 0, featAuto = true, featToken = 0, autoTimeout = null;
 const featImg = el('featImg');
 const featAnim = el('featAnim');
@@ -1422,7 +1408,6 @@ el('featStage').addEventListener('touchend', e=>{
   touchX = null;
 }, {passive:true});
 
-/* ===== الإعلان ===== */
 function showAdOnce(){
   const ad = S().ad;
   if(!ad || !ad.enabled) return;
@@ -1451,7 +1436,6 @@ document.addEventListener('keydown', e=>{
   else if(e.key==='ArrowRight') manualNav(-1);
 });
 
-/* ===== زر الرجوع ===== */
 let lastBackPress = 0;
 window.addEventListener('popstate', ()=>{
   guardOn = false;
@@ -1471,7 +1455,6 @@ window.addEventListener('popstate', ()=>{
   }
 });
 
-/* ===== المنيو ===== */
 const cats = el('cats'), search = el('search'), main = el('menu');
 const searchStats = el('searchStats'), statsCount = el('statsCount');
 let currentSection = 0;
@@ -1619,7 +1602,6 @@ function showSection(si, scroll=false){
 }
 showSection(0);
 
-/* ===== البحث ===== */
 search.addEventListener('input', e=>{
   const q = e.target.value.trim().toLowerCase();
   document.querySelectorAll('.card.highlight').forEach(c=>c.classList.remove('highlight'));
@@ -1663,7 +1645,6 @@ function clearSearch(){
   showSection(currentSection);
 }
 
-/* ===== السلة ===== */
 const cart = new Map();
 try{ (JSON.parse(localStorage.getItem('mk_cart'))||[]).forEach(([k,v])=> cart.set(k,v)); }catch(e){}
 
@@ -1739,7 +1720,6 @@ function closeCart(){
   el('overlay').classList.remove('show');
 }
 
-/* ===== نافذة التأكيد ===== */
 let confirmResolve = null;
 function customConfirm(msg, title){
   return new Promise(res=>{
@@ -1757,7 +1737,6 @@ function resolveConfirm(val){
   if(confirmResolve){ const r = confirmResolve; confirmResolve = null; r(val); }
 }
 
-/* ===== الوجبات المفضلة ===== */
 const FAV_KEY = 'mk_favs_v1';
 const MAX_FAVS = 3;
 
@@ -1907,7 +1886,6 @@ document.querySelectorAll('#slotBtns .slot-btn').forEach(b => {
   b.addEventListener('click', () => saveFavToSlot(+b.dataset.slot));
 });
 
-/* ===== إتمام الطلب ===== */
 function checkout(){
   const TT = T();
   const br = currentBranch();
@@ -1960,7 +1938,6 @@ ${brandize(TT.waThanks)}`;
   toast(TT.orderSent);
 }
 
-/* ===== حركة شريط الأقسام ===== */
 let catsDir = 1, catsPauseUntil = 0, catsLast = performance.now(), catsSign = 0;
 let catsPos = 0, catsSynced = false;
 const CATS_SPEED = 28;
@@ -1999,7 +1976,6 @@ cats.addEventListener('pointerdown', ()=> pauseCats(3000), {passive:true});
 cats.addEventListener('touchstart', ()=> pauseCats(3000), {passive:true});
 cats.addEventListener('wheel', ()=> pauseCats(3000), {passive:true});
 
-/* ===== التحديث الحي ===== */
 let liveMarks = { 'menu.js': null, 'settings.js': null };
 let liveBusy = false;
 async function liveCheck(){
@@ -2044,7 +2020,6 @@ function applyLive(){
 setInterval(liveCheck, 60000);
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) liveCheck(); });
 
-/* ===== الإقلاع ===== */
 (function boot(){
   migrateFavs();
   try{
