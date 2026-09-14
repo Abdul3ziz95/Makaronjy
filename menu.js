@@ -309,6 +309,18 @@ window.MENU = [
         "cal": 0,
         "desc": "مياه نقية",
         "descEn": "Pure water"
+      },
+      {
+        "id": "sec-drinks-1789347283601",
+        "ar": "ديو",
+        "en": "Dew",
+        "prices": [
+          3
+        ],
+        "cal": 110,
+        "desc": "مشروب غازي بنكهة فريدة ومنعشة",
+        "descEn": "A uniquely flavored and refreshing soft drink",
+        "imgv": 1789347288680
       }
     ]
   }
