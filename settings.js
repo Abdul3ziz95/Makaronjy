@@ -395,7 +395,7 @@ window.APP_SETTINGS = {
       "id": "d-jahez",
       "nameAr": "جاهز",
       "nameEn": "Jahez",
-      "url": "https://www.jahez.sa",
+      "url": "https://jahez.go.link/avE5E",
       "color": "#e30613",
       "img": "img/d-jahez.png"
     },
@@ -403,7 +403,7 @@ window.APP_SETTINGS = {
       "id": "d-hungerstation",
       "nameAr": "هنقرستيشن",
       "nameEn": "HungerStation",
-      "url": "https://hungerstation.com/sa-ar/restaurants/regions/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D9%84%D9%85%D8%B1%D9%88%D8%AC/%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A-172159",
+      "url": "https://hungerstation.go.link/?c=SA&s=c&v=96730&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D9%85%D9%83%D8%B1%D9%88%D9%86%D8%AC%D9%8A&adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/f72851cd66e6b14e1bceee9156ddf6b2.jpg",
       "color": "#ffb700",
       "img": "img/d-hungerstation.png"
     },
@@ -411,7 +411,7 @@ window.APP_SETTINGS = {
       "id": "d-keeta",
       "nameAr": "كيتا",
       "nameEn": "Keeta",
-      "url": "https://www.keeta.com/sa/ar",
+      "url": "https://url.mykeeta.com/qXA45r7z",
       "color": "#ffd400",
       "img": "img/d-keeta.png"
     }
@@ -430,34 +430,5 @@ window.APP_SETTINGS = {
     "textEn": "Follow us to catch the latest offers and openings.",
     "btnAr": "حسناً 🍝",
     "btnEn": "Got it 🍝"
-  },
-  "bgs": {
-    "default": "img/bg/bg5.png",
-    "list": [
-      {
-        "file": "bg1.png",
-        "label": "الافتراضي"
-      },
-      {
-        "file": "bg2.png",
-        "label": "رمضان"
-      },
-      {
-        "file": "bg3.png",
-        "label": "العيد"
-      },
-      {
-        "file": "bg4.png",
-        "label": "اليوم الوطني"
-      },
-      {
-        "file": "bg5.png",
-        "label": "خلفية 5"
-      },
-      {
-        "file": "bg6.png",
-        "label": "خلفية 6"
-      }
-    ]
   }
 };
