@@ -171,7 +171,8 @@ window.MENU = [
         ],
         "cal": 55,
         "desc": "صلصة الطماطم الحارة التقليدية",
-        "descEn": "Traditional spicy tomato sauce"
+        "descEn": "Traditional spicy tomato sauce",
+        "imgv": 1789345213498
       },
       {
         "id": "sauce-pepper",
