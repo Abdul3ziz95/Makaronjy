@@ -73,8 +73,7 @@ window.MENU = [
         ],
         "cal": 1900,
         "desc": "مكرونة أقلام حمراء مع نص حبة دجاج مشوي",
-        "descEn": "Red penne pasta with half grilled chicken",
-        "imgv": 1789343703760
+        "descEn": "Red penne pasta with half grilled chicken"
       }
     ]
   },
