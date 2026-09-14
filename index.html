@@ -168,6 +168,7 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
   margin:.6rem 0 .2rem;text-shadow:0 4px 18px rgba(0,0,0,.4);animation:fadeUp .5s .1s both;line-height:1.5;letter-spacing:.5px}
 .gate-tagline{display:none !important;color:#f7e3cf;font-size:1.05rem;font-weight:800;opacity:.95;margin:0 0 .5rem;
   animation:fadeUp .5s .18s both,softPulse 2.6s ease-in-out 1s infinite}
+.gate-direct{color:var(--gold2);font-size:.95rem;font-weight:900;margin:0 0 .4rem;animation:fadeUp .5s .2s both;letter-spacing:.3px}
 .gate-pickup{display:inline-block;color:#fff;font-size:1rem;font-weight:800;background:#ffffff14;border:1px solid #ffffff2b;
   border-radius:50px;padding:.45rem 1.2rem;margin:0 auto .7rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   animation:fadeUp .5s .24s both,softPulse 2.6s ease-in-out 1.4s infinite}
@@ -232,7 +233,9 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
   color:var(--brown2);border-radius:12px;padding:.65rem .9rem;font-size:.76rem;font-weight:800;text-decoration:none;transition:.2s}
 .gc-dir:active{transform:scale(.95)}
 .gc-dir:hover{border-color:var(--gold);color:#a06b1c}
-.gate-delivery{width:min(430px,92vw);margin:1.6rem auto 0;display:flex;flex-direction:column;gap:.9rem}
+.gate-delivery{width:min(430px,92vw);margin:1.6rem auto 0;display:flex;flex-direction:column;gap:.9rem;position:relative}
+.gd-or{position:absolute;top:-1.5rem;left:0;right:0;text-align:center;font-weight:900;font-size:.95rem;line-height:1.2;
+  color:var(--gold);letter-spacing:.5px}
 .gd-head{text-align:center;line-height:1.7}
 .gd-head b{display:block;color:var(--ink);font-size:.95rem;font-weight:900}
 .gd-head small{display:none !important;color:var(--muted);font-size:.75rem;font-weight:700}
@@ -349,12 +352,21 @@ html[dir="ltr"] #drawer.show{transform:translateX(0)}
 .d-foot{border-top:1px solid var(--line);padding:1rem;background:#fff;display:flex;flex-direction:column;gap:.6rem}
 .d-foot textarea{font-family:inherit;border:1.5px solid var(--line);border-radius:10px;padding:.5rem .7rem;font-size:1rem;outline:none;resize:none;background:var(--cream)}
 .d-foot textarea:focus{border-color:var(--gold)}
+.closed-note{display:none;align-items:center;gap:.5rem;background:#fee2e2;border:1.5px solid #ef444455;color:#b91c1c;
+  border-radius:12px;padding:.6rem .9rem;font-size:.78rem;font-weight:900;line-height:1.6}
+.closed-note.show{display:flex}
 .pickup-note{display:flex;align-items:center;gap:.5rem;background:#e8f5e9;border:1.5px solid #128c5e33;color:#2d6a4f;
   border-radius:12px;padding:.6rem .9rem;font-size:.78rem;font-weight:900;line-height:1.6}
 .total-row{display:flex;justify-content:space-between;font-weight:900;font-size:1rem;color:var(--brown)}
 .total-row small{color:var(--muted);font-weight:700}
 .checkout{background:var(--wa);color:#fff;border:none;border-radius:12px;padding:.85rem;font-family:inherit;font-weight:900;font-size:1rem;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:.5rem}
 .checkout:active{transform:scale(.98)}
+/* ===== قفل الطلب عند الإغلاق ===== */
+.order-locked .c-img .step{opacity:.55;pointer-events:none}
+.order-locked .c-info .size{opacity:.6;pointer-events:none}
+.order-locked .checkout{opacity:.55;pointer-events:none}
+.order-locked .ci-ctrl .q[data-a="inc"]{opacity:.55;pointer-events:none}
+.order-locked .fav-order-btn{opacity:.55;pointer-events:none}
 .fabs{position:fixed;bottom:1rem;right:1rem;display:flex;align-items:center;gap:.7rem;z-index:55}
 .fab{border:none;border-radius:50px;padding:.75rem 1.3rem;font-family:inherit;font-weight:900;font-size:.9rem;cursor:pointer;
   display:flex;align-items:center;gap:.5rem;box-shadow:0 10px 26px rgba(0,0,0,.28);transition:.2s}
@@ -512,6 +524,28 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 .ad-close{position:absolute;top:10px;left:10px;width:32px;height:32px;border-radius:50%;border:none;
   background:#00000055;color:#fff;font-weight:900;cursor:pointer;font-size:.95rem;transition:.2s}
 .ad-close:hover{background:#00000088;transform:rotate(90deg)}
+/* ===== إشعار المطعم مغلق ===== */
+.closed-modal{position:fixed;inset:0;z-index:2400;background:rgba(40,10,22,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:.35s}
+.closed-modal.show{opacity:1;pointer-events:auto}
+.closed-card{width:min(380px,92vw);max-height:88vh;overflow-y:auto;background:var(--cream);border-radius:24px;
+  padding:1.5rem 1.3rem 1.4rem;text-align:center;position:relative;
+  border:2px solid var(--gold);box-shadow:0 24px 70px rgba(0,0,0,.55);
+  transform:translateY(30px) scale(.94);transition:.4s cubic-bezier(.2,.9,.3,1.15)}
+.closed-modal.show .closed-card{transform:translateY(0) scale(1)}
+.closed-close{position:absolute;top:10px;left:10px;width:32px;height:32px;border-radius:50%;border:none;
+  background:#00000012;color:var(--brown);font-weight:900;cursor:pointer;font-size:.95rem;transition:.2s}
+.closed-close:hover{background:#00000022;transform:rotate(90deg)}
+.closed-img{width:70%;max-width:260px;display:block;margin:0 auto 1rem;border-radius:16px;border:1px solid var(--line);background:#fff}
+.closed-title{color:var(--brown);font-weight:900;font-size:1.3rem;margin:0 0 .5rem;line-height:1.6}
+.closed-text{color:var(--muted);font-weight:700;font-size:.88rem;line-height:1.9;margin:0 0 .7rem}
+.closed-openat{display:inline-flex;align-items:center;gap:.4rem;background:#fff6e6;border:1px solid #f0dcb8;color:#a06b1c;
+  border-radius:50px;padding:.4rem 1rem;font-size:.8rem;font-weight:900;margin:0 0 1rem;line-height:1.6}
+.closed-btn{width:100%;border:none;border-radius:12px;padding:.85rem;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--dark);font-family:inherit;font-weight:900;font-size:.95rem;cursor:pointer;transition:.2s;
+  box-shadow:0 6px 16px rgba(224,145,47,.4)}
+.closed-btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.closed-btn:active{transform:scale(.97)}
 </style>
 </head>
 <body>
@@ -613,6 +647,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
     <img src="img/logo.png" alt="مكرونجي" class="gate-logo" decoding="async">
     <h2 class="gate-brand" id="gateBrand">مطاعم مكرونجي</h2>
     <p class="gate-tagline" id="gateTagline">مكرونة بطعم لا يُقاوم</p>
+    <p class="gate-direct" id="gateDirectLbl">اطلب من المطعم مباشرة</p>
     <p class="gate-pickup" id="gatePickup">🛍️ طلبك يكون جاهزاً عند وصولك للفرع</p>
     <h3 class="gate-title" id="gateTitle">اختر فرعك للطلب 📍</h3>
     <div class="gate-social" id="gateSocial"></div>
@@ -648,6 +683,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
   <div class="d-head">🛒 <span data-i18n="cartTitle">سلة الطلبات</span> <button onclick="closeCart()">✕</button></div>
   <div class="d-items" id="dItems"></div>
   <div class="d-foot">
+    <div class="closed-note" id="closedNote">🕐 <span id="closedNoteTxt">مغلق يرجى العودة لاحقاً</span></div>
     <div class="pickup-note">🛍️ <span data-i18n="pickupNote">طلبك يكون جاهزاً عند وصولك للفرع</span></div>
     <textarea id="cnotes" rows="2" data-i18n-ph="notePh" placeholder="📝 توصية / ملاحظة"></textarea>
     <button class="save-fav-btn" id="saveFavBtn" data-i18n="favSaveBtn">💾 حفظ الوجبة كمفضلة</button>
@@ -722,6 +758,18 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
   </div>
 </div>
 
+<!-- ===== إشعار المطعم مغلق ===== -->
+<div class="closed-modal" id="closedModal" onclick="if(event.target===this) closeClosedNotice()">
+  <div class="closed-card">
+    <button class="closed-close" id="closedClose" aria-label="إغلاق">✕</button>
+    <img class="closed-img" src="img/closed.png" alt="المطعم مغلق" decoding="async">
+    <h3 class="closed-title" id="closedTitle">المطعم مغلق</h3>
+    <p class="closed-text" id="closedText">نعتذر منك، المطعم حالياً لا يستقبل الطلبات، ولكن بإمكانك اكتشاف وعرض قائمة الطعام</p>
+    <div class="closed-openat" id="closedOpenAt">🕐 سوف يفتح عند الساعة ١:٠٠ م</div>
+    <button class="closed-btn" id="closedBtn">عرض قائمة الطعام</button>
+  </div>
+</div>
+
 <div id="toast"><span id="toastMsg"></span></div>
 
 <script src="i18n.js"></script>
@@ -778,6 +826,7 @@ function featuredShown(){ return el('featured').classList.contains('show'); }
 function confirmShown(){ return el('confirmModal').classList.contains('show'); }
 function gateShown(){ return el('gate').classList.contains('show'); }
 function adShown(){ return el('adModal').classList.contains('show'); }
+function closedShown(){ return el('closedModal').classList.contains('show'); }
 
 function tt(key, ar, en){
   const v = (window.I18N && T()[key] !== undefined) ? T()[key] : undefined;
@@ -945,6 +994,7 @@ function goHome(){
   if(featuredShown()) closeFeatured();
   if(gateShown()) closeGate();
   if(adShown()) closeAd();
+  if(closedShown()) closeClosedNotice();
   if(el('favSheet').classList.contains('show')) closeFavSheet();
   if(el('slotPicker').classList.contains('show')) closeSlotPicker();
   if(confirmShown()) resolveConfirm(false);
@@ -1022,6 +1072,7 @@ function renderDelivery(){
   box.style.display = '';
   const name = x=> currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr);
   box.innerHTML = `
+    <span class="gd-or">${tt('orWord','أو','OR')}</span>
     <div class="gd-head">
       <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
       <small></small>
@@ -1042,18 +1093,13 @@ function openDeliveryApp(event, idx){
   const d = S().delivery || [];
   const x = d[idx];
   if(!x) return false;
-  
-  /* محاولة 1: فتح الرابط كـ deep link (يفتح التطبيق المثبت مباشرة) */
   window.location.href = x.url;
-  
-  /* محاولة 2: إذا لم يُفتح التطبيق خلال 1.5 ثانية، افتح في نافذة جديدة */
   setTimeout(()=>{
     if(!document.hidden){
       const w = window.open(x.url, '_blank');
       if(!w) window.location.href = x.url;
     }
   }, 1500);
-  
   return false;
 }
 
@@ -1083,11 +1129,13 @@ function applyLang(lang){
   el('confirmNo').textContent = tt('favCancel','إلغاء','Cancel');
   el('gateBrand').textContent = brandize(tt('gateBrand','مطاعم مكرونجي','Makaronjy Restaurants'));
   el('gateTagline').textContent = brandize(tt('gateTagline','مكرونة بطعم لا يُقاوم','Irresistible pasta experience'));
+  el('gateDirectLbl').textContent = tt('gateDirect','اطلب من المطعم مباشرة','Order directly from the restaurant');
   el('gatePickup').textContent = '🛍️ ' + tt('pickupNote','طلبك يكون جاهزاً عند وصولك للفرع','Your order will be ready upon arrival');
   el('gateTitle').textContent = tt('branchGateTitle','اختر فرعك للطلب 📍','Choose Your Branch 📍');
   el('gateNearestLbl').textContent = tt('branchNearestBtn','🎯 حدّد الفرع الأقرب لموقعي','🎯 Find My Nearest Branch');
   el('gateListLbl').textContent = tt('gateListBtn','قائمة الفروع','Branch List');
   el('changeBranchLbl').textContent = tt('changeBranch','تغيير الفرع','Change Branch');
+  el('closedNoteTxt').textContent = tt('closedNote','مغلق يرجى العودة لاحقاً','Closed — please come back later');
   updateBranchFooter();
   renderSocial();
   renderDelivery();
@@ -1116,6 +1164,7 @@ function updateStatus(){
   if(!br){
     pill.classList.remove('open'); pill.classList.add('closed');
     txt.textContent = T().closed; note.textContent = '';
+    applyClosedState();
     return;
   }
   const st = branchStatus(br);
@@ -1133,17 +1182,78 @@ function updateStatus(){
   } else {
     note.textContent = tt('closedWeek','مغلق هذا الأسبوع','Closed this week');
   }
+  applyClosedState();
 }
 updateStatus();
 setInterval(updateStatus, 30000);
 
+/* ===== حالة الإغلاق: قفل الطلب + إشعار المغلق ===== */
+let closedNoticeShown = false;
+function closedNow(){
+  const br = currentBranch() || branches()[0] || null;
+  if(!br) return false;
+  return !branchStatus(br).open;
+}
+function orderLocked(){ return closedNow(); }
+function applyClosedState(){
+  const locked = closedNow();
+  document.body.classList.toggle('order-locked', locked);
+  const note = el('closedNote');
+  if(note) note.classList.toggle('show', locked);
+  /* إذا انقلب للإغلاق وشاشة الأكثر مبيعاً ظاهرة: تُغلق بصمت ولا تظهر نهائياً */
+  if(locked && featuredShown()) closeFeatured();
+}
+function closedOpenLine(){
+  const br = currentBranch() || branches()[0] || null;
+  if(!br) return '';
+  const st = branchStatus(br);
+  if(st.open || st.openMin === null) return '';
+  const lang = currentLang;
+  const days = T().days || (lang==='ar' ? ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'] : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
+  if(st.openDay === null || st.openDay === undefined){
+    return lang==='ar' ? ('🕐 سوف يفتح عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Will open at ' + fmtMin(st.openMin, lang));
+  }
+  return lang==='ar' ? ('🕐 سوف يفتح يوم ' + days[st.openDay] + ' عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Will open on ' + days[st.openDay] + ' at ' + fmtMin(st.openMin, lang));
+}
+function showClosedNotice(){
+  if(closedNoticeShown) return;
+  closedNoticeShown = true;
+  el('closedTitle').textContent = tt('closedTitle','المطعم مغلق','The Restaurant Closed');
+  el('closedText').textContent = tt('closedText','نعتذر منك، المطعم حالياً لا يستقبل الطلبات، ولكن بإمكانك اكتشاف وعرض قائمة الطعام','We\'re sorry, the restaurant is not accepting orders right now, but you can still explore and view the menu');
+  const line = closedOpenLine();
+  const openAtEl = el('closedOpenAt');
+  openAtEl.textContent = line;
+  openAtEl.style.display = line ? '' : 'none';
+  el('closedBtn').textContent = tt('closedBtn','عرض قائمة الطعام','View Menu');
+  el('closedModal').classList.add('show');
+  pushGuard();
+}
+function closeClosedNotice(){
+  el('closedModal').classList.remove('show');
+}
+function maybeClosedInsteadOfFeatured(){
+  /* عند الإغلاق: لا تظهر الأكثر مبيعاً نهائياً — يظهر الإشعار بدلها */
+  if(closedNow()){
+    showClosedNotice();
+    return;
+  }
+  openFeatured();
+}
+el('closedBtn').addEventListener('click', ()=>{
+  closeClosedNotice();
+  const m = el('menu');
+  if(m) m.scrollIntoView({behavior:'smooth', block:'start'});
+});
+el('closedClose').addEventListener('click', closeClosedNotice);
+
+/* ===== شاشة الترحيب: بدون عداد ===== */
 let introFinished = false;
 const MIN_INTRO_MS = 7000;
 const firstVisit = !localStorage.getItem('mk_welcome_seen');
 
 function afterWelcome(){
   if(!currentBranch()){ openGate('first'); }
-  else { openFeatured(); }
+  else { maybeClosedInsteadOfFeatured(); }
 }
 
 if(firstVisit){
@@ -1271,7 +1381,8 @@ function selectBranch(id){
   setDrop(false);
   gateMode = null;
   closeGate();
-  openFeatured();
+  applyClosedState();
+  maybeClosedInsteadOfFeatured();
   if(!same){
     toast(tFn('branchSelected', branchName(b),
       n=>'🍝 تم تحويل طلبك إلى: '+n, n=>'🍝 Your order branch: '+n));
@@ -1446,6 +1557,7 @@ document.addEventListener('keydown', e=>{
   if(e.key==='Escape' && adShown()){ closeAd(); return; }
   if(e.key==='Escape' && confirmShown()){ resolveConfirm(false); return; }
   if(e.key==='Escape' && installSheet.classList.contains('show')){ closeSheet(); return; }
+  if(e.key==='Escape' && closedShown()){ closeClosedNotice(); return; }
   if(e.key==='Escape' && gateShown() && gateMode==='switch'){ closeGate(); return; }
   if(!featuredShown()) return;
   if(e.key==='Escape') closeFeatured();
@@ -1456,7 +1568,7 @@ document.addEventListener('keydown', e=>{
 let lastBackPress = 0;
 window.addEventListener('popstate', ()=>{
   guardOn = false;
-  const anyOverlay = welcomeShown() || sheetShown() || drawerShown() || featuredShown() || adShown() || gateShown() || el('favSheet').classList.contains('show') || el('slotPicker').classList.contains('show') || confirmShown();
+  const anyOverlay = welcomeShown() || sheetShown() || drawerShown() || featuredShown() || adShown() || gateShown() || closedShown() || el('favSheet').classList.contains('show') || el('slotPicker').classList.contains('show') || confirmShown();
   if(anyOverlay){
     goHome();
     pushGuard();
@@ -1576,6 +1688,7 @@ document.addEventListener('click', e=>{
   const b = e.target.closest('.st'); if(!b) return;
   const step = b.closest('.step');
   if(step.classList.contains('disabled')) return;
+  if(orderLocked()) return;
   const si = +step.dataset.si, ii = +step.dataset.ii;
   const sec = MENU[si];
   const it = sec.items[ii];
@@ -1688,6 +1801,7 @@ function reconcileCart(){
 
 el('dItems').addEventListener('click', e=>{
   const b = e.target.closest('.q'); if(!b) return;
+  if(b.dataset.a==='inc' && orderLocked()) return;
   const item = cart.get(b.dataset.k);
   if(!item) return;
   b.dataset.a==='inc' ? item.qty++ : item.qty--;
@@ -1870,6 +1984,7 @@ async function saveFavToSlot(i){
 }
 
 function orderFav(i){
+  if(orderLocked()) return;
   const f = getFavs()[i];
   if(!f) return;
   const brId = savedBranchId() || '';
@@ -1904,6 +2019,7 @@ document.querySelectorAll('#slotBtns .slot-btn').forEach(b => {
 });
 
 function checkout(){
+  if(orderLocked()) return;
   const TT = T();
   const br = currentBranch();
   if(!br){ openGate('switch'); return; }
