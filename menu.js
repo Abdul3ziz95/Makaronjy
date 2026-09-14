@@ -185,7 +185,8 @@ window.MENU = [
         ],
         "cal": 18,
         "desc": "فلفل أحمر مجروش طازج",
-        "descEn": "Fresh crushed red pepper"
+        "descEn": "Fresh crushed red pepper",
+        "imgv": 1789360942763
       },
       {
         "id": "sauce-shatta",
