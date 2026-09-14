@@ -1027,13 +1027,34 @@ function renderDelivery(){
       <small></small>
     </div>
     <div class="gd-tiles">
-      ${d.map(x=>`<a class="gd-btn" href="${x.url}" target="_blank" rel="noopener noreferrer" aria-label="${name(x)}">
+      ${d.map((x, i)=>`<a class="gd-btn" href="${x.url}" data-delivery-idx="${i}" aria-label="${name(x)}" onclick="return openDeliveryApp(event, ${i});">
         <img src="${x.img || 'img/missing.png'}" alt="${name(x)}"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="gd-fallback" style="display:none;background:${x.color || '#8e2a4a'}">${name(x).charAt(0)}</span>
         <span class="gd-name">${name(x)}</span>
       </a>`).join('')}
     </div>`;
+}
+
+/* ===== فتح تطبيق التوصيل مباشرة ===== */
+function openDeliveryApp(event, idx){
+  event.preventDefault();
+  const d = S().delivery || [];
+  const x = d[idx];
+  if(!x) return false;
+  
+  /* محاولة 1: فتح الرابط كـ deep link (يفتح التطبيق المثبت مباشرة) */
+  window.location.href = x.url;
+  
+  /* محاولة 2: إذا لم يُفتح التطبيق خلال 1.5 ثانية، افتح في نافذة جديدة */
+  setTimeout(()=>{
+    if(!document.hidden){
+      const w = window.open(x.url, '_blank');
+      if(!w) window.location.href = x.url;
+    }
+  }, 1500);
+  
+  return false;
 }
 
 function applyLang(lang){
