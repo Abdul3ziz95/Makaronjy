@@ -64,7 +64,8 @@ window.MENU = [
         ],
         "cal": 910,
         "desc": "مكرونة حمراء بصدور دجاج - حصة فردية",
-        "descEn": "Red pasta with chicken breasts - single serving"
+        "descEn": "Red pasta with chicken breasts - single serving",
+        "imgv": 1789360241176
       },
       {
         "id": "pasta-red-half",
