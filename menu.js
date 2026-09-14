@@ -282,7 +282,7 @@ window.MENU = [
         "prices": [
           3
         ],
-        "cal": 0,
+        "cal": 110,
         "desc": "مشروب غازي خالي من السكر",
         "descEn": "Sugar-free lemon-lime drink",
         "imgv": 1789346383841
