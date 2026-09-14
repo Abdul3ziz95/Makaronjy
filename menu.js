@@ -107,7 +107,8 @@ window.MENU = [
         ],
         "cal": 420,
         "desc": "سمبوسة مقلية بحشوة دجاج خاصة",
-        "descEn": "Fried sambosa with special chicken filling"
+        "descEn": "Fried sambosa with special chicken filling",
+        "imgv": 1789344864090
       },
       {
         "id": "side-caesar",
