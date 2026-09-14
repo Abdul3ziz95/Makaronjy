@@ -333,6 +333,18 @@ window.MENU = [
         "desc": "لبن شركة القرية",
         "descEn": "Alqarya Company Yogurt",
         "imgv": 1789348060953
+      },
+      {
+        "id": "sec-drinks-1789348386806",
+        "ar": "لبن المراعي",
+        "en": "Almarai Yogurt",
+        "prices": [
+          2
+        ],
+        "cal": 100,
+        "desc": "لبن شركة المراعي",
+        "descEn": "Almarai Company Yogurt",
+        "imgv": 1789348392194
       }
     ]
   }
