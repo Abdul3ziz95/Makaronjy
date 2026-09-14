@@ -408,7 +408,6 @@ footer{background:var(--dark);color:#f3d9c5;padding:2.2rem 1rem 5.5rem;text-alig
 .branches-toggle .toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
   background:var(--gold);color:var(--dark);border-radius:50%;font-weight:900;font-size:1.1rem;transition:.4s cubic-bezier(.4,.0,.2,1);flex-shrink:0}
 .branches-toggle:hover .toggle-icon{transform:rotate(180deg)}
-/* ===== أيقونات السوشيال في صفحة المنيو (جديد) ===== */
 .menu-social{display:flex;justify-content:center;gap:.6rem;margin:.7rem auto 0;max-width:520px}
 .menu-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
   display:grid;place-items:center;color:#f3d9c5;transition:.2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
@@ -724,6 +723,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 </div>
 
 <div id="toast"><span id="toastMsg"></span></div>
+
 <script src="i18n.js"></script>
 <script src="menu.js"></script>
 <script src="settings.js"></script>
@@ -1006,15 +1006,12 @@ function installApp(){
 }
 function closeSheet(){ installSheet.classList.remove('show'); }
 
-/* ===== السوشيال + شركاء التوصيل ===== */
 function renderSocial(){
   const s = S().social || {};
-  /* سحب الروابط وتحديث أيقونات السوشيال في صفحة المنيو */
   const tk = el('menuSocialTk');
   const ig = el('menuSocialIg');
   if(tk){ tk.href = s.tiktok || '#'; tk.style.display = s.tiktok ? '' : 'none'; }
   if(ig){ ig.href = s.instagram || '#'; ig.style.display = s.instagram ? '' : 'none'; }
-  /* إخفاء العنصر الأصلي من صفحة الفروع (مع الإبقاء على renderSocial للتوافق) */
   const box = el('gateSocial');
   if(box){ box.innerHTML = ''; box.style.display = 'none'; }
 }
@@ -1024,7 +1021,6 @@ function renderDelivery(){
   if(!d.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
   box.style.display = '';
   const name = x=> currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr);
-  /* سطر واحد فقط يتبع اللغة (تم إخفاء <small> عبر CSS) */
   box.innerHTML = `
     <div class="gd-head">
       <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
