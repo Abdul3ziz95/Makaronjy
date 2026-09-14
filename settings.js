@@ -54,7 +54,7 @@ window.APP_SETTINGS = {
             "m": 0
           },
           "c": {
-            "h": 20,
+            "h": 2,
             "m": 0
           },
           "closed": false
@@ -65,7 +65,7 @@ window.APP_SETTINGS = {
             "m": 0
           },
           "c": {
-            "h": 2,
+            "h": 20,
             "m": 0
           },
           "closed": false
