@@ -296,7 +296,8 @@ window.MENU = [
         ],
         "cal": 105,
         "desc": "مشروب غازي بطعم الحمضيات",
-        "descEn": "Citrus flavored soft drink"
+        "descEn": "Citrus flavored soft drink",
+        "imgv": 1789346826814
       },
       {
         "id": "drink-water",
