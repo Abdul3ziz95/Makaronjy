@@ -93,7 +93,8 @@ window.MENU = [
         ],
         "cal": 473,
         "desc": "كرات البطاطس المقلية ذهبية ومقرمشة",
-        "descEn": "Golden crispy fried potato balls"
+        "descEn": "Golden crispy fried potato balls",
+        "imgv": 1789344317578
       },
       {
         "id": "side-sambosa",
