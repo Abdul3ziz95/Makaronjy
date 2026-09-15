@@ -124,8 +124,8 @@ window.APP_SETTINGS = {
       "addrAr": "الأماسي، الملقا، الرياض 13525",
       "addrEn": "Al Amasi, Al Malqa, Riyadh 13525",
       "wa": "966568183145",
-      "lat": 24.82,
-      "lng": 46.63,
+      "lat": 24.801454,
+      "lng": 46.597488,
       "map": "https://maps.app.goo.gl/7pmyuR4prVnyGke77",
       "hours": [
         {
