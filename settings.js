@@ -306,8 +306,8 @@ window.APP_SETTINGS = {
       "addrAr": "الفجر، السويدي الغربي، الرياض 12992",
       "addrEn": "Al Fajar St, As Suwaidi Al Gharabi, Riyadh 12992",
       "wa": "966544030086",
-      "lat": 24.62,
-      "lng": 46.65,
+      "lat": 24.572364,
+      "lng": 46.621672,
       "map": "https://maps.app.goo.gl/r7APZu7AgQz8Wk1d9",
       "hours": [
         {
