@@ -215,8 +215,8 @@ window.APP_SETTINGS = {
       "addrAr": "القادسية، الياسمين، الرياض 13322",
       "addrEn": "Al Qadisiyah, Al Yasmeen, Riyadh 13322",
       "wa": "966561203593",
-      "lat": 24.86,
-      "lng": 46.64,
+      "lat": 24.817399,
+      "lng": 46.656308,
       "map": "https://maps.app.goo.gl/WxasXA9oWLbSTCjq8",
       "hours": [
         {
