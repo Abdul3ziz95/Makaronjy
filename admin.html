@@ -1,4 +1,4 @@
-<!-- ===== ADMIN COMPLETE BUILD v5 ===== -->
+<!-- ===== ADMIN COMPLETE BUILD v6 ===== -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -178,6 +178,16 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
   background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;font-size:1.8rem}
 .ad-preview b{color:var(--brown);font-size:.95rem;display:block;margin-bottom:.2rem}
 .ad-preview p{color:var(--muted);font-size:.78rem;font-weight:700;line-height:1.7}
+/* ===== صور التطبيق ===== */
+.imgs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem;margin-top:.5rem}
+.img-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:.7rem;text-align:center;display:flex;flex-direction:column;gap:.5rem}
+.img-card .img-prev{height:90px;aspect-ratio:auto;background-color:var(--cream);background-image:none;border-radius:10px;overflow:hidden;display:grid;place-items:center;border:1px dashed var(--line)}
+.img-card .img-prev img{width:100%;height:100%;object-fit:cover;padding:0}
+.img-card b{font-size:.72rem;color:var(--brown2);line-height:1.6}
+.img-card .img-ops{display:flex;flex-direction:column;gap:.35rem}
+.img-btn.ok{background:#e8f5e9;color:#2d6a4f;border:1.5px solid #bfe3c8}
+.soc-ico{display:inline-grid;place-items:center;width:22px;height:22px;margin-inline-end:.4rem;vertical-align:middle}
+.soc-ico svg{width:18px;height:18px;fill:var(--brown2)}
 </style>
 </head>
 <body>
@@ -256,8 +266,9 @@ fieldset label{display:inline-flex;align-items:center;gap:.35rem;font-size:.76re
       <div id="deliveryWrap"></div>
       <button id="addDelivery" class="primary" data-al="btnAddDelivery">➕ إضافة تطبيق توصيل</button>
       <fieldset style="margin-top:1rem">
-        <legend data-al="legendSocial">حسابات السوشيال ميديا</legend>
-        <div id="socialForm"></div>
+        <legend data-al="legendSocial">حسابات التواصل الاجتماعي</legend>
+        <div id="socialWrap"></div>
+        <button id="addSocial" class="primary" style="margin-top:.6rem" data-al="btnAddSocial">➕ إضافة حساب تواصل</button>
       </fieldset>
       <div class="save-bar"><button id="saveDelivery" class="primary" data-al="btnSaveDelivery">💾 حفظ ونشر التوصيل والسوشيال</button></div>
     </section>
@@ -317,7 +328,7 @@ document.addEventListener('touchmove', e=>{ if(e.touches.length > 1) e.preventDe
 document.addEventListener('dblclick', e=> e.preventDefault());
 
 /* =====================================================
-   لوحة تحكم مكرونجي — BUILD v5 (٦ تبويبات)
+   لوحة تحكم مكرونجي — BUILD v6
 ===================================================== */
 let CFG = null;
 let STATE = null;
@@ -394,10 +405,26 @@ const ASTR = {
     savedDelivery:'تم حفظ بيانات التوصيل والسوشيال',
     delDeliveryMsg:function(n){ return 'سيُحذف «'+n+'» من شاشة اختيار الفروع. متابعة؟'; },
     deletedDelivery:'تم حذف تطبيق التوصيل', noDelivery:'لا توجد تطبيقات توصيل مضافة بعد.',
-    legendSocial:'حسابات السوشيال ميديا', lblSocialIg:'رابط انستغرام', lblSocialTk:'رابط تيك توك',
+    legendSocial:'حسابات التواصل الاجتماعي',
+    btnAddSocial:'➕ إضافة حساب تواصل',
+    addSocialTitle:'إضافة حساب تواصل', editSocialTitle:'تعديل حساب تواصل',
+    lblSocialPlatform:'المنصة', platCustom:'أخرى (مخصص)',
+    lblSocialNameAr:'الاسم بالعربي', lblSocialNameEn:'الاسم بالإنجليزي',
+    lblSocialUrl:'الرابط (https://...)', lblSocialEmail:'البريد الإلكتروني',
+    warnSocialUrl:'رابط صحيح مطلوب (يبدأ بـ https://)', warnSocialEmail:'بريد إلكتروني صحيح مطلوب',
+    warnSocialMax:'الحد الأقصى 5 حسابات', warnSocialName:'الاسم مطلوب',
+    savedSocial:'تم حفظ حساب التواصل', deletedSocial:'تم حذف حساب التواصل',
+    delSocialMsg:function(n){ return 'سيُحذف «'+n+'» من أيقونات التطبيق. متابعة؟'; },
+    noSocial:'لا توجد حسابات تواصل مضافة بعد.',
     btnSaveDelivery:'💾 حفظ ونشر التوصيل والسوشيال',
     lblBrandAr:'اسم السلسلة بالعربي', lblBrandEn:'اسم السلسلة بالإنجليزي', lblTagAr:'الوصف بالعربي', lblTagEn:'الوصف بالإنجليزي',
-    settingsNote:'الشعار غير قابل للتعديل من اللوحة بقرار المالك — تغييره يتم باستبدال ملف img/logo.png في المستودع. وخلفية الأصناف كلها ملف واحد: img/bg.png استبدله متى شئت.',
+    settingsNote:'الوصف يظهر تحت اسم السلسلة أعلى التطبيق. صور التطبيق تُستبدل من قسم «صور التطبيق» في تبويب الإعدادات بنفس اسم الملف.',
+    legendImages:'🖼️ صور التطبيق',
+    imgLogo:'صورة الشعار (logo.png)', imgBg:'خلفية الأصناف (bg.png)',
+    imgWelcome:'صورة الترحيب (welcome.png)', imgClosed:'صورة «مغلق» (closed.png)',
+    imgPick:'📷 تغيير الصورة', imgConfirm:'✅ تأكيد الرفع', imgCancel:'❌ إلغاء',
+    imgUploadingApp:'جارٍ رفع الصورة...', imgUploadedApp:'تم رفع الصورة ✔', imgUploadFailApp:'فشل رفع الصورة: ',
+    imagesNote:'اختر صورة جديدة ثم أكّد الرفع — تُستبدل الصورة في المستودع بنفس اسم الملف، وتصل للزبائن خلال ≤60 ثانية بدون تحديث الصفحة.',
     btnSaveSettings:'💾 حفظ ونشر الإعدادات',
     adNote:'الإعلان نصي: أيقونة + عنوان + نص — بدون صور، لعرض فوري وبدون روابط مكسورة. يظهر مرة واحدة يومياً لكل جهاز.',
     lblAdEnabled:'تشغيل الإعلان المنبثق', lblAdOnce:'مرة واحدة يومياً لكل جهاز', lblAdIcon:'أيقونة الإعلان (إيموجي واحد)',
@@ -476,10 +503,26 @@ const ASTR = {
     savedDelivery:'Delivery & social data saved',
     delDeliveryMsg:function(n){ return '"'+n+'" will be removed from the branch selection screen. Continue?'; },
     deletedDelivery:'Delivery app deleted', noDelivery:'No delivery apps added yet.',
-    legendSocial:'Social media accounts', lblSocialIg:'Instagram URL', lblSocialTk:'TikTok URL',
+    legendSocial:'Social media accounts',
+    btnAddSocial:'➕ Add social account',
+    addSocialTitle:'Add social account', editSocialTitle:'Edit social account',
+    lblSocialPlatform:'Platform', platCustom:'Other (custom)',
+    lblSocialNameAr:'Name (Arabic)', lblSocialNameEn:'Name (English)',
+    lblSocialUrl:'URL (https://...)', lblSocialEmail:'Email address',
+    warnSocialUrl:'A valid URL is required (https://)', warnSocialEmail:'A valid email is required',
+    warnSocialMax:'Maximum 5 accounts', warnSocialName:'Name is required',
+    savedSocial:'Social account saved', deletedSocial:'Social account deleted',
+    delSocialMsg:function(n){ return '"'+n+'" will be removed from the app icons. Continue?'; },
+    noSocial:'No social accounts added yet.',
     btnSaveDelivery:'💾 Save & publish delivery & social',
     lblBrandAr:'Chain name (Arabic)', lblBrandEn:'Chain name (English)', lblTagAr:'Tagline (Arabic)', lblTagEn:'Tagline (English)',
-    settingsNote:'The logo is not editable from the panel by owner decision — replace img/logo.png in the repository instead. All item backgrounds are one file: img/bg.png — replace it anytime.',
+    settingsNote:'The tagline appears under the chain name at the top of the app. App images are replaced from the "App images" section in the Settings tab with the same file name.',
+    legendImages:'🖼️ App images',
+    imgLogo:'Logo (logo.png)', imgBg:'Items background (bg.png)',
+    imgWelcome:'Welcome image (welcome.png)', imgClosed:'"Closed" image (closed.png)',
+    imgPick:'📷 Change image', imgConfirm:'✅ Confirm upload', imgCancel:'❌ Cancel',
+    imgUploadingApp:'Uploading image...', imgUploadedApp:'Image uploaded ✔', imgUploadFailApp:'Image upload failed: ',
+    imagesNote:'Pick a new image then confirm — the file is replaced in the repository with the same name and reaches customers within ≤60s without a refresh.',
     btnSaveSettings:'💾 Save & publish settings',
     adNote:'The ad is text-only: icon + title + text — no images, instant display, no broken links. Shows once per day per device.',
     lblAdEnabled:'Enable popup ad', lblAdOnce:'Once per day per device', lblAdIcon:'Ad icon (single emoji)',
@@ -729,6 +772,29 @@ async function deleteItemImg(id){
   }catch(e){ if(e.http !== 404) throw e; }
 }
 
+/* ===== رفع صور التطبيق (logo, bg, welcome, closed) ===== */
+async function uploadAppImage(path, file){
+  const b64 = await new Promise((res,rej)=>{
+    const r = new FileReader();
+    r.onload = ()=> res(String(r.result).split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+  let sha = null;
+  try{ sha = (await getFile(path)).sha; }catch(e){}
+  await putBinary(path, b64, sha, 'تحديث صورة التطبيق من لوحة التحكم 🖼️');
+}
+
+/* ===== ترحيل السوشيال القديم (object) إلى جديد (array) ===== */
+function migrateSocial(){
+  const s = STATE.SETTINGS.social;
+  if(Array.isArray(s)) return;
+  const arr = [];
+  if(s && s.instagram) arr.push({id:'s-ig', key:'instagram', nameAr:'انستقرام', nameEn:'Instagram', url:s.instagram});
+  if(s && s.tiktok) arr.push({id:'s-tk', key:'tiktok', nameAr:'تيك توك', nameEn:'TikTok', url:s.tiktok});
+  STATE.SETTINGS.social = arr;
+}
+
 /* ===== الدخول والتحميل ===== */
 function showRenew(){
   el('app').classList.add('hidden');
@@ -746,12 +812,14 @@ async function loadAll(){
   if(!STATE.SETTINGS.ad) STATE.SETTINGS.ad = {};
   if(!STATE.SETTINGS.ad.icon) STATE.SETTINGS.ad.icon = '🍝';
   if(!STATE.SETTINGS.delivery) STATE.SETTINGS.delivery = [];
-  if(!STATE.SETTINGS.social) STATE.SETTINGS.social = {};
+  if(STATE.SETTINGS.social === undefined) STATE.SETTINGS.social = [];
+  if(!STATE.SETTINGS.imagesVersion) STATE.SETTINGS.imagesVersion = 0;
   /* تنظيف نهائي: إزالة سجل الخلفيات القديم إن وُجد */
   if(STATE.SETTINGS.bgs) delete STATE.SETTINGS.bgs;
   migrateBranchNums();
   migrateHours();
   migrateBestSellers();
+  migrateSocial();
   el('renewScreen').classList.add('hidden');
   el('loginScreen').classList.add('hidden');
   el('app').classList.remove('hidden');
@@ -1303,7 +1371,7 @@ function renderDeliveryAdmin(){
       </div>
       <div class="br-info ltr">${esc(x.url)}${x.img ? '<br>img: '+esc(x.img) : ''}</div>
     </div>`).join('') : `<div class="note">${L('noDelivery')}</div>`;
-  renderSocialForm();
+  renderSocialAdmin();
 }
 el('deliveryWrap').addEventListener('click', async e=>{
   const b = e.target.closest('button[data-dact]'); if(!b) return;
@@ -1342,20 +1410,87 @@ function openDeliveryModal(i){
     renderDeliveryAdmin(); toast(L('savedDelivery'),'success',L('dontForget'));
   });
 }
-function renderSocialForm(){
-  const s = STATE.SETTINGS.social || {};
-  el('socialForm').innerHTML = `
-    <div class="form-grid">
-      <label>${L('lblSocialIg')}<input id="s_ig" class="ltr" placeholder="https://instagram.com/..." value="${esc(s.instagram||'')}"></label>
-      <label>${L('lblSocialTk')}<input id="s_tk" class="ltr" placeholder="https://tiktok.com/..." value="${esc(s.tiktok||'')}"></label>
-    </div>`;
+
+/* ===== منصات التواصل وأيقوناتها ===== */
+const SOCIAL_PLATFORMS = {
+  instagram:{ar:'انستقرام', en:'Instagram'},
+  tiktok:{ar:'تيك توك', en:'TikTok'},
+  email:{ar:'البريد الإلكتروني', en:'Email'}
+};
+const SOC_SVG = {
+  instagram:'<svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4m.9 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg>',
+  tiktok:'<svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.83 5.7 3.24 0 5.81-2.35 5.81-5.7l.03-6.14c1.15.82 2.53 1.27 3.97 1.27V7.34c-1.28 0-2.46-.55-3.2-1.52z"/></svg>',
+  email:'<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+  custom:'<svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>'
+};
+
+function renderSocialAdmin(){
+  const list = STATE.SETTINGS.social || [];
+  el('socialWrap').innerHTML = list.length ? list.map((x,i)=>`
+    <div class="br-card">
+      <div class="br-head">
+        <b><span class="soc-ico">${SOC_SVG[x.key]||SOC_SVG.custom}</span>${esc((ALANG==='ar')?x.nameAr:(x.nameEn||x.nameAr))} <span class="br-code">${esc(x.key)}</span></b>
+        <span class="item-ops">
+          <button class="edit" data-sact="edit" data-i="${i}">✏️</button>
+          <button class="del" data-sact="del" data-i="${i}">🗑</button>
+        </span>
+      </div>
+      <div class="br-info ltr">${esc(x.url)}</div>
+    </div>`).join('') : `<div class="note">${L('noSocial')}</div>`;
+  el('addSocial').disabled = list.length >= 5;
 }
+el('socialWrap').addEventListener('click', async e=>{
+  const b = e.target.closest('button[data-sact]'); if(!b) return;
+  const i = +b.dataset.i, act = b.dataset.sact;
+  if(act==='edit') openSocialModal(i);
+  if(act==='del'){
+    const x = STATE.SETTINGS.social[i];
+    const ok = await askConfirm(L('delSocialMsg', x.nameAr), L('confirmDefault'), '🗑', L('btnDelFinal'));
+    if(ok){ STATE.SETTINGS.social.splice(i,1); renderSocialAdmin(); toast(L('deletedSocial'),'warn',L('dontForget')); }
+  }
+});
+el('addSocial').addEventListener('click', ()=> openSocialModal(null));
+function openSocialModal(i){
+  const list = STATE.SETTINGS.social || [];
+  if(i===null && list.length>=5){ toast(L('warnSocialMax'),'warn'); return; }
+  const x = (i===null) ? null : list[i];
+  const usedKeys = list.filter((_,j)=>j!==i).map(y=>y.key);
+  const opts = Object.keys(SOCIAL_PLATFORMS).filter(k=>!usedKeys.includes(k))
+    .map(k=>`<option value="${k}" ${x&&x.key===k?'selected':''}>${esc((ALANG==='ar')?SOCIAL_PLATFORMS[k].ar:SOCIAL_PLATFORMS[k].en)}</option>`).join('')
+    + `<option value="custom" ${x&&x.key==='custom'?'selected':''}>${L('platCustom')}</option>`;
+  openModal(x ? L('editSocialTitle') : L('addSocialTitle'), `
+    <div class="form-grid">
+      <label>${L('lblSocialPlatform')}<select id="f_skey">${opts}</select></label>
+      <label>${L('lblSocialNameAr')}<input id="f_sar" value="${esc(x?x.nameAr:'')}"></label>
+      <label>${L('lblSocialNameEn')}<input id="f_sen" class="ltr" value="${esc(x?x.nameEn:'')}"></label>
+      <label id="f_surlLbl">${L('lblSocialUrl')}<input id="f_surl" class="ltr" placeholder="https://..." value="${esc(x?x.url:'')}"></label>
+    </div>`, ()=>{
+    const key = el('f_skey').value;
+    let nameAr = el('f_sar').value.trim(), nameEn = el('f_sen').value.trim();
+    let url = el('f_surl').value.trim();
+    if(key!=='custom' && !nameAr){ nameAr = SOCIAL_PLATFORMS[key].ar; nameEn = SOCIAL_PLATFORMS[key].en; }
+    if(key==='custom' && !nameAr){ toast(L('warnSocialName'),'warn'); return false; }
+    if(key==='email'){
+      const em = url.replace(/^mailto:/i,'');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ toast(L('warnSocialEmail'),'warn'); return false; }
+      url = 'mailto:' + em;
+    }else{
+      if(!/^https:\/\/.+/i.test(url)){ toast(L('warnSocialUrl'),'warn'); return false; }
+    }
+    const data = { id: x ? x.id : ('s'+Date.now()), key, nameAr, nameEn, url };
+    if(x){ Object.assign(x, data); } else { list.push(data); }
+    renderSocialAdmin(); toast(L('savedSocial'),'success',L('dontForget'));
+  });
+  el('f_skey').addEventListener('change', ()=>{
+    const k = el('f_skey').value;
+    if(k!=='custom'){ el('f_sar').value = SOCIAL_PLATFORMS[k].ar; el('f_sen').value = SOCIAL_PLATFORMS[k].en; }
+    const lbl = el('f_surlLbl');
+    lbl.firstChild.textContent = (k==='email') ? L('lblSocialEmail') : L('lblSocialUrl');
+  });
+}
+
 el('saveDelivery').addEventListener('click', async ()=>{
   const btn = el('saveDelivery'); btn.textContent = L('publishing');
-  STATE.SETTINGS.social = {
-    instagram: el('s_ig').value.trim(),
-    tiktok: el('s_tk').value.trim()
-  };
   try{
     await publishSettings('تحديث التوصيل والسوشيال من لوحة التحكم 🛵');
     toast(L('savedDelivery'),'success',L('subLive'));
@@ -1365,7 +1500,15 @@ el('saveDelivery').addEventListener('click', async ()=>{
   btn.textContent = L('btnSaveDelivery');
 });
 
-/* ===== تبويب الإعدادات ===== */
+/* ===== تبويب الإعدادات + صور التطبيق ===== */
+const APP_IMGS = [
+  {key:'logo', path:'img/logo.png', label:'imgLogo'},
+  {key:'bg', path:'img/bg.png', label:'imgBg'},
+  {key:'welcome', path:'img/welcome.png', label:'imgWelcome'},
+  {key:'closed', path:'img/closed.png', label:'imgClosed'}
+];
+const imgPending = {};
+let imgRenderStamp = Date.now();
 function renderSettings(){
   const s = STATE.SETTINGS;
   el('settingsForm').innerHTML = `
@@ -1375,8 +1518,66 @@ function renderSettings(){
       <label>${L('lblTagAr')}<input id="s_tagAr" value="${esc(s.brand.tagAr)}"></label>
       <label>${L('lblTagEn')}<input id="s_tagEn" class="ltr" value="${esc(s.brand.tagEn)}"></label>
     </div>
+    <fieldset style="margin-top:1rem">
+      <legend>${L('legendImages')}</legend>
+      <div class="note">${L('imagesNote')}</div>
+      <div class="imgs-grid">
+        ${APP_IMGS.map(im=>{
+          const pend = imgPending[im.key];
+          const src = pend ? pend.url : (im.path + '?v=' + (s.imagesVersion||0) + '&r=' + imgRenderStamp);
+          return `
+          <div class="img-card">
+            <div class="img-prev"><img src="${src}" alt=""></div>
+            <b>${L(im.label)}</b>
+            <div class="img-ops">
+              <button type="button" class="img-btn" data-iact="pick" data-img="${im.key}">${L('imgPick')}</button>
+              ${pend ? `<button type="button" class="img-btn ok" data-iact="confirm" data-img="${im.key}">${L('imgConfirm')}</button>
+              <button type="button" class="img-btn del" data-iact="cancel" data-img="${im.key}">${L('imgCancel')}</button>` : ''}
+            </div>
+            <input type="file" accept="image/png,image/jpeg,image/webp" hidden data-ifile="${im.key}">
+          </div>`;
+        }).join('')}
+      </div>
+    </fieldset>
     <div class="note">${L('settingsNote')}</div>`;
 }
+el('settingsForm').addEventListener('click', e=>{
+  const b = e.target.closest('button[data-iact]'); if(!b) return;
+  const key = b.dataset.img, act = b.dataset.iact;
+  const meta = APP_IMGS.find(x=>x.key===key);
+  if(act==='pick'){ el('settingsForm').querySelector(`[data-ifile="${key}"]`).click(); }
+  if(act==='cancel'){
+    if(imgPending[key]){ URL.revokeObjectURL(imgPending[key].url); delete imgPending[key]; }
+    renderSettings();
+  }
+  if(act==='confirm'){ (async ()=>{
+    const pend = imgPending[key]; if(!pend) return;
+    b.disabled = true; b.textContent = L('imgUploadingApp');
+    try{
+      await uploadAppImage(meta.path, pend.file);
+      URL.revokeObjectURL(pend.url); delete imgPending[key];
+      STATE.SETTINGS.imagesVersion = Date.now();
+      await publishSettings('تحديث صور التطبيق من لوحة التحكم 🖼️');
+      imgRenderStamp = Date.now();
+      renderSettings();
+      toast(L('imgUploadedApp'),'success',L('subLive'));
+    }catch(err){
+      b.disabled = false; b.textContent = L('imgConfirm');
+      if(err.http===401||err.http===403) showRenew(); else toast(L('imgUploadFailApp')+err.message,'error');
+    }
+  })(); }
+});
+el('settingsForm').addEventListener('change', e=>{
+  const inp = e.target.closest('input[data-ifile]'); if(!inp) return;
+  const key = inp.dataset.ifile, f = inp.files[0];
+  inp.value = '';
+  if(!f) return;
+  if(!/image\/(png|jpeg|webp)/.test(f.type)){ toast(L('imgBadType'),'warn'); return; }
+  if(f.size > 4*1024*1024){ toast(L('imgTooBig'),'warn'); return; }
+  if(imgPending[key]) URL.revokeObjectURL(imgPending[key].url);
+  imgPending[key] = { file:f, url:URL.createObjectURL(f) };
+  renderSettings();
+});
 el('saveSettings').addEventListener('click', async ()=>{
   const s = STATE.SETTINGS;
   s.brand.nameAr = el('s_nameAr').value.trim() || s.brand.nameAr;
@@ -1477,4 +1678,4 @@ applyAdminLang();
 </script>
 </body>
 </html>
-<!-- ===== END OF FILE v5 ===== -->
+<!-- ===== END OF FILE v6 ===== -->
