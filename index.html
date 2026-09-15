@@ -53,9 +53,10 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .lang-seg{padding:.32rem .75rem;border-radius:50px;font-family:inherit;font-weight:900;font-size:.72rem;
   letter-spacing:.5px;color:#f3d9c5;transition:.25s}
 .lang-seg.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark)}
-.hero{background:linear-gradient(135deg,var(--dark),#8e2a4a 55%,#a4385c);color:#fff;text-align:center;padding:.5rem 1rem 1rem;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--dark),#8e2a4a 55%,#a4385c);color:#fff;text-align:center;padding:.4rem 1rem .7rem;position:relative;overflow:hidden}
 .hero::before{content:'🍝  ';position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;
   font-size:5rem;opacity:.07;pointer-events:none}
+.hero p{color:#f7e3cf;font-weight:700;margin:.15rem auto .5rem;font-size:1.05rem}
 .status-pill{position:relative;display:inline-flex;align-items:center;gap:.55rem;background:#ffffff14;border:1px solid #ffffff2b;
   border-radius:50px;padding:.5rem 1.3rem;margin-bottom:1.1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   box-shadow:0 6px 18px rgba(0,0,0,.28);transition:.3s}
@@ -71,8 +72,6 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .status-pill.closed b{color:#f87171}
 .status-sep{color:#ffffff55;font-size:.7rem}
 .status-pill small{color:#f7e3cf;font-weight:700;font-size:.72rem}
-.hero h1{font-size:clamp(2rem,7vw,3.4rem);font-weight:900;color:var(--gold2);text-shadow:0 4px 20px rgba(0,0,0,.4)}
-.hero p{color:#f7e3cf;font-weight:700;margin:.4rem 0 0;font-size:1.05rem}
 .hero-search{display:flex;justify-content:center;margin-top:1.4rem;position:relative}
 .search{background:#fff;border:1.5px solid var(--gold);border-radius:50px;padding:.5rem 1.1rem;font-family:inherit;
   font-size:1rem;font-weight:700;color:var(--ink);width:min(300px,86%);outline:none;text-align:center;
@@ -174,11 +173,6 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
   animation:fadeUp .5s .24s both,softPulse 2.6s ease-in-out 1.4s infinite}
 @keyframes softPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.04);opacity:.88}}
 .gate-title{color:#fff;font-size:1rem;font-weight:900;margin:0;animation:fadeUp .5s .26s both}
-.gate-social{display:none !important;justify-content:center;gap:.6rem;margin-top:.8rem;animation:fadeUp .5s .32s both}
-.gate-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
-  display:grid;place-items:center;color:#f7e3cf;transition:.2s}
-.gate-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
-.gate-social svg{width:18px;height:18px;fill:currentColor}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .gate-body{flex:1;overflow-y:auto;background:var(--cream);
   background-image:radial-gradient(#efe3d3 1px,transparent 1px);background-size:22px 22px;
@@ -322,7 +316,7 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
 .nav-btn .lbl small{display:block;font-size:.65rem;color:var(--muted);font-weight:700}
 .nav-btn .lbl b{font-size:.88rem;color:var(--brown2);font-weight:900}
 .nav-btn:hover .lbl b{color:var(--brown)}
-.cal-note{max-width:600px;margin:1.2rem auto 0;padding:.65rem 1.2rem;border-radius:50px;
+.cal-note{max-width:600px;margin:.9rem auto 0;padding:.65rem 1.2rem;border-radius:50px;
   background:linear-gradient(135deg,#fffdf8,#fff6e6);border:1.5px dashed var(--gold);
   display:flex;align-items:center;justify-content:center;gap:.6rem;
   font-size:.7rem;font-weight:800;color:var(--muted);text-align:center;line-height:1.7;
@@ -330,6 +324,11 @@ main{max-width:1100px;margin:auto;padding:1.5rem 1rem 3rem}
 .cal-note .cal-icon{width:28px;height:28px;flex-shrink:0;border-radius:50%;
   background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);
   display:grid;place-items:center;font-size:.85rem;box-shadow:0 3px 8px rgba(224,145,47,.4)}
+.menu-social{display:flex;justify-content:center;align-items:center;gap:.6rem;margin:.8rem auto 0;flex-wrap:wrap;max-width:600px}
+.menu-social:empty{display:none;margin:0}
+.menu-social a{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--brown2);transition:.2s;box-shadow:0 4px 12px rgba(90,24,48,.10)}
+.menu-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
+.menu-social svg{width:18px;height:18px;fill:currentColor}
 #overlay{position:fixed;inset:0;background:rgba(40,12,24,.5);opacity:0;pointer-events:none;transition:.3s;z-index:60}
 #overlay.show{opacity:1;pointer-events:auto}
 #drawer{position:fixed;top:0;left:0;bottom:0;width:min(400px,92vw);background:var(--cream);z-index:70;display:flex;
@@ -408,7 +407,7 @@ html[dir="ltr"] #drawer.show{transform:translateX(0)}
   background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);font-weight:900;font-size:.8rem;
   display:grid;place-items:center}
 .sheet-step p{font-size:.8rem;font-weight:700;color:var(--ink);line-height:1.8;margin:0}
-footer{background:var(--dark);color:#f3d9c5;padding:2.2rem 1rem 5.5rem;text-align:center}
+footer{background:var(--dark);color:#f3d9c5;padding:1.5rem 1rem 5.5rem;text-align:center}
 .branch-box{max-width:520px;margin:0 auto 1rem}
 .branch-current{display:inline-flex;align-items:center;gap:.4rem;background:#ffffff14;border:1px solid #ffffff2b;
   border-radius:50px;padding:.45rem 1.2rem;margin-bottom:.7rem;color:var(--gold2);font-weight:900;font-size:.85rem;
@@ -420,11 +419,6 @@ footer{background:var(--dark);color:#f3d9c5;padding:2.2rem 1rem 5.5rem;text-alig
 .branches-toggle .toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
   background:var(--gold);color:var(--dark);border-radius:50%;font-weight:900;font-size:1.1rem;transition:.4s cubic-bezier(.4,.0,.2,1);flex-shrink:0}
 .branches-toggle:hover .toggle-icon{transform:rotate(180deg)}
-.menu-social{display:flex;justify-content:center;gap:.6rem;margin:.7rem auto 0;max-width:520px}
-.menu-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
-  display:grid;place-items:center;color:#f3d9c5;transition:.2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.menu-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
-.menu-social svg{width:18px;height:18px;fill:currentColor}
 footer .credit{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid #ffffff1f;font-size:.85rem;font-weight:800;color:#c9a08c;display:flex;align-items:center;justify-content:center;gap:.4rem;flex-wrap:wrap}
 footer .credit .design-text{color:#d9b8a6}
 footer .credit a{color:var(--gold2);text-decoration:none;font-weight:900;font-size:.95rem;border-bottom:1.5px dashed var(--gold);padding-bottom:1px;transition:.25s;display:inline-flex;align-items:center;gap:.3rem}
@@ -546,6 +540,13 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
   box-shadow:0 6px 16px rgba(224,145,47,.4)}
 .closed-btn:hover{background:var(--gold2);transform:translateY(-2px)}
 .closed-btn:active{transform:scale(.97)}
+/* ===== أيقونات السوشيال في صفحة الفروع ===== */
+.gate-social{display:flex;justify-content:center;gap:.6rem;margin:1.1rem auto 0;flex-wrap:wrap;animation:fadeUp .5s .46s both}
+.gate-social:empty{display:none;margin:0}
+.gate-social a{width:38px;height:38px;border-radius:50%;background:#ffffff14;border:1px solid #ffffff2b;
+  display:grid;place-items:center;color:#f7e3cf;transition:.2s}
+.gate-social a:hover{background:var(--gold);color:var(--dark);transform:translateY(-2px)}
+.gate-social svg{width:18px;height:18px;fill:currentColor}
 </style>
 </head>
 <body>
@@ -553,7 +554,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 <div id="welcome">
   <div class="w-card" id="wCard">
     <button class="w-close" onclick="skipIntro()" aria-label="إغلاق">✕</button>
-    <img src="img/welcome.png" alt="مطاعم مكرونجي" decoding="async">
+    <img src="img/welcome.png" data-appimg="img/welcome.png" alt="مطاعم مكرونجي" decoding="async">
     <h2 data-i18n="welcomeTitle">أهلاً وسهلاً بكم</h2>
     <p data-i18n="welcomeMsg" data-i18n-html="1"></p>
     <div class="w-actions">
@@ -564,10 +565,10 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 
 <header class="topbar">
   <div class="brand">
-    <img src="img/logo.png" alt="شعار مكرونجي" class="logo" decoding="async">
+    <img src="img/logo.png" data-appimg="img/logo.png" alt="شعار مكرونجي" class="logo" decoding="async">
     <div>
       <b data-i18n="brandName">مكرونجي</b>
-      <small data-i18n="brandTag">مكرونة بطعم لا يُقاوم</small>
+      <small data-i18n="brandTag">باستا • مقبلات • حلويات</small>
     </div>
   </div>
   <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="تبديل اللغة / Toggle Language">
@@ -583,8 +584,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
     <span class="status-sep">•</span>
     <small id="statusNote">يغلق عند الساعة ٢ ص</small>
   </div>
-  <h1 data-i18n="heroTitle">مكرونجي</h1>
-  <p data-i18n="heroSubtitle">مكرونة بطعم لا يُقاوم — باستا • مقبلات • حلويات</p>
+  <p data-i18n="heroSubtitle">مكرونة بطعم لا يُقاوم</p>
   <div class="hero-search">
     <input class="search" id="search" data-i18n-ph="searchPh" placeholder="🔍 ابحث عن صنف...">
   </div>
@@ -604,14 +604,6 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
       <span>📍 <span id="changeBranchLbl">تغيير الفرع</span></span>
       <span class="toggle-icon">🔄</span>
     </button>
-    <div class="menu-social" id="menuSocial">
-      <a id="menuSocialTk" href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-        <svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.83 5.7 3.24 0 5.81-2.35 5.81-5.7l.03-6.14c1.15.82 2.53 1.27 3.97 1.27V7.34c-1.28 0-2.46-.55-3.2-1.52z"/></svg>
-      </a>
-      <a id="menuSocialIg" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4m.9 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg>
-      </a>
-    </div>
   </div>
   <div class="credit">
     <span class="design-text" data-i18n="designBy">تصميم</span>
@@ -622,7 +614,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 <div id="featured">
   <button class="f-close" onclick="closeFeatured()" aria-label="إغلاق">✕</button>
   <div class="f-top">
-    <img src="img/logo.png" alt="مكرونجي" class="f-logo" decoding="async">
+    <img src="img/logo.png" data-appimg="img/logo.png" alt="مكرونجي" class="f-logo" decoding="async">
     <h2 class="f-title" data-i18n="featTitle">الأكثر مبيعاً</h2>
   </div>
   <div class="f-stage" id="featStage">
@@ -644,13 +636,12 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
       <span class="lang-seg" data-lang="ar">AR</span>
       <span class="lang-seg" data-lang="en">EN</span>
     </button>
-    <img src="img/logo.png" alt="مكرونجي" class="gate-logo" decoding="async">
+    <img src="img/logo.png" data-appimg="img/logo.png" alt="مكرونجي" class="gate-logo" decoding="async">
     <h2 class="gate-brand" id="gateBrand">مطاعم مكرونجي</h2>
     <p class="gate-tagline" id="gateTagline">مكرونة بطعم لا يُقاوم</p>
     <p class="gate-direct" id="gateDirectLbl">اطلب من المطعم مباشرة</p>
     <p class="gate-pickup" id="gatePickup">🛍️ طلبك يكون جاهزاً عند وصولك للفرع</p>
     <h3 class="gate-title" id="gateTitle">اختر فرعك للطلب 📍</h3>
-    <div class="gate-social" id="gateSocial"></div>
   </div>
   <div class="gate-body">
     <button class="gate-nearest" id="gateNearest"><span class="ping"></span><span id="gateNearestLbl">🎯 حدّد الفرع الأقرب لموقعي</span></button>
@@ -664,6 +655,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
       <div class="gate-list" id="gateList"></div>
     </div>
     <div class="gate-delivery" id="gateDelivery"></div>
+    <div class="gate-social" id="gateSocial"></div>
   </div>
 </div>
 
@@ -762,7 +754,7 @@ html[dir="ltr"] .fav-badge{left:auto;right:-4px}
 <div class="closed-modal" id="closedModal" onclick="if(event.target===this) closeClosedNotice()">
   <div class="closed-card">
     <button class="closed-close" id="closedClose" aria-label="إغلاق">✕</button>
-    <img class="closed-img" src="img/closed.png" alt="المطعم مغلق" decoding="async">
+    <img class="closed-img" src="img/closed.png" data-appimg="img/closed.png" alt="المطعم مغلق" decoding="async">
     <h3 class="closed-title" id="closedTitle">المطعم مغلق</h3>
     <p class="closed-text" id="closedText">نعتذر منك، المطعم حالياً لا يستقبل الطلبات، ولكن بإمكانك اكتشاف وعرض قائمة الطعام</p>
     <div class="closed-openat" id="closedOpenAt">🕐 سوف يفتح عند الساعة ١:٠٠ م</div>
@@ -1056,15 +1048,48 @@ function installApp(){
 }
 function closeSheet(){ installSheet.classList.remove('show'); }
 
-function renderSocial(){
-  const s = S().social || {};
-  const tk = el('menuSocialTk');
-  const ig = el('menuSocialIg');
-  if(tk){ tk.href = s.tiktok || '#'; tk.style.display = s.tiktok ? '' : 'none'; }
-  if(ig){ ig.href = s.instagram || '#'; ig.style.display = s.instagram ? '' : 'none'; }
-  const box = el('gateSocial');
-  if(box){ box.innerHTML = ''; box.style.display = 'none'; }
+/* ===== أيقونات التواصل الديناميكية ===== */
+const SOC_SVG = {
+  instagram:'<svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4m.9 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg>',
+  tiktok:'<svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.83 5.7 3.24 0 5.81-2.35 5.81-5.7l.03-6.14c1.15.82 2.53 1.27 3.97 1.27V7.34c-1.28 0-2.46-.55-3.2-1.52z"/></svg>',
+  email:'<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+  custom:'<svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>'
+};
+function socEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+function socialList(){
+  const s = S().social;
+  if(Array.isArray(s)) return s.filter(x=>x && x.url).slice(0,5);
+  const out = [];
+  if(s && s.instagram) out.push({key:'instagram', nameAr:'انستقرام', nameEn:'Instagram', url:s.instagram});
+  if(s && s.tiktok) out.push({key:'tiktok', nameAr:'تيك توك', nameEn:'TikTok', url:s.tiktok});
+  return out.slice(0,5);
 }
+function socialHref(x){
+  if(x.key==='email') return /^mailto:/i.test(x.url) ? x.url : ('mailto:'+x.url);
+  return x.url;
+}
+function renderSocial(){
+  const list = socialList();
+  const html = list.map(x=>{
+    const ic = SOC_SVG[x.key] || SOC_SVG.custom;
+    const nm = socEsc(currentLang==='ar' ? (x.nameAr||x.nameEn||'') : (x.nameEn||x.nameAr||''));
+    return '<a href="'+socEsc(socialHref(x))+'" target="_blank" rel="noopener noreferrer" aria-label="'+nm+'">'+ic+'</a>';
+  }).join('');
+  const m = el('menuSocial'); if(m) m.innerHTML = html;
+  const g = el('gateSocial'); if(g) g.innerHTML = html;
+}
+
+/* ===== إصدار الصور — تحديث حي صامت ===== */
+function imagesVersion(){ const s = S(); return (s && s.imagesVersion) || 0; }
+function applyImageVersions(){
+  const v = imagesVersion();
+  document.querySelectorAll('img[data-appimg]').forEach(im=>{
+    const p = im.getAttribute('data-appimg');
+    const want = p + (v ? '?v='+v : '');
+    if(im.getAttribute('src') !== want) im.src = want;
+  });
+}
+
 function renderDelivery(){
   const d = S().delivery || [];
   const box = el('gateDelivery');
@@ -1139,6 +1164,7 @@ function applyLang(lang){
   updateBranchFooter();
   renderSocial();
   renderDelivery();
+  applyImageVersions();
   if(gateShown()) renderGateList();
   if(installSheet.classList.contains('show')) fillSheet();
   search.value = '';
@@ -1200,7 +1226,6 @@ function applyClosedState(){
   document.body.classList.toggle('order-locked', locked);
   const note = el('closedNote');
   if(note) note.classList.toggle('show', locked);
-  /* إذا انقلب للإغلاق وشاشة الأكثر مبيعاً ظاهرة: تُغلق بصمت ولا تظهر نهائياً */
   if(locked && featuredShown()) closeFeatured();
 }
 function closedOpenLine(){
@@ -1232,7 +1257,6 @@ function closeClosedNotice(){
   el('closedModal').classList.remove('show');
 }
 function maybeClosedInsteadOfFeatured(){
-  /* عند الإغلاق: لا تظهر الأكثر مبيعاً نهائياً — يظهر الإشعار بدلها */
   if(closedNow()){
     showClosedNotice();
     return;
@@ -1681,6 +1705,11 @@ function buildMenu(){
   calNote.className='cal-note';
   calNote.innerHTML = `<span class="cal-icon">🔥</span><span>${TT.calInfo}</span>`;
   main.appendChild(calNote);
+
+  const socBox = document.createElement('div');
+  socBox.className = 'menu-social'; socBox.id = 'menuSocial';
+  main.appendChild(socBox);
+  renderSocial();
 }
 buildMenu();
 
@@ -2126,6 +2155,7 @@ async function liveCheck(){
       else if(liveMarks[f] !== stamps[f]){ changed.push(f); liveMarks[f] = stamps[f]; }
     }
     if(changed.length){
+      let prevSettings = null;
       for(const f of changed){
         const t = await (await fetch(f + '?live=' + Date.now(), { cache:'no-store' })).text();
         const w = {};
@@ -2133,22 +2163,30 @@ async function liveCheck(){
         if(f === 'menu.js'){
           if(w.MENU) window.MENU = w.MENU;
         } else {
+          prevSettings = window.APP_SETTINGS;
           if(w.APP_SETTINGS) window.APP_SETTINGS = w.APP_SETTINGS;
         }
       }
-      applyLive();
+      let imgsOnly = false;
+      if(changed.length===1 && changed[0]==='settings.js' && prevSettings && window.APP_SETTINGS){
+        const a = JSON.parse(JSON.stringify(prevSettings)); delete a.imagesVersion;
+        const b = JSON.parse(JSON.stringify(window.APP_SETTINGS)); delete b.imagesVersion;
+        imgsOnly = JSON.stringify(a) === JSON.stringify(b);
+      }
+      applyLive(imgsOnly);
     }
   }catch(e){}
   liveBusy = false;
 }
-function applyLive(){
+function applyLive(imgsOnly){
   reconcileCart();
   applyLang(currentLang);
+  applyImageVersions();
   updateBranchFooter();
   if(gateShown()) renderGateList();
   if(featuredShown()){ renderFeatDots(); showFeat(Math.min(featIndex, Math.max(bestItems().length-1,0)),'next',false); }
   if(el('favSheet').classList.contains('show')) renderFavSheet();
-  toast(tt('liveUpdated','تم تحديث القائمة','Menu updated'));
+  if(!imgsOnly) toast(tt('liveUpdated','تم تحديث القائمة','Menu updated'));
 }
 setInterval(liveCheck, 60000);
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) liveCheck(); });
@@ -2168,6 +2206,7 @@ document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) liveChe
   updateFavBadge();
   applyLang(currentLang);
   updateCart();
+  applyImageVersions();
   liveCheck();
   if(!firstVisit && !currentBranch()){
     openGate('first');
