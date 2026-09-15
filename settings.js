@@ -33,8 +33,8 @@ window.APP_SETTINGS = {
       "addrAr": "الشيخ عبدالعزيز بن محمد، ظهرة البديعة، الرياض 11461",
       "addrEn": "Al Cheikh Abd Al Aziz, Dhahrat Al Badi'ah, Riyadh 11461",
       "wa": "966561296463",
-      "lat": 24.63,
-      "lng": 46.64,
+      "lat": 24.591045,
+      "lng": 46.647204,
       "map": "https://maps.app.goo.gl/sb9yK3bfk7aLApMaA",
       "hours": [
         {
