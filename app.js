@@ -1,5 +1,6 @@
 /* =====================================================
    مكرونجي — سكربت التطبيق الرئيسي (app.js)
+   + تحديد الفرع الأقرب بمسار قيادة حقيقي (بدون مفتاح API)
 ===================================================== */
 
 /* ===== استعادة لقطة محلية عند فشل تحميل الملفات ===== */
@@ -238,7 +239,7 @@ const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
 function runningAsApp(){
   return window.matchMedia('(display-mode: standalone)').matches ||
-         window.matchMedia('(display-mode: fullscreen').matches ||
+         window.matchMedia('(display-mode: fullscreen)').matches ||
          window.navigator.standalone === true;
 }
 function refreshInstallBtn(){
@@ -599,13 +600,29 @@ function renderGateList(){
   const currentTxt = tt('currentBranchFlag','✓ فرعك الحالي','✓ Your Branch');
   const nearestTxt = tt('branchNearestBadge','🎯 الأقرب لك','🎯 Nearest to You');
   const dirTxt = T().getDir || (currentLang==='ar' ? 'التوجه للمطعم' : 'Directions');
-  el('gateList').innerHTML = brs.map((b, idx)=>`
+  const LV = [
+    'background:#e8f5e9;color:#2d6a4f',
+    'background:#fff6e6;color:#a06b1c',
+    'background:#fee2e2;color:#b91c1c'
+  ];
+  const LVTXT = [
+    tt('trafficLight','🟢 زحمة خفيفة','🟢 light traffic'),
+    tt('trafficMed','🟠 زحمة متوسطة','🟠 moderate traffic'),
+    tt('trafficHeavy','🔴 زحمة شديدة','🔴 heavy traffic')
+  ];
+  el('gateList').innerHTML = brs.map((b, idx)=>{
+    const ri = routeInfo[b.id];
+    const routeLine = ri
+      ? `<small style="display:block;width:fit-content;margin-top:.3rem;border-radius:50px;padding:.14rem .65rem;font-weight:900;font-size:.68rem;${LV[ri.level]}">🚗 ${ri.km.toFixed(1)} ${tt('kmUnit','كم','km')} • ~${ri.min} ${tt('minUnit','دقيقة','min')} ${LVTXT[ri.level]}</small>`
+      : '';
+    return `
     <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.08 + idx*0.08}s">
       <div class="gc-top">
         <span class="gc-ico">🍝</span>
         <div class="gc-names">
           <b>${branchName(b)}</b>
           <small>${(currentLang==='ar') ? b.addrAr : b.addrEn}</small>
+          ${routeLine}
         </div>
         ${b.id===nearestId ? `<span class="gc-flag nearest">${nearestTxt}</span>` : ''}
       </div>
@@ -613,7 +630,8 @@ function renderGateList(){
         <button class="gc-choose" data-choose="${b.id}">${b.id===cur ? currentTxt : chooseTxt}</button>
         ${b.map ? `<a class="gc-dir" href="${b.map}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">🧭 ${dirTxt}</a>` : ''}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function openGate(mode){
@@ -667,6 +685,73 @@ el('gateList').addEventListener('click', e=>{
   if(id) selectBranch(id);
 });
 
+/* =====================================================
+   محرك المسارات الحقيقي — بدون مفتاح API
+   (OSRM على خوادم OpenStreetMap المفتوحة)
+===================================================== */
+const OSRM_HOSTS = [
+  'https://routing.openstreetmap.de/routed-car',
+  'https://router.project-osrm.org'
+];
+let routeInfo = {};
+
+function round3(n){ return Math.round(n*1000)/1000; }
+function routeCacheKey(la, lo, id){
+  const bucket = Math.floor(Date.now()/(15*60*1000));
+  return 'mk_rc|'+round3(la)+','+round3(lo)+'|'+id+'|'+bucket;
+}
+function readRouteCache(la, lo, id){
+  try{ return JSON.parse(localStorage.getItem(routeCacheKey(la,lo,id))) || null; }catch(e){ return null; }
+}
+function writeRouteCache(la, lo, id, val){
+  try{ localStorage.setItem(routeCacheKey(la,lo,id), JSON.stringify(val)); }catch(e){}
+}
+/* معامل الزحمة التقديري حسب اليوم والساعة (ذروات الرياض) */
+function trafficFactor(d){
+  const day = d.getDay();
+  const h = d.getHours() + d.getMinutes()/60;
+  if(day>=0 && day<=3){
+    if(h>=7 && h<9) return 1.30;
+    if(h>=12 && h<14) return 1.15;
+    if(h>=16 && h<20) return 1.40;
+    if(h>=20 && h<23) return 1.15;
+    return 1.0;
+  }
+  if(day===4){
+    if(h>=7 && h<9) return 1.30;
+    if(h>=16 && h<23) return 1.35;
+    return 1.05;
+  }
+  if(day===5){
+    if(h>=12 && h<14) return 1.25;
+    if(h>=16 && h<23) return 1.30;
+    return 1.0;
+  }
+  if(h>=16 && h<23) return 1.25;
+  return 1.0;
+}
+function trafficLevel(f){ return f<1.12 ? 0 : (f<1.3 ? 1 : 2); }
+async function osrmRoute(la, lo, b){
+  const from = lo+','+la, to = b.lng+','+b.lat;
+  let lastErr = null;
+  for(const host of OSRM_HOSTS){
+    try{
+      const r = await fetch(host+'/route/v1/driving/'+from+';'+to+'?overview=false&alternatives=false&steps=false', {cache:'no-store'});
+      if(!r.ok) throw new Error('http');
+      const j = await r.json();
+      const rt = j && j.routes && j.routes[0];
+      if(!rt || !rt.distance) throw new Error('empty');
+      return { km: rt.distance/1000, sec: rt.duration };
+    }catch(e){ lastErr = e; }
+  }
+  throw lastErr || new Error('route-fail');
+}
+function routeFallback(la, lo, b){
+  const km = hav(la, lo, b.lat, b.lng) * 1.25;
+  const sec = (km/35)*3600;
+  return { km, sec };
+}
+
 let geoBusy = false;
 function geoOnce(opts){
   return new Promise((res, rej)=>{
@@ -696,18 +781,31 @@ async function requestNearest(){
       pos = await withWatchdog(geoOnce({enableHighAccuracy:true}), 4000);
     }
     const la = pos.coords.latitude, lo = pos.coords.longitude;
-    let best=null, bd=Infinity;
-    branches().forEach(b=>{
-      const d = hav(la, lo, b.lat, b.lng);
-      if(d < bd){ bd = d; best = b.id; }
-    });
-    nearestId = best;
+    lbl.textContent = tt('calcRoutes','🚗 جارٍ حساب المسارات والزحمة...','🚗 Calculating routes & traffic...');
+    const brs = branches();
+    const results = await Promise.all(brs.map(async b=>{
+      let base = readRouteCache(la, lo, b.id);
+      if(!base){
+        try{
+          base = await osrmRoute(la, lo, b);
+          writeRouteCache(la, lo, b.id, base);
+        }catch(e){
+          base = routeFallback(la, lo, b);
+        }
+      }
+      const f = trafficFactor(new Date());
+      const min = Math.max(1, Math.round((base.sec * f)/60));
+      routeInfo[b.id] = { km: base.km, min, f, level: trafficLevel(f) };
+      return { id: b.id, min, km: base.km };
+    }));
+    results.sort((a,b)=> a.min - b.min);
+    nearestId = results[0].id;
     setDrop(true);
     setTimeout(()=>{
       const n = el('gateList').querySelector('.is-nearest');
       if(n) n.scrollIntoView({behavior:'smooth', block:'center'});
     }, 300);
-    toast(tt('branchGeoOn','🎯 تم إبراز أقرب فرع لك','🎯 Nearest branch highlighted'));
+    toast(tt('branchGeoOn','🎯 تم ترتيب الفروع حسب زمن الوصول الحقيقي','🎯 Branches sorted by real travel time'));
   }catch(err){
     if(err && err.code === 1){
       toast(tt('geoDeniedPerm','لم تمنح إذن الموقع — يمكنك الاختيار يدوياً','Location permission denied — you can choose manually'));
