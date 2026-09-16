@@ -430,13 +430,6 @@ window.APP_SETTINGS = {
       "nameAr": "تيك توك",
       "nameEn": "TikTok",
       "url": "https://www.tiktok.com/@makaronjy"
-    },
-    {
-      "id": "s1789527519262",
-      "key": "email",
-      "nameAr": "البريد",
-      "nameEn": "Mail",
-      "url": "mailto:3aaazo1@gmail.com"
     }
   ],
   "ad": {
