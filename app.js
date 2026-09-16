@@ -1,6 +1,8 @@
 /* =====================================================
    مكرونجي — سكربت التطبيق الرئيسي (app.js)
+   + الأكثر مبيعاً: مرة واحدة يومياً + مدخل يدوي 🏆
    + تحديد الفرع الأقرب بمسار قيادة حقيقي (بدون مفتاح API)
+   + صيغة إشعار الإغلاق: "يفتح عند الساعة ..."
 ===================================================== */
 
 /* ===== استعادة لقطة محلية عند فشل تحميل الملفات ===== */
@@ -479,9 +481,9 @@ function closedOpenLine(){
   const lang = currentLang;
   const days = T().days || (lang==='ar' ? ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'] : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']);
   if(st.openDay === null || st.openDay === undefined){
-    return lang==='ar' ? ('🕐 سوف يفتح عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Will open at ' + fmtMin(st.openMin, lang));
+    return lang==='ar' ? ('🕐 يفتح عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Opens at ' + fmtMin(st.openMin, lang));
   }
-  return lang==='ar' ? ('🕐 سوف يفتح يوم ' + days[st.openDay] + ' عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Will open on ' + days[st.openDay] + ' at ' + fmtMin(st.openMin, lang));
+  return lang==='ar' ? ('🕐 يفتح يوم ' + days[st.openDay] + ' عند الساعة ' + fmtMin(st.openMin, lang)) : ('🕐 Opens on ' + days[st.openDay] + ' at ' + fmtMin(st.openMin, lang));
 }
 function showClosedNotice(){
   if(closedNoticeShown) return;
@@ -499,11 +501,17 @@ function showClosedNotice(){
 function closeClosedNotice(){
   el('closedModal').classList.remove('show');
 }
+/* ===== الأكثر مبيعاً: مرة واحدة يومياً + إشعار المغلق عند الإغلاق ===== */
+function featuredSeenToday(){
+  return localStorage.getItem('mk_feat_day') === new Date().toDateString();
+}
 function maybeClosedInsteadOfFeatured(){
   if(closedNow()){
     showClosedNotice();
     return;
   }
+  if(featuredSeenToday()) return;
+  localStorage.setItem('mk_feat_day', new Date().toDateString());
   openFeatured();
 }
 el('closedBtn').addEventListener('click', ()=>{
@@ -666,7 +674,8 @@ function selectBranch(id){
   gateMode = null;
   closeGate();
   applyClosedState();
-  maybeClosedInsteadOfFeatured();
+  /* لا نفتح الأكثر مبيعاً عند تغيير الفرع — فقط إشعار المغلق إن كان مغلقاً */
+  if(closedNow()) showClosedNotice();
   if(!same){
     toast(tFn('branchSelected', branchName(b),
       n=>'🍝 تم تحويل طلبك إلى: '+n, n=>'🍝 Your order branch: '+n));
@@ -891,6 +900,14 @@ function closeFeatured(){
   showAdOnce();
 }
 
+/* ===== مدخل يدوي: الضغط على شارة 🏆 يفتح الشاشة ===== */
+document.addEventListener('click', e=>{
+  const bd = e.target.closest('[data-openfeat]');
+  if(!bd) return;
+  if(closedNow()){ showClosedNotice(); return; }
+  openFeatured();
+});
+
 let touchX = null;
 el('featStage').addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; }, {passive:true});
 el('featStage').addEventListener('touchend', e=>{
@@ -999,7 +1016,7 @@ function buildMenu(){
       const priceTxt = multi ? (TT.from+' '+prices[0]+' '+TT.currency) : (prices[0]+' '+TT.currency);
       const badge = gray ? `<span class="c-badge grayb">${grayTxt}</span>`
         : (sold ? `<span class="c-badge sold">${soldTxt}</span>`
-        : (isBestSeller(it) ? `<span class="c-badge">🏆 ${bestTxt}</span>` : ''));
+        : (isBestSeller(it) ? `<span class="c-badge" data-openfeat="1" style="cursor:pointer">🏆 ${bestTxt}</span>` : ''));
       card.innerHTML = `
         <div class="c-img">
           <img class="${mode}" src="${imgURL || ph}" alt="${itemName(it)}" loading="lazy"
