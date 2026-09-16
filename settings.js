@@ -1,7 +1,6 @@
 /* =====================================================
-ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
+   ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
 ===================================================== */
-
 window.APP_SETTINGS = {
   "brand": {
     "nameAr": "مكرونجي",
@@ -38,13 +37,83 @@ window.APP_SETTINGS = {
       "lng": 46.647204,
       "map": "https://maps.app.goo.gl/sb9yK3bfk7aLApMaA",
       "hours": [
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        }
       ]
     },
     {
@@ -59,13 +128,83 @@ window.APP_SETTINGS = {
       "lng": 46.597488,
       "map": "https://maps.app.goo.gl/7pmyuR4prVnyGke77",
       "hours": [
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        }
       ]
     },
     {
@@ -80,13 +219,83 @@ window.APP_SETTINGS = {
       "lng": 46.656308,
       "map": "https://maps.app.goo.gl/WxasXA9oWLbSTCjq8",
       "hours": [
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 0
+          },
+          "closed": false
+        }
       ]
     },
     {
@@ -101,13 +310,83 @@ window.APP_SETTINGS = {
       "lng": 46.621672,
       "map": "https://maps.app.goo.gl/r7APZu7AgQz8Wk1d9",
       "hours": [
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 12, "m": 30 }, "c": { "h": 2, "m": 30 }, "closed": false },
-        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false }
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 12,
+            "m": 30
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        },
+        {
+          "o": {
+            "h": 13,
+            "m": 0
+          },
+          "c": {
+            "h": 2,
+            "m": 30
+          },
+          "closed": false
+        }
       ]
     }
   ],
@@ -137,10 +416,29 @@ window.APP_SETTINGS = {
       "img": "img/d-keeta.png"
     }
   ],
-  "social": {
-    "instagram": "https://www.instagram.com/makaronjy",
-    "tiktok": "https://www.tiktok.com/@makaronjy"
-  },
+  "social": [
+    {
+      "id": "s-ig",
+      "key": "instagram",
+      "nameAr": "انستقرام",
+      "nameEn": "Instagram",
+      "url": "https://www.instagram.com/makaronjy"
+    },
+    {
+      "id": "s-tk",
+      "key": "tiktok",
+      "nameAr": "تيك توك",
+      "nameEn": "TikTok",
+      "url": "https://www.tiktok.com/@makaronjy"
+    },
+    {
+      "id": "s1789527519262",
+      "key": "email",
+      "nameAr": "البريد",
+      "nameEn": "Mail",
+      "url": "mailto:3aaazo1@gmail.com"
+    }
+  ],
   "ad": {
     "enabled": false,
     "oncePerDay": true,
@@ -151,5 +449,6 @@ window.APP_SETTINGS = {
     "textEn": "Follow us to catch the latest offers and openings.",
     "btnAr": "حسناً 🍝",
     "btnEn": "Got it 🍝"
-  }
+  },
+  "imagesVersion": 0
 };
