@@ -178,7 +178,7 @@ window.APP_SETTINGS = {
             "m": 0
           },
           "c": {
-            "h": 2,
+            "h": 1,
             "m": 0
           },
           "closed": false
