@@ -1,12 +1,13 @@
 /* =====================================================
-   ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
+ملف الإعدادات — مكرونجي (يُولَّد من لوحة التحكم)
 ===================================================== */
+
 window.APP_SETTINGS = {
   "brand": {
     "nameAr": "مكرونجي",
     "nameEn": "Makaronjy",
-    "tagAr": "مكرونة بطعم لا يُقاوم",
-    "tagEn": "Irresistible pasta experience"
+    "tagAr": "باستا • مقبلات • حلويات",
+    "tagEn": "Pasta • Sides • Desserts"
   },
   "hours": {
     "open": {
@@ -37,83 +38,13 @@ window.APP_SETTINGS = {
       "lng": 46.647204,
       "map": "https://maps.app.goo.gl/sb9yK3bfk7aLApMaA",
       "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
       ]
     },
     {
@@ -128,83 +59,13 @@ window.APP_SETTINGS = {
       "lng": 46.597488,
       "map": "https://maps.app.goo.gl/7pmyuR4prVnyGke77",
       "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
       ]
     },
     {
@@ -219,83 +80,13 @@ window.APP_SETTINGS = {
       "lng": 46.656308,
       "map": "https://maps.app.goo.gl/WxasXA9oWLbSTCjq8",
       "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 0
-          },
-          "closed": false
-        }
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 0 }, "closed": false }
       ]
     },
     {
@@ -310,83 +101,13 @@ window.APP_SETTINGS = {
       "lng": 46.621672,
       "map": "https://maps.app.goo.gl/r7APZu7AgQz8Wk1d9",
       "hours": [
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 12,
-            "m": 30
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        },
-        {
-          "o": {
-            "h": 13,
-            "m": 0
-          },
-          "c": {
-            "h": 2,
-            "m": 30
-          },
-          "closed": false
-        }
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 12, "m": 30 }, "c": { "h": 2, "m": 30 }, "closed": false },
+        { "o": { "h": 13, "m": 0 }, "c": { "h": 2, "m": 30 }, "closed": false }
       ]
     }
   ],
