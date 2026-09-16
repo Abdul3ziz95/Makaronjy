@@ -1,14 +1,16 @@
 /* =====================================================
-   ملف اللغات — مكرونجي Makaronjy
-   (ترجمات الواجهة فقط — المنيو في menu.js والإعدادات في settings.js)
+ملف اللغات — مكرونجي Makaronjy
+(ترجمات الواجهة فقط — المنيو في menu.js والإعدادات في settings.js)
 ===================================================== */
+
 window.I18N = {
+
   ar: {
     docTitle: 'مكرونجي | مكرونة بطعم لا يُقاوم',
     brandName: 'مكرونجي',
-    brandTag: 'مكرونة بطعم لا يُقاوم',
+    brandTag: 'باستا • مقبلات • حلويات',
     heroTitle: 'مكرونجي',
-    heroSubtitle: 'مكرونة بطعم لا يُقاوم — باستا • مقبلات • حلويات',
+    heroSubtitle: 'مكرونة بطعم لا يُقاوم',
     searchPh: '🔍 ابحث عن صنف...',
     clearSearch: '✕ مسح البحث',
     results: function(n){ return n + ' نتيجة'; },
@@ -45,7 +47,7 @@ window.I18N = {
     from: 'من',
     prevSec: 'القسم السابق',
     nextSec: 'القسم التالي',
-    sizes: ['صغير', 'وسط', 'كبير'],
+    sizes: ['صغير','وسط','كبير'],
     waGreeting: 'السلام عليكم مكرونجي 🍝',
     waOrderTitle: 'طلب جديد',
     waOrderType: 'نوع الطلب',
@@ -71,7 +73,7 @@ window.I18N = {
     favAddedToCart: '🛒 تمت إضافة الوجبة إلى سلتك',
     favCartEmpty: '⚠️ السلة فارغة، أضف أصنافاً أولاً',
     favCancel: 'إلغاء',
-    favSlots: ['فطور 🌅', 'غداء ☀️', 'عشاء 🌙'],
+    favSlots: ['فطور 🌅','غداء ☀️','عشاء 🌙'],
     favReplaceTitle: 'استبدال الوجبة المحفوظة',
     favConfirmYes: 'نعم، استبدال',
 
@@ -105,7 +107,7 @@ window.I18N = {
     days: ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
     closesAt: function(h){ return 'يغلق عند الساعة ' + h; },
     opensAt: function(h){ return 'يفتح عند الساعة ' + h; },
-    opensOn: function(d, h){ return 'يفتح يوم ' + d + ' عند الساعة ' + h; },
+    opensOn: function(d,h){ return 'يفتح يوم ' + d + ' عند الساعة ' + h; },
 
     /* ===== التوفر والنفد ===== */
     soldOut: 'نفد ❌',
@@ -115,7 +117,6 @@ window.I18N = {
 
     /* ===== التحديث الحي ===== */
     liveUpdated: 'تم تحديث القائمة',
-
     iosSteps:
       '<div class="sheet-step"><span class="num">١</span><p>من أسفل شاشة سفاري اضغط زر <b>المشاركة</b> (مربع يخرج منه سهم لأعلى ⬆️).</p></div>' +
       '<div class="sheet-step"><span class="num">٢</span><p>مرّر القائمة لأعلى واختر <b>«إضافة إلى الشاشة الرئيسية»</b> (أيقونة ＋).</p></div>' +
@@ -129,12 +130,12 @@ window.I18N = {
   en: {
     docTitle: 'Makaronjy | Irresistible Pasta',
     brandName: 'Makaronjy',
-    brandTag: 'Irresistible pasta experience',
+    brandTag: 'Pasta • Sides • Desserts',
     heroTitle: 'Makaronjy',
-    heroSubtitle: 'Irresistible pasta — Pasta • Sides • Desserts',
+    heroSubtitle: 'Irresistible pasta',
     searchPh: '🔍 Search for a dish...',
     clearSearch: '✕ Clear Search',
-    results: function(n){ return (n === 1) ? '1 result' : n + ' results'; },
+    results: function(n){ return (n===1) ? '1 result' : n + ' results'; },
     open: 'Open',
     closed: 'Closed',
     welcomeTitle: 'Welcome',
@@ -168,7 +169,7 @@ window.I18N = {
     from: 'From',
     prevSec: 'Previous Section',
     nextSec: 'Next Section',
-    sizes: ['Small', 'Medium', 'Large'],
+    sizes: ['Small','Medium','Large'],
     waGreeting: 'Hello Makaronjy 🍝',
     waOrderTitle: 'New Order',
     waOrderType: 'Order Type',
@@ -194,7 +195,7 @@ window.I18N = {
     favAddedToCart: '🛒 Meal added to your cart',
     favCartEmpty: '⚠️ Cart is empty, add items first',
     favCancel: 'Cancel',
-    favSlots: ['Breakfast 🌅', 'Lunch ☀️', 'Dinner 🌙'],
+    favSlots: ['Breakfast 🌅','Lunch ☀️','Dinner 🌙'],
     favReplaceTitle: 'Replace Saved Meal',
     favConfirmYes: 'Yes, Replace',
 
@@ -228,7 +229,7 @@ window.I18N = {
     days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     closesAt: function(h){ return 'Closes at ' + h; },
     opensAt: function(h){ return 'Opens at ' + h; },
-    opensOn: function(d, h){ return 'Opens ' + d + ' at ' + h; },
+    opensOn: function(d,h){ return 'Opens ' + d + ' at ' + h; },
 
     /* ===== Availability & Sold-out ===== */
     soldOut: 'Sold out ❌',
@@ -238,7 +239,6 @@ window.I18N = {
 
     /* ===== Live update ===== */
     liveUpdated: 'Menu updated',
-
     iosSteps:
       '<div class="sheet-step"><span class="num">1</span><p>In Safari, tap the <b>Share</b> button at the bottom (a square with an up arrow ⬆️).</p></div>' +
       '<div class="sheet-step"><span class="num">2</span><p>Scroll up and choose <b>"Add to Home Screen"</b> (＋ icon).</p></div>' +
@@ -248,4 +248,5 @@ window.I18N = {
       '<div class="sheet-step"><span class="num">2</span><p>Choose <b>"Install App"</b> or <b>"Add to Home Screen"</b>.</p></div>' +
       '<div class="sheet-step"><span class="num">3</span><p>Confirm — the Makaronjy icon will appear on your home screen 🎉</p></div>'
   }
+
 };
