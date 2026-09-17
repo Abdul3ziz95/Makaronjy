@@ -1,8 +1,6 @@
 /* =====================================================
    مكرونجي — سكربت التطبيق الرئيسي (app.js)
-   + الأكثر مبيعاً: مرة واحدة يومياً + مدخل يدوي 🏆
-   + تحديد الفرع الأقرب بمسار قيادة حقيقي (بدون مفتاح API)
-   + صيغة إشعار الإغلاق: "يفتح عند الساعة ..."
+   تصميم صفحة الفروع المعتمد + كل الميزات السابقة
 ===================================================== */
 
 /* ===== استعادة لقطة محلية عند فشل تحميل الملفات ===== */
@@ -335,26 +333,26 @@ function applyImageVersions(){
   });
 }
 
+/* ===== التوصيل — نسخة آمنة من أخطاء النسخ ===== */
 function renderDelivery(){
   const d = S().delivery || [];
   const box = el('gateDelivery');
+  if(!box) return;
   if(!d.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
   box.style.display = '';
-  const name = x=> currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr);
-  box.innerHTML = `
-    <span class="gd-or">${tt('orWord','أو','OR')}</span>
-    <div class="gd-head">
-      <b>${tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners')}</b>
-      <small></small>
-    </div>
-    <div class="gd-tiles">
-      ${d.map((x, i)=>`<a class="gd-btn" href="${x.url}" data-delivery-idx="${i}" aria-label="${name(x)}" onclick="return openDeliveryApp(event, ${i});">
-        <img src="${x.img || 'img/missing.png'}" alt="${name(x)}"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="gd-fallback" style="display:none;background:${x.color || '#8e2a4a'}">${name(x).charAt(0)}</span>
-        <span class="gd-name">${name(x)}</span>
-      </a>`).join('')}
-    </div>`;
+  const name = function(x){ return currentLang==='ar' ? x.nameAr : (x.nameEn || x.nameAr); };
+  let tiles = '';
+  for(let i=0;i<d.length;i++){
+    const x = d[i];
+    tiles += '<a class="gd-btn" href="' + x.url + '" data-delivery-idx="' + i + '" aria-label="' + socEsc(name(x)) + '" onclick="return openDeliveryApp(event, ' + i + ');">'
+      + '<img src="' + (x.img || 'img/missing.png') + '" alt="' + socEsc(name(x)) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
+      + '<span class="gd-fallback" style="display:none;background:' + (x.color || '#8e2a4a') + '">' + socEsc(name(x).charAt(0)) + '</span>'
+      + '<span class="gd-name">' + socEsc(name(x)) + '</span>'
+      + '</a>';
+  }
+  box.innerHTML = '<div class="gd-or"><span></span>' + tt('orWord','أو','OR') + '<span></span></div>'
+    + '<div class="gd-head"><b>' + tt('deliveryHeadAr','اطلب الآن عبر شركائنا في التوصيل','Order now via our delivery partners') + '</b></div>'
+    + '<div class="gd-tiles">' + tiles + '</div>';
 }
 
 /* ===== فتح تطبيق التوصيل مباشرة ===== */
@@ -399,11 +397,10 @@ function applyLang(lang){
   el('confirmNo').textContent = tt('favCancel','إلغاء','Cancel');
   el('gateBrand').textContent = brandize(tt('gateBrand','مطاعم مكرونجي','Makaronjy Restaurants'));
   el('gateTagline').textContent = brandize(tt('gateTagline','مكرونة بطعم لا يُقاوم','Irresistible pasta experience'));
-  el('gateDirectLbl').textContent = tt('gateDirect','اطلب من المطعم مباشرة','Order directly from the restaurant');
-  el('gatePickup').textContent = '🛍️ ' + tt('pickupNote','طلبك يكون جاهزاً عند وصولك للفرع','Your order will be ready upon arrival');
-  el('gateTitle').textContent = tt('branchGateTitle','اختر فرعك للطلب 📍','Choose Your Branch 📍');
-  el('gateNearestLbl').textContent = tt('branchNearestBtn','🎯 حدّد الفرع الأقرب لموقعي','🎯 Find My Nearest Branch');
+  el('gateNearestLbl').textContent = tt('branchNearestBtn','حدّد الفرع الأقرب لموقعك','Find your nearest branch');
+  el('gateNearestSub').textContent = tt('gateNearestSub','لضمان أسرع خدمة وأفضل تجربة','For faster service & a better experience');
   el('gateListLbl').textContent = tt('gateListBtn','قائمة الفروع','Branch List');
+  el('gfTitleLbl').textContent = tt('followUs','تابعنا على','Follow us');
   el('changeBranchLbl').textContent = tt('changeBranch','تغيير الفرع','Change Branch');
   el('closedNoteTxt').textContent = tt('closedNote','مغلق يرجى العودة لاحقاً','Closed — please come back later');
   updateBranchFooter();
@@ -501,7 +498,7 @@ function showClosedNotice(){
 function closeClosedNotice(){
   el('closedModal').classList.remove('show');
 }
-/* ===== الأكثر مبيعاً: مرة واحدة يومياً + إشعار المغلق عند الإغلاق ===== */
+/* ===== الأكثر مبيعاً: مرة واحدة يومياً + إشعار المغلق ===== */
 function featuredSeenToday(){
   return localStorage.getItem('mk_feat_day') === new Date().toDateString();
 }
@@ -521,7 +518,7 @@ el('closedBtn').addEventListener('click', ()=>{
 });
 el('closedClose').addEventListener('click', closeClosedNotice);
 
-/* ===== شاشة الترحيب: بدون عداد ===== */
+/* ===== شاشة الترحيب ===== */
 let introFinished = false;
 const MIN_INTRO_MS = 7000;
 const firstVisit = !localStorage.getItem('mk_welcome_seen');
@@ -621,7 +618,7 @@ function renderGateList(){
   el('gateList').innerHTML = brs.map((b, idx)=>{
     const ri = routeInfo[b.id];
     const routeLine = ri
-      ? `<small style="display:block;width:fit-content;margin-top:.3rem;border-radius:50px;padding:.14rem .65rem;font-weight:900;font-size:.68rem;${LV[ri.level]}">🚗 ${ri.km.toFixed(1)} ${tt('kmUnit','كم','km')} • ~${ri.min} ${tt('minUnit','دقيقة','min')} ${LVTXT[ri.level]}</small>`
+      ? '<small style="display:block;width:fit-content;margin-top:.3rem;border-radius:50px;padding:.14rem .65rem;font-weight:900;font-size:.68rem;' + LV[ri.level] + '">🚗 ' + ri.km.toFixed(1) + ' ' + tt('kmUnit','كم','km') + ' • ~' + ri.min + ' ' + tt('minUnit','دقيقة','min') + ' ' + LVTXT[ri.level] + '</small>'
       : '';
     return `
     <div class="gate-card ${b.id===nearestId?'is-nearest':''} ${b.id===cur?'is-active':''}" data-b="${b.id}" role="button" style="animation-delay:${0.08 + idx*0.08}s">
@@ -647,6 +644,8 @@ function openGate(mode){
   pushGuard();
   el('gateClose').classList.toggle('can', mode === 'switch');
   renderGateList();
+  renderSocial();
+  renderDelivery();
   setDrop(false);
   el('gate').classList.add('show');
 }
@@ -674,7 +673,6 @@ function selectBranch(id){
   gateMode = null;
   closeGate();
   applyClosedState();
-  /* لا نفتح الأكثر مبيعاً عند تغيير الفرع — فقط إشعار المغلق إن كان مغلقاً */
   if(closedNow()) showClosedNotice();
   if(!same){
     toast(tFn('branchSelected', branchName(b),
@@ -696,7 +694,6 @@ el('gateList').addEventListener('click', e=>{
 
 /* =====================================================
    محرك المسارات الحقيقي — بدون مفتاح API
-   (OSRM على خوادم OpenStreetMap المفتوحة)
 ===================================================== */
 const OSRM_HOSTS = [
   'https://routing.openstreetmap.de/routed-car',
@@ -715,7 +712,6 @@ function readRouteCache(la, lo, id){
 function writeRouteCache(la, lo, id, val){
   try{ localStorage.setItem(routeCacheKey(la,lo,id), JSON.stringify(val)); }catch(e){}
 }
-/* معامل الزحمة التقديري حسب اليوم والساعة (ذروات الرياض) */
 function trafficFactor(d){
   const day = d.getDay();
   const h = d.getHours() + d.getMinutes()/60;
@@ -778,7 +774,7 @@ async function requestNearest(){
   geoBusy = true;
   const btn = el('gateNearest');
   const lbl = el('gateNearestLbl');
-  const oldTxt = tt('branchNearestBtn','🎯 حدّد الفرع الأقرب لموقعي','🎯 Find My Nearest Branch');
+  const oldTxt = tt('branchNearestBtn','حدّد الفرع الأقرب لموقعك','Find your nearest branch');
   btn.disabled = true;
   lbl.textContent = tt('geoLocating','جارٍ تحديد موقعك...','Locating you...');
   try{
@@ -900,7 +896,7 @@ function closeFeatured(){
   showAdOnce();
 }
 
-/* ===== مدخل يدوي: الضغط على شارة 🏆 يفتح الشاشة ===== */
+/* ===== مدخل يدوي: شارة 🏆 تفتح الشاشة ===== */
 document.addEventListener('click', e=>{
   const bd = e.target.closest('[data-openfeat]');
   if(!bd) return;
