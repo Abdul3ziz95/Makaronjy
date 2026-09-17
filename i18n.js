@@ -9,7 +9,6 @@ window.I18N = {
     docTitle: 'مكرونجي | مكرونة بطعم لا يُقاوم',
     brandName: 'مكرونجي',
     brandTag: 'باستا • مقبلات • حلويات',
-    heroTitle: 'مكرونجي',
     heroSubtitle: 'مكرونة بطعم لا يُقاوم',
     searchPh: '🔍 ابحث عن صنف...',
     clearSearch: '✕ مسح البحث',
@@ -19,14 +18,9 @@ window.I18N = {
     welcomeTitle: 'أهلاً وسهلاً بكم',
     welcomeMsg: 'اطلبوا ألذ أطباق المكرونة <b>واستلموها جاهزة</b> من أقرب فرع لكم! 🍝',
     welcomeBtn: 'اطلب الآن 🍝',
-    loading: 'جارٍ تجهيز الأطباق... 🍽️',
-    loadDone: 'اكتمل التحميل ✔',
-    skip: 'تخطي والذهاب للمنيو ⏭',
     featTitle: 'الأكثر مبيعاً',
     browseMenu: 'تصفح قائمة الطعام',
-    branches: 'الفروع',
     getDir: 'التوجه للمطعم',
-    call: 'الاتصال مباشر',
     calInfo: 'احتياج الفرد يومياً 2000 إلى 2500 سعرة حرارية وتختلف حسب الأشخاص',
     designBy: 'تصميم',
     yourOrder: 'طلبك',
@@ -77,14 +71,15 @@ window.I18N = {
     favReplaceTitle: 'استبدال الوجبة المحفوظة',
     favConfirmYes: 'نعم، استبدال',
 
-    /* ===== الفروع ===== */
-    branchGateTitle: 'اختر فرعك للطلب 📍',
+    /* ===== الفروع وصفحة الاختيار ===== */
     gateBrand: 'مطاعم مكرونجي',
     gateTagline: 'مكرونة بطعم لا يُقاوم',
     gateListBtn: 'قائمة الفروع',
-    branchNearestBtn: '🎯 حدّد الفرع الأقرب لموقعي',
+    branchNearestBtn: 'حدّد الفرع الأقرب لموقعك',
+    gateNearestSub: 'لضمان أسرع خدمة وأفضل تجربة',
+    followUs: 'تابعنا على',
     branchNearestBadge: '🎯 الأقرب لك',
-    branchGeoOn: '🎯 تم إبراز أقرب فرع لك',
+    branchGeoOn: '🎯 تم ترتيب الفروع حسب زمن الوصول الحقيقي',
     branchGeoDenied: '⚠️ لم نتمكن من تحديد موقعك — اختر فرعك يدوياً',
     branchSelected: function(n){ return '🍝 تم تحويل طلبك إلى: ' + n; },
     chooseBtn: 'اختر ✓',
@@ -107,7 +102,7 @@ window.I18N = {
     days: ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
     closesAt: function(h){ return 'يغلق عند الساعة ' + h; },
     opensAt: function(h){ return 'يفتح عند الساعة ' + h; },
-    opensOn: function(d,h){ return 'يفتح يوم ' + d + ' عند الساعة ' + h; },
+    opensOn: function(d, h){ return 'يفتح يوم ' + d + ' عند الساعة ' + h; },
 
     /* ===== التوفر والنفد ===== */
     soldOut: 'نفد ❌',
@@ -131,7 +126,6 @@ window.I18N = {
     docTitle: 'Makaronjy | Irresistible Pasta',
     brandName: 'Makaronjy',
     brandTag: 'Pasta • Sides • Desserts',
-    heroTitle: 'Makaronjy',
     heroSubtitle: 'Irresistible pasta',
     searchPh: '🔍 Search for a dish...',
     clearSearch: '✕ Clear Search',
@@ -141,14 +135,9 @@ window.I18N = {
     welcomeTitle: 'Welcome',
     welcomeMsg: 'Order the most delicious pasta dishes <b>and pick them up ready</b> from your nearest branch! 🍝',
     welcomeBtn: 'Order Now 🍝',
-    loading: 'Preparing your dishes... 🍽️',
-    loadDone: 'Loading complete ✔',
-    skip: 'Skip to menu ⏭',
     featTitle: 'Best Sellers',
     browseMenu: 'Browse the Menu',
-    branches: 'Branches',
     getDir: 'Directions',
-    call: 'Call Us',
     calInfo: 'An average adult needs 2,000 to 2,500 calories per day; needs vary by person',
     designBy: 'Design',
     yourOrder: 'Your Order',
@@ -199,14 +188,15 @@ window.I18N = {
     favReplaceTitle: 'Replace Saved Meal',
     favConfirmYes: 'Yes, Replace',
 
-    /* ===== Branches ===== */
-    branchGateTitle: 'Choose Your Branch 📍',
+    /* ===== Branches & gate ===== */
     gateBrand: 'Makaronjy Restaurants',
     gateTagline: 'Irresistible pasta experience',
     gateListBtn: 'Branch List',
-    branchNearestBtn: '🎯 Find My Nearest Branch',
+    branchNearestBtn: 'Find your nearest branch',
+    gateNearestSub: 'For faster service & a better experience',
+    followUs: 'Follow us',
     branchNearestBadge: '🎯 Nearest to You',
-    branchGeoOn: '🎯 Nearest branch highlighted',
+    branchGeoOn: '🎯 Branches sorted by real travel time',
     branchGeoDenied: '⚠️ Could not get your location — choose manually',
     branchSelected: function(n){ return '🍝 Your order branch: ' + n; },
     chooseBtn: 'Choose ✓',
@@ -229,7 +219,7 @@ window.I18N = {
     days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     closesAt: function(h){ return 'Closes at ' + h; },
     opensAt: function(h){ return 'Opens at ' + h; },
-    opensOn: function(d,h){ return 'Opens ' + d + ' at ' + h; },
+    opensOn: function(d, h){ return 'Opens ' + d + ' at ' + h; },
 
     /* ===== Availability & Sold-out ===== */
     soldOut: 'Sold out ❌',
@@ -244,7 +234,7 @@ window.I18N = {
       '<div class="sheet-step"><span class="num">2</span><p>Scroll up and choose <b>"Add to Home Screen"</b> (＋ icon).</p></div>' +
       '<div class="sheet-step"><span class="num">3</span><p>Tap <b>"Add"</b> — the Makaronjy icon will appear on your home screen 🎉</p></div>',
     otherSteps:
-      '<div class="sheet-step"><span class="num">1</span><p>Open the browser menu (⋮ or ⋯) at the top.</p></div>' +
+      '<div class="sheet-step"><span class="num">1</span><p>Open the browser menu (⋮ or ) at the top.</p></div>' +
       '<div class="sheet-step"><span class="num">2</span><p>Choose <b>"Install App"</b> or <b>"Add to Home Screen"</b>.</p></div>' +
       '<div class="sheet-step"><span class="num">3</span><p>Confirm — the Makaronjy icon will appear on your home screen 🎉</p></div>'
   }
