@@ -101,6 +101,7 @@
   <button class="f-menu-btn" onclick="closeFeatured()" data-i18n="browseMenu">تصفح قائمة الطعام</button>
 </div>
 
+<!-- ===== صفحة اختيار الفرع — الهوية القديمة ===== -->
 <div class="gate" id="gate">
   <div class="gate-head">
     <button class="gate-close" id="gateClose" onclick="closeGate()" aria-label="إغلاق">✕</button>
@@ -111,12 +112,15 @@
     <img src="img/logo.png" data-appimg="img/logo.png" alt="مكرونجي" class="gate-logo" decoding="async">
     <h2 class="gate-brand" id="gateBrand">مطاعم مكرونجي</h2>
     <p class="gate-tagline" id="gateTagline">مكرونة بطعم لا يُقاوم</p>
-    <p class="gate-direct" id="gateDirectLbl">اطلب من المطعم مباشرة</p>
-    <p class="gate-pickup" id="gatePickup">🛍️ طلبك يكون جاهزاً عند وصولك للفرع</p>
-    <h3 class="gate-title" id="gateTitle">اختر فرعك للطلب 📍</h3>
+    <p class="gate-pickup">🛍️ <span data-i18n="pickupNote">طلبك يكون جاهزاً عند وصولك للفرع</span></p>
+    <span id="gateNearestSub" hidden></span>
   </div>
   <div class="gate-body">
-    <button class="gate-nearest" id="gateNearest"><span class="ping"></span><span id="gateNearestLbl">🎯 حدّد الفرع الأقرب لموقعي</span></button>
+    <button class="gate-nearest" id="gateNearest">
+      <span class="ping"></span>
+      <span class="gn-emoji">🎯</span>
+      <span id="gateNearestLbl">حدّد الفرع الأقرب لموقعك</span>
+    </button>
     <button class="gate-listbtn" id="gateListBtn" aria-expanded="false">
       <span>📋</span>
       <span id="gateListLbl">قائمة الفروع</span>
@@ -127,7 +131,10 @@
       <div class="gate-list" id="gateList"></div>
     </div>
     <div class="gate-delivery" id="gateDelivery"></div>
-    <div class="gate-social" id="gateSocial"></div>
+    <div class="gate-follow">
+      <div class="gf-title" id="gfTitleLbl">تابعنا على</div>
+      <div class="gf-social" id="gateSocial"></div>
+    </div>
   </div>
 </div>
 
@@ -222,7 +229,6 @@
   </div>
 </div>
 
-<!-- ===== إشعار المطعم مغلق ===== -->
 <div class="closed-modal" id="closedModal" onclick="if(event.target===this) closeClosedNotice()">
   <div class="closed-card">
     <button class="closed-close" id="closedClose" aria-label="إغلاق">✕</button>
@@ -241,4 +247,4 @@
 <script src="settings.js"></script>
 <script src="app.js"></script>
 </body>
-</html>
+</html>ا
