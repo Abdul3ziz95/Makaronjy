@@ -145,7 +145,7 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 ===================================================== */
 .gate{position:fixed;inset:0;z-index:96;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:.45s}
 .gate.show{opacity:1;pointer-events:auto}
-.gate-head{flex-shrink:0;position:relative;text-align:center;padding:2.2rem 1rem 3.6rem;z-index:2;overflow:hidden;color:#fff;
+.gate-head{flex-shrink:0;position:relative;text-align:center;padding:2.2rem 1rem 0;z-index:2;overflow:visible;color:#fff;
   background-color:var(--gate-mid);
   background-image:linear-gradient(180deg,rgba(42,14,24,.30) 0%,rgba(74,20,40,.05) 45%,rgba(90,24,48,.60) 100%),url('img/gate-bg.png');
   background-size:auto,cover;background-position:center,center;background-repeat:no-repeat}
@@ -169,10 +169,10 @@ img{-ms-interpolation-mode:bicubic;max-width:100%}
 .gate-body{flex:1;overflow-y:auto;background:var(--cream);
   background-image:radial-gradient(#efe3d3 1px,transparent 1px);background-size:22px 22px;
   display:flex;flex-direction:column;align-items:center;padding:0 0 2.4rem;position:relative}
-.gate-body::before{content:'';display:block;width:100%;height:2.4rem;flex-shrink:0;
+.gate-body::before{content:'';display:block;width:100%;height:2.5rem;flex-shrink:0;
   background:var(--cream);border-radius:26px 26px 0 0;box-shadow:0 -6px 18px rgba(0,0,0,.12)}
-/* بطاقة الأقرب — عنابية فوق الانحناء والعنوان سطر واحد */
-.gate-nearest-card{width:min(430px,92vw);margin:-3.4rem auto 1rem;position:relative;z-index:3;
+/* بطاقة الأقرب — داخل الهيدر تتدلى فوق المنحنى بدون قصّ */
+.gate-nearest-card{width:min(430px,92vw);margin:1.1rem auto -2.5rem;position:relative;z-index:5;
   background:linear-gradient(135deg,var(--brown2),var(--brown));color:#fff;border:none;border-radius:18px;
   padding:.95rem 1rem;display:flex;align-items:center;gap:.7rem;cursor:pointer;transition:.25s;
   box-shadow:0 14px 34px rgba(42,14,24,.45);animation:fadeUp .5s .3s both;overflow:hidden;font-family:inherit;text-align:inherit}
