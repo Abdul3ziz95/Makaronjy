@@ -94,11 +94,11 @@ window.APP_SETTINGS = {
         },
         {
           "o": {
-            "h": 1,
+            "h": 13,
             "m": 0
           },
           "c": {
-            "h": 5,
+            "h": 2,
             "m": 0
           },
           "closed": false
