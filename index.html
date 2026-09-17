@@ -101,6 +101,7 @@
   <button class="f-menu-btn" onclick="closeFeatured()" data-i18n="browseMenu">تصفح قائمة الطعام</button>
 </div>
 
+<!-- ===== صفحة اختيار الفرع ===== -->
 <div class="gate" id="gate">
   <div class="gate-head">
     <button class="gate-close" id="gateClose" onclick="closeGate()" aria-label="إغلاق">✕</button>
@@ -111,12 +112,22 @@
     <img src="img/logo.png" data-appimg="img/logo.png" alt="مكرونجي" class="gate-logo" decoding="async">
     <h2 class="gate-brand" id="gateBrand">مطاعم مكرونجي</h2>
     <p class="gate-tagline" id="gateTagline">مكرونة بطعم لا يُقاوم</p>
-    <p class="gate-direct" id="gateDirectLbl">اطلب من المطعم مباشرة</p>
-    <p class="gate-pickup" id="gatePickup">🛍️ طلبك يكون جاهزاً عند وصولك للفرع</p>
-    <h3 class="gate-title" id="gateTitle">اختر فرعك للطلب 📍</h3>
   </div>
   <div class="gate-body">
-    <button class="gate-nearest" id="gateNearest"><span class="ping"></span><span id="gateNearestLbl">🎯 حدّد الفرع الأقرب لموقعي</span></button>
+    <!-- بطاقة الأقرب -->
+    <button class="gate-nearest-card" id="gateNearest">
+      <span class="ping"></span>
+      <span class="gn-ico">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </span>
+      <span class="gn-text">
+        <b id="gateNearestLbl">حدّد الفرع الأقرب لموقعك</b>
+        <small id="gateNearestSub">لضمان أسرع خدمة وأفضل تجربة</small>
+      </span>
+      <span class="gn-arrow">›</span>
+    </button>
+
+    <!-- قائمة الفروع -->
     <button class="gate-listbtn" id="gateListBtn" aria-expanded="false">
       <span>📋</span>
       <span id="gateListLbl">قائمة الفروع</span>
@@ -126,8 +137,20 @@
     <div class="gate-drop" id="gateDrop">
       <div class="gate-list" id="gateList"></div>
     </div>
+
+    <!-- فاصل "أو" + التوصيل -->
     <div class="gate-delivery" id="gateDelivery"></div>
-    <div class="gate-social" id="gateSocial"></div>
+
+    <!-- تابعنا على -->
+    <div class="gate-follow">
+      <div class="gf-title">
+        <span class="gf-ornament"></span>
+        <span class="gf-logo">🌴</span>
+        <span id="gfTitleLbl">تابعنا على</span>
+        <span class="gf-ornament"></span>
+      </div>
+      <div class="gf-social" id="gateSocial"></div>
+    </div>
   </div>
 </div>
 
@@ -222,7 +245,6 @@
   </div>
 </div>
 
-<!-- ===== إشعار المطعم مغلق ===== -->
 <div class="closed-modal" id="closedModal" onclick="if(event.target===this) closeClosedNotice()">
   <div class="closed-card">
     <button class="closed-close" id="closedClose" aria-label="إغلاق">✕</button>
