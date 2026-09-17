@@ -214,7 +214,7 @@ window.MENU = [
       },
       {
         "id": "sauce-bozuhaira",
-        "ar": "ليمون بو زهيره",
+        "ar": "ليمون ابو زهيره",
         "en": "Bo Zuhaira Lemon",
         "prices": [
           2
